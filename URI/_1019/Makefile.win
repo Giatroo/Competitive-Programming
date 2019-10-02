@@ -1,0 +1,28 @@
+# Project: _1019
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = _1019/_1019.o
+LINKOBJ  = _1019/_1019.o
+LIBS     = -L"D:/Programacao/Dev-Cpp/MinGW64/lib" -L"D:/Programacao/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"D:/Programacao/Dev-Cpp/MinGW64/include" -I"D:/Programacao/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programacao/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/Programacao/Dev-Cpp/MinGW64/include" -I"D:/Programacao/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Programacao/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Programacao/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = _1019.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+_1019/_1019.o: _1019/_1019.cpp
+	$(CPP) -c _1019/_1019.cpp -o _1019/_1019.o $(CXXFLAGS)
