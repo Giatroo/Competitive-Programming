@@ -1,0 +1,6 @@
+E:\FTT\VisualStudio\URI\_1094\_1094\bin\Debug\_1094.exe.config
+E:\FTT\VisualStudio\URI\_1094\_1094\bin\Debug\_1094.exe
+E:\FTT\VisualStudio\URI\_1094\_1094\bin\Debug\_1094.pdb
+E:\FTT\VisualStudio\URI\_1094\_1094\obj\Debug\_1094.csprojResolveAssemblyReference.cache
+E:\FTT\VisualStudio\URI\_1094\_1094\obj\Debug\_1094.exe
+E:\FTT\VisualStudio\URI\_1094\_1094\obj\Debug\_1094.pdb

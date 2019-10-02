@@ -1,0 +1,6 @@
+E:\Algoritmos\URI\_1828\_1828\bin\Debug\_1828.exe.config
+E:\Algoritmos\URI\_1828\_1828\bin\Debug\_1828.exe
+E:\Algoritmos\URI\_1828\_1828\bin\Debug\_1828.pdb
+E:\Algoritmos\URI\_1828\_1828\obj\Debug\_1828.csprojResolveAssemblyReference.cache
+E:\Algoritmos\URI\_1828\_1828\obj\Debug\_1828.exe
+E:\Algoritmos\URI\_1828\_1828\obj\Debug\_1828.pdb

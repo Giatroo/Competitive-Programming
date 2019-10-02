@@ -1,0 +1,6 @@
+E:\FTT\VisualStudio\URI\_1051\_1051\bin\Debug\_1051.exe.config
+E:\FTT\VisualStudio\URI\_1051\_1051\bin\Debug\_1051.exe
+E:\FTT\VisualStudio\URI\_1051\_1051\bin\Debug\_1051.pdb
+E:\FTT\VisualStudio\URI\_1051\_1051\obj\Debug\_1051.csprojResolveAssemblyReference.cache
+E:\FTT\VisualStudio\URI\_1051\_1051\obj\Debug\_1051.exe
+E:\FTT\VisualStudio\URI\_1051\_1051\obj\Debug\_1051.pdb

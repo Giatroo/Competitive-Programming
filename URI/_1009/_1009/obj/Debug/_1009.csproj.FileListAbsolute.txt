@@ -1,0 +1,5 @@
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1009\_1009\bin\Debug\_1009.exe.config
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1009\_1009\bin\Debug\_1009.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1009\_1009\bin\Debug\_1009.pdb
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1009\_1009\obj\Debug\_1009.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1009\_1009\obj\Debug\_1009.pdb

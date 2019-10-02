@@ -1,0 +1,5 @@
+E:\FTT\VisualStudio\URI\_1049\_1049\bin\Debug\_1049.exe.config
+E:\FTT\VisualStudio\URI\_1049\_1049\bin\Debug\_1049.exe
+E:\FTT\VisualStudio\URI\_1049\_1049\bin\Debug\_1049.pdb
+E:\FTT\VisualStudio\URI\_1049\_1049\obj\Debug\_1049.exe
+E:\FTT\VisualStudio\URI\_1049\_1049\obj\Debug\_1049.pdb

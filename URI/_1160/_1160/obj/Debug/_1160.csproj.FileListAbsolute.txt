@@ -1,0 +1,6 @@
+E:\FTT\VisualStudio\URI\_1160\_1160\bin\Debug\_1160.exe.config
+E:\FTT\VisualStudio\URI\_1160\_1160\bin\Debug\_1160.exe
+E:\FTT\VisualStudio\URI\_1160\_1160\bin\Debug\_1160.pdb
+E:\FTT\VisualStudio\URI\_1160\_1160\obj\Debug\_1160.csprojResolveAssemblyReference.cache
+E:\FTT\VisualStudio\URI\_1160\_1160\obj\Debug\_1160.exe
+E:\FTT\VisualStudio\URI\_1160\_1160\obj\Debug\_1160.pdb

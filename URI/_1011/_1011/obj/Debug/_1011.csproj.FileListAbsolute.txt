@@ -1,0 +1,6 @@
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1011\_1011\bin\Debug\_1011.exe.config
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1011\_1011\bin\Debug\_1011.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1011\_1011\bin\Debug\_1011.pdb
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1011\_1011\obj\Debug\_1011.csprojResolveAssemblyReference.cache
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1011\_1011\obj\Debug\_1011.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1011\_1011\obj\Debug\_1011.pdb

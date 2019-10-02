@@ -1,0 +1,6 @@
+E:\FTT\VisualStudio\URI\_2533\_2533\bin\Debug\_2533.exe.config
+E:\FTT\VisualStudio\URI\_2533\_2533\bin\Debug\_2533.exe
+E:\FTT\VisualStudio\URI\_2533\_2533\bin\Debug\_2533.pdb
+E:\FTT\VisualStudio\URI\_2533\_2533\obj\Debug\_2533.csprojResolveAssemblyReference.cache
+E:\FTT\VisualStudio\URI\_2533\_2533\obj\Debug\_2533.exe
+E:\FTT\VisualStudio\URI\_2533\_2533\obj\Debug\_2533.pdb

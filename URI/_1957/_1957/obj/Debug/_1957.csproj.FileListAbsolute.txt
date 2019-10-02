@@ -1,0 +1,6 @@
+E:\Algoritmos\URI\_1957\_1957\bin\Debug\_1957.exe.config
+E:\Algoritmos\URI\_1957\_1957\bin\Debug\_1957.exe
+E:\Algoritmos\URI\_1957\_1957\bin\Debug\_1957.pdb
+E:\Algoritmos\URI\_1957\_1957\obj\Debug\_1957.csprojResolveAssemblyReference.cache
+E:\Algoritmos\URI\_1957\_1957\obj\Debug\_1957.exe
+E:\Algoritmos\URI\_1957\_1957\obj\Debug\_1957.pdb

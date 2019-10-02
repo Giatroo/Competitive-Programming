@@ -1,0 +1,8 @@
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\bin\Debug\netcoreapp1.1\_1115.deps.json
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\bin\Debug\netcoreapp1.1\_1115.runtimeconfig.json
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\bin\Debug\netcoreapp1.1\_1115.runtimeconfig.dev.json
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\bin\Debug\netcoreapp1.1\_1115.dll
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\bin\Debug\netcoreapp1.1\_1115.pdb
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\obj\Debug\netcoreapp1.1\_1115.AssemblyInfo.cs
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\obj\Debug\netcoreapp1.1\_1115.dll
+E:\Documentos\Visual Studio 2017\Projects\URI\Basico\_1115\_1115\obj\Debug\netcoreapp1.1\_1115.pdb

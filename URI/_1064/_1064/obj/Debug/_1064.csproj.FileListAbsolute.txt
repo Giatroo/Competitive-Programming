@@ -1,0 +1,5 @@
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1064\_1064\bin\Debug\_1064.exe.config
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1064\_1064\bin\Debug\_1064.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1064\_1064\bin\Debug\_1064.pdb
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1064\_1064\obj\Debug\_1064.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1064\_1064\obj\Debug\_1064.pdb

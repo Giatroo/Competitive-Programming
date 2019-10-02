@@ -1,0 +1,6 @@
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1040\_1040\bin\Debug\_1040.exe.config
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1040\_1040\bin\Debug\_1040.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1040\_1040\bin\Debug\_1040.pdb
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1040\_1040\obj\Debug\_1040.csprojResolveAssemblyReference.cache
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1040\_1040\obj\Debug\_1040.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\Basico\_1040\_1040\obj\Debug\_1040.pdb

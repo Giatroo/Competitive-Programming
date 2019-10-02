@@ -1,0 +1,5 @@
+E:\Algoritmos\URI\_1933\_1933\bin\Debug\_1933.exe.config
+E:\Algoritmos\URI\_1933\_1933\bin\Debug\_1933.exe
+E:\Algoritmos\URI\_1933\_1933\bin\Debug\_1933.pdb
+E:\Algoritmos\URI\_1933\_1933\obj\Debug\_1933.exe
+E:\Algoritmos\URI\_1933\_1933\obj\Debug\_1933.pdb

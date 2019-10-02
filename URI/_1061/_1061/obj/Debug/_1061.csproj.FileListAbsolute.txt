@@ -1,0 +1,9 @@
+E:\FTT\VisualStudio\URI\_1061\_1061\bin\Debug\_1061.exe.config
+E:\FTT\VisualStudio\URI\_1061\_1061\bin\Debug\_1061.exe
+E:\FTT\VisualStudio\URI\_1061\_1061\bin\Debug\_1061.pdb
+E:\FTT\VisualStudio\URI\_1061\_1061\obj\Debug\_1061.csprojResolveAssemblyReference.cache
+E:\FTT\VisualStudio\URI\_1061\_1061\obj\Debug\_1061.exe
+E:\FTT\VisualStudio\URI\_1061\_1061\obj\Debug\_1061.pdb
+F:\FTT\VisualStudio\URI\_1061\_1061\bin\Debug\_1061.exe.config
+F:\FTT\VisualStudio\URI\_1061\_1061\obj\Debug\_1061.exe
+F:\FTT\VisualStudio\URI\_1061\_1061\obj\Debug\_1061.pdb

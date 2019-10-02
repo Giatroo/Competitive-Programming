@@ -1,0 +1,5 @@
+E:\FTT\VisualStudio\URI\_1142\_1142\bin\Debug\_1142.exe.config
+E:\FTT\VisualStudio\URI\_1142\_1142\bin\Debug\_1142.exe
+E:\FTT\VisualStudio\URI\_1142\_1142\bin\Debug\_1142.pdb
+E:\FTT\VisualStudio\URI\_1142\_1142\obj\Debug\_1142.exe
+E:\FTT\VisualStudio\URI\_1142\_1142\obj\Debug\_1142.pdb

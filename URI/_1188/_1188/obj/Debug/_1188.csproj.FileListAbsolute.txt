@@ -1,0 +1,4 @@
+E:\Documentos\csharpworkspace\URI\Basico\_1188\_1188\bin\Debug\_1188.exe
+E:\Documentos\csharpworkspace\URI\Basico\_1188\_1188\bin\Debug\_1188.pdb
+E:\Documentos\csharpworkspace\URI\Basico\_1188\_1188\obj\Debug\_1188.exe
+E:\Documentos\csharpworkspace\URI\Basico\_1188\_1188\obj\Debug\_1188.pdb

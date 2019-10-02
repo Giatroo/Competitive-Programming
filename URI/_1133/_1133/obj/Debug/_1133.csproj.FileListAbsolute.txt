@@ -1,0 +1,6 @@
+E:\FTT\VisualStudio\URI\_1133\_1133\bin\Debug\_1133.exe.config
+E:\FTT\VisualStudio\URI\_1133\_1133\bin\Debug\_1133.exe
+E:\FTT\VisualStudio\URI\_1133\_1133\bin\Debug\_1133.pdb
+E:\FTT\VisualStudio\URI\_1133\_1133\obj\Debug\_1133.csprojResolveAssemblyReference.cache
+E:\FTT\VisualStudio\URI\_1133\_1133\obj\Debug\_1133.exe
+E:\FTT\VisualStudio\URI\_1133\_1133\obj\Debug\_1133.pdb

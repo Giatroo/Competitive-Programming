@@ -1,0 +1,6 @@
+E:\FTT\VisualStudio\URI\_1045\_1045\bin\Debug\_1045.exe.config
+E:\FTT\VisualStudio\URI\_1045\_1045\bin\Debug\_1045.exe
+E:\FTT\VisualStudio\URI\_1045\_1045\bin\Debug\_1045.pdb
+E:\FTT\VisualStudio\URI\_1045\_1045\obj\Debug\_1045.exe
+E:\FTT\VisualStudio\URI\_1045\_1045\obj\Debug\_1045.pdb
+E:\FTT\VisualStudio\URI\_1045\_1045\obj\Debug\_1045.csprojResolveAssemblyReference.cache

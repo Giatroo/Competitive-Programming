@@ -1,0 +1,5 @@
+E:\Algoritmos\URI\_1958\_1958\bin\Debug\_1958.exe.config
+E:\Algoritmos\URI\_1958\_1958\bin\Debug\_1958.exe
+E:\Algoritmos\URI\_1958\_1958\bin\Debug\_1958.pdb
+E:\Algoritmos\URI\_1958\_1958\obj\Debug\_1958.exe
+E:\Algoritmos\URI\_1958\_1958\obj\Debug\_1958.pdb

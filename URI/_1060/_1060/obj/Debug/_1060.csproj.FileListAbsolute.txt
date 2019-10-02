@@ -1,0 +1,5 @@
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1060\_1060\bin\Debug\_1060.exe.config
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1060\_1060\bin\Debug\_1060.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1060\_1060\bin\Debug\_1060.pdb
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1060\_1060\obj\Debug\_1060.exe
+C:\Users\Lucas\Documents\Visual Studio 2015\Projects\URI\_1060\_1060\obj\Debug\_1060.pdb

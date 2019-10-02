@@ -1,0 +1,5 @@
+E:\Documentos\csharpworkspace\URI\Basico\_1179\_1179\bin\Debug\_1179.exe
+E:\Documentos\csharpworkspace\URI\Basico\_1179\_1179\bin\Debug\_1179.pdb
+E:\Documentos\csharpworkspace\URI\Basico\_1179\_1179\obj\Debug\_1179.csprojResolveAssemblyReference.cache
+E:\Documentos\csharpworkspace\URI\Basico\_1179\_1179\obj\Debug\_1179.exe
+E:\Documentos\csharpworkspace\URI\Basico\_1179\_1179\obj\Debug\_1179.pdb

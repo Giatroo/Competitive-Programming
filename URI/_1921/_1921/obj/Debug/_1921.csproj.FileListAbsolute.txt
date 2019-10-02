@@ -1,0 +1,5 @@
+E:\Algoritmos\URI\_1921\_1921\bin\Debug\_1921.exe.config
+E:\Algoritmos\URI\_1921\_1921\bin\Debug\_1921.exe
+E:\Algoritmos\URI\_1921\_1921\bin\Debug\_1921.pdb
+E:\Algoritmos\URI\_1921\_1921\obj\Debug\_1921.exe
+E:\Algoritmos\URI\_1921\_1921\obj\Debug\_1921.pdb

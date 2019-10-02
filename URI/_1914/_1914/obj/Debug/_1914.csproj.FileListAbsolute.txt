@@ -1,0 +1,6 @@
+E:\Algoritmos\URI\_1914\_1914\bin\Debug\_1914.exe.config
+E:\Algoritmos\URI\_1914\_1914\bin\Debug\_1914.exe
+E:\Algoritmos\URI\_1914\_1914\bin\Debug\_1914.pdb
+E:\Algoritmos\URI\_1914\_1914\obj\Debug\_1914.exe
+E:\Algoritmos\URI\_1914\_1914\obj\Debug\_1914.pdb
+E:\Algoritmos\URI\_1914\_1914\obj\Debug\_1914.csprojResolveAssemblyReference.cache

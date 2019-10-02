@@ -1,0 +1,6 @@
+c:\users\lucas\documents\visual studio 2015\Projects\_1052\_1052\bin\Debug\_1052.exe.config
+C:\Users\Lucas\documents\visual studio 2015\Projects\_1052\_1052\obj\Debug\_1052.csprojResolveAssemblyReference.cache
+C:\Users\Lucas\documents\visual studio 2015\Projects\_1052\_1052\bin\Debug\_1052.exe
+C:\Users\Lucas\documents\visual studio 2015\Projects\_1052\_1052\bin\Debug\_1052.pdb
+C:\Users\Lucas\documents\visual studio 2015\Projects\_1052\_1052\obj\Debug\_1052.exe
+C:\Users\Lucas\documents\visual studio 2015\Projects\_1052\_1052\obj\Debug\_1052.pdb

@@ -1,0 +1,5 @@
+E:\Algoritmos\URI\_1837\_1837\bin\Debug\_1837.exe.config
+E:\Algoritmos\URI\_1837\_1837\bin\Debug\_1837.exe
+E:\Algoritmos\URI\_1837\_1837\bin\Debug\_1837.pdb
+E:\Algoritmos\URI\_1837\_1837\obj\Debug\_1837.exe
+E:\Algoritmos\URI\_1837\_1837\obj\Debug\_1837.pdb

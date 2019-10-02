@@ -1,0 +1,5 @@
+E:\FTT\VisualStudio\URI\_1048\_1048\bin\Debug\_1048.exe.config
+E:\FTT\VisualStudio\URI\_1048\_1048\bin\Debug\_1048.exe
+E:\FTT\VisualStudio\URI\_1048\_1048\bin\Debug\_1048.pdb
+E:\FTT\VisualStudio\URI\_1048\_1048\obj\Debug\_1048.exe
+E:\FTT\VisualStudio\URI\_1048\_1048\obj\Debug\_1048.pdb
