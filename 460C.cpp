@@ -7,17 +7,17 @@ ll H[112345];
 ll binary(ll l, ll r, ll k, ll n){
 	ll m, t, i;
 	while(l <= r){
-		m = l + (r-l)/2;
+		m = (l+r)/2;
 		t = 0;
 		for(i = 0; i < n; i++){
 			t += (m-H[i]);
-			//if(t > k) break;
+			if(t > k) break;
 		}
 		if(t < k) l = m+1;
 		else if(t > k) r = m-1;
- 		else if(t == k) break;
+ 		else if(t == k) m;
 	}
-	m = l + (r-l)/2;
+	m = ((l+r)/2);
 	return m;
 }
 
