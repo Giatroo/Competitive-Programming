@@ -5,39 +5,37 @@ typedef long long ll;
 ll H[1123456];
 
 ll binary(ll l, ll r, ll k, ll n){
-	ll m, t;
+	ll m, t, i;
 	while(l <= r){
-		m = l + floor(r-l)/2;
+		m = (l+r)/2;
 		t = 0;
-		//printf("k = %lld t = %lld l = %lld m = %lld r = %lld\n", k, t, l, m, r);
-		for(ll i = 0; i < n; i++){
+		for(i = 0; i < n; i++){
 			t += (m-H[i]);
 			//printf("\tH[%lld] = %lld t = %lld\n", i, H[i], t);
 			if(t > k) break;
 		}
-		//printf("k = %lld t = %lld\n", k, t);
 		if(t < k) l = m+1;
 		else if(t > k) r = m-1;
- 		else if(t == k) return m;
+ 		else if(t == k) m;
 	}
-	m = l + floor(r-l)/2;
-	//printf("l = %lld m = %lld r = %lld\n", l, m, r);
+	m = ((l+r)/2);
 	return m;
 }
 
 int main(){
 	ll N, M, W;
-	ll k, min, max, ret;
+	ll k, p, min, max;
+	ll i;
 	scanf("%lld %lld %lld", &N, &M, &W);
-	for(int i = 0; i < N; i++)
+	for(i = 0; i < N; i++)
 		scanf("%lld", H+i);
-	sort(H, H+N);
 	k = M * W;
+	sort(H, H+N);
 	min = H[0];
 	max = H[N-1] + k;
-	ret = binary(min, max, k, N);	
-	
-	printf("%lld\n", ret);
-		
+	p = binary(min, max, k, N);
+
+	printf("%lld\n", p);
+
 	return 0;
 }
