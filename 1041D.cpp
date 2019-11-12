@@ -3,18 +3,19 @@ using namespace std;
 typedef long long ll;
 #define f first
 #define s second
+#define MIN(a, b) (a < b) ? a : b
 
 pair<ll, ll> a[212345];
 
 ll decide(ll h, ll n){
-	ll l, r, il, ir, max, oh;
-	l = r = a[0].f - h; //garante que vamos pegar todos os casos
-	il = ir = 0;
+	ll l, r, il, ir, max, aux;
+	int marcador = 1;
+	l = r = a[0].f; //garante que vamos pegar todos os casos
+	il = ir = aux = 0;
 	max = 0;
-	oh = h;
 
-	while(r < (a[n-1].s + h) || h < 0){ //garante que vamos até o final
-//		printf("h = %lld l = %lld il = %lld r = %lld ir = %lld max = %lld\n", h, l, il, r, ir, max);
+	while(il < n){ //garante que vamos até o final
+		printf("h = %lld l = %lld il = %lld r = %lld ir = %lld max = %lld aux = %lld\n", h, l, il, r, ir, max, aux);
 		if(h > 0){ //Mexemos no r até h terminar
 			if(a[ir].f <= r && r <= a[ir].s){
 				r = a[ir].s;
@@ -22,6 +23,11 @@ ll decide(ll h, ll n){
 			} else {
 				h -= (a[ir].f - r);
 				r = a[ir].f;
+				if(marcador)
+				{
+					aux = MIN((r - a[il].s), (a[il+1].f - a[il].s));
+					marcador = 0;
+				}
 				if(h < 0){
 					r += h;
 					h = 0;
@@ -29,6 +35,10 @@ ll decide(ll h, ll n){
 			}
 		} else { //Devemos mexer no l
 			if(r - l > max) max = r - l;
+			l = a[il++].f;
+			h += aux;
+			marcador = 1;
+			/*
 			if(a[il].f <= l && l <= a[il].s) //Nesses casos, temos que a distância é a mesma para qualquer l nessas condições
 			{
 				l = a[il].s + 1; //Colocamos o l fora da região de ar
@@ -49,12 +59,13 @@ ll decide(ll h, ll n){
 				}
 				if(r <= l){ h = oh; r = l; }
 			}
+			*/
 		}
 	}
 
 	if(r - l > max) max = r - l;
 //	printf("h = %lld l = %lld il = %lld r = %lld ir = %lld max = %lld\n", h, l, il, r, ir, max);
-	return max;	
+	return max;
 }
 
 int main(){
@@ -62,14 +73,14 @@ int main(){
 	ll i;
 
 	scanf("%lld %lld", &n, &h);
-	
+
 	for(i = 0; i < n; i++)
 		scanf("%lld %lld", &(a[i].f), &(a[i].s));
 
 	a[i].f = a[i-1].s + 2*h;
 	a[i].s = a[i].f + 1;
 
-	printf("%lld\n", decide(h, n));	
+	printf("%lld\n", decide(h, n));
 
 	return 0;
 }
