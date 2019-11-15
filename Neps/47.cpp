@@ -7,17 +7,19 @@ typedef long long int ll;
 
 using namespace std;
 
-ll min(ll a, ll b)
-{
-  return (a < b) ? a : b;
-}
-
-ll max(ll a, ll b)
-{
-  return (a > b) ? a : b;
-}
+ll N, sum;
+ll a[11234];
 
 int main(int argc, char const *argv[]) {
+  cin >> N;
+  sum = 0;
+  fora(i, N) cin >> a[i];
+
+  fora(i, N-2)
+    if(a[i] == 1 && a[i+1] == 0 && a[i+2] == 0)
+      sum++;
+
+  printf("%lld\n", sum);
 
   return 0;
 }

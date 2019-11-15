@@ -17,7 +17,29 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+ll N;
+ll a[11234];
+ll j;
+
 int main(int argc, char const *argv[]) {
+  cin >> N;
+  fora(i, N) cin >> a[i];
+
+  fora(i, N)
+  {
+    j = 0;
+    while(1)
+    {
+      if(j+i < N && a[i+j] == 0) break;
+      if(i-j >= 0 && a[i-j] == 0) break;
+      j++;
+    }
+
+    a[i] = min(j, (ll) 9);
+  }
+
+  fora(i, N-1) cout << a[i] << " ";
+  cout << a[N-1] << endl;
 
   return 0;
 }
