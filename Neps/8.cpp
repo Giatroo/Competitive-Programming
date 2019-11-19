@@ -23,14 +23,19 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
+  int n, c;
+  vector<int> v(3);
 
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
+  cin >> n >> v[0] >> v[1] >> v[2];
+
+  sortvector(v);
+  c = 0;
+  fora(i, 3) {
+    if(n >= v[i]) { n -= v[i]; c++; }
+    else break;
+    //cout << "Consumi " << v[i] << " e n ficou " << n << endl;
+  }
+  cout << c << endl;
 
   return 0;
 }

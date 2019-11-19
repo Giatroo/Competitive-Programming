@@ -22,15 +22,27 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
+string s;
+bool div2, div3, div5;
+ll sum;
 
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
+int main(int argc, char const *argv[]) {
+  cin >> s;
+  div2 = div3 = div5 = false;
+  div2 = ((s[s.size()-1] - '0') % 2 == 0);
+  div5 = ((s[s.size()-1] - '0') % 5 == 0);
+
+  sum = 0;
+  fora(i, s.size())
+      sum += s[i] - '0';
+  div3 = (sum % 3 == 0);
+
+  if(div2) cout << "S\n";
+  else cout << "N\n";
+  if(div3) cout << "S\n";
+  else cout << "N\n";
+  if(div5) cout << "S\n";
+  else cout << "N\n";
 
   return 0;
 }

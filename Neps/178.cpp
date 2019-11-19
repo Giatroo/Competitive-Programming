@@ -23,14 +23,19 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
+  int d1, d2, h1, h2, m1, m2;
+  ll t1, t2;
 
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
+  cin >> d1 >> h1 >> m1 >> d2 >> h2 >> m2;
+  t1 = t2 = 0;
+  t1 += d1*24*60*60;
+  t1 += h1*60*60;
+  t1 += m1*60;
+  t2 += d2*24*60*60;
+  t2 += h2*60*60;
+  t2 += m2*60;
+
+  cout << abs(t1 - t2) << endl;
 
   return 0;
 }

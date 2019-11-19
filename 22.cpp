@@ -22,15 +22,20 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
+int t[112][112];
 
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
+int main(int argc, char const *argv[]) {
+  int n;
+  cin >> n;
+  fora(i, n)
+    fora(j, n)
+      cin >> t[i][j];
+
+  fora(i, n)
+    fora(j, n)
+      if(t[i][j] == 9)
+        t[i][j] = (t[i-1][j] + t[i-1][j-1] + t[i][j-1] >= 2) ? 0 : 1;
+  cout << t[n-1][n-1] << endl;
 
   return 0;
 }

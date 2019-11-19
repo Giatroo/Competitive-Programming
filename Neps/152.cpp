@@ -1,37 +1,32 @@
-#include <iostream>
+#include <bits/stdc++.h>
+typedef long long int ll;
+typedef long double lld;
+#define fora(i, n) for(ll i = 0; i < n; i++)
+#define forai(i, n) for(ll i = 1; i <= n; i++)
+#define ford(i, n) for(ll i = n-1; i >= 0; i--)
+#define fordi(i, n) for(ll i = n; i >= 0; i--)
+#define f first
+#define s second
+#define sortvector(v) sort(v.begin(), v.end())
+#define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 
 using namespace std;
 
-bool Mai(char c);
-bool Min(char c);
-
-string title(string F){
-    if(Min(F[0]))
-      F[0] += ('A' - 'a');
-    for(int i = 1; i < F.size(); i++)
-    {
-      if(F[i-1] == ' ' && Min(F[i]))
-        F[i] += ('A' - 'a');
-      else if(F[i-1] != ' ' && Mai(F[i]))
-        F[i] += ('a' - 'A');
-    }
-    return F;
-}
-
-bool Mai(char c)
+ll min(ll a, ll b)
 {
-  return ('A' <= c && c <= 'Z');
+  return (a < b) ? a : b;
 }
 
-bool Min(char c)
+ll max(ll a, ll b)
 {
-  return ('a' <= c && c <= 'z');
+  return (a > b) ? a : b;
 }
 
-int main(){
-    string F;
-
-    getline(cin, F);
-
-    cout << title(F) << "\n";
+int main(int argc, char const *argv[]) {
+  ll x;
+  cin >> x;
+  fora(i, 10)
+    cout << ++x << " ";
+  cout << endl;
+  return 0;
 }

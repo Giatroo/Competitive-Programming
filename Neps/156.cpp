@@ -1,92 +1,32 @@
 #include <bits/stdc++.h>
+typedef long long int ll;
+typedef long double lld;
+#define fora(i, n) for(ll i = 0; i < n; i++)
+#define forai(i, n) for(ll i = 1; i <= n; i++)
+#define ford(i, n) for(ll i = n-1; i >= 0; i--)
+#define fordi(i, n) for(ll i = n; i >= 0; i--)
+#define f first
+#define s second
+#define sortvector(v) sort(v.begin(), v.end())
+#define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 
 using namespace std;
 
-typedef struct {
-  int pos[112];
-  int pont;
-  int id;
-} Pil;
-
-bool comp(Pil p1, Pil p2)
+ll min(ll a, ll b)
 {
-  return p1.pont > p2.pont;
+  return (a < b) ? a : b;
 }
 
-bool compID(Pil p1, Pil p2)
+ll max(ll a, ll b)
 {
-  return p1.id < p2.id;
+  return (a > b) ? a : b;
 }
 
-int main()
-{
-  int G, P, S, K;
-  int i, j, k;
-  int aux;
-  Pil pilotos[112];
-  int ks[112];
-  int maior;
-  Pil vencedores[112];
-
-  cin >> G >> P;
-  while(G != 0 && P != 0)
-  {
-    for(i = 0; i < G; i++)
-      for(j = 0; j < P; j++)
-      {
-        scanf("%d", &(pilotos[j].pos[i]));
-        pilotos[j].id = (j+1);
-      }
-
-    scanf("%d", &S);
-
-    for(i = 0; i < S; i++)
-    {
-      for(j = 0; j < P; j++)
-        pilotos[j].pont = 0;
-
-      scanf("%d", &K);
-      for(j = 0; j < K; j++)
-        scanf("%d", &(ks[j]));
-
-      /*for(j = 0; j < K; j++)
-        printf("%d ", ks[j]);
-      printf("\n");*/
-
-      for(j = 0; j < P; j++)
-        for(k = 0; k < G; k++)
-          if(pilotos[j].pos[k]-1 < K)
-            pilotos[j].pont += ks[pilotos[j].pos[k]-1];
-
-      /*for(j = 0; j < P; j++)
-        printf("%d ", pilotos[j].pont);
-      printf("\n");*/
-
-      sort(pilotos, pilotos+P, comp);
-
-      /*for(j = 0; j < P; j++)
-        printf("%d ", pilotos[j].pont);
-      printf("\n");*/
-
-      maior = pilotos[0].pont;
-
-      j = 0;
-      while(pilotos[j].pont == maior){
-        vencedores[j] = pilotos[j];
-        j++;
-      }
-
-      sort(vencedores, vencedores+j, compID);
-      k = j;
-      /*printf("out: ");*/
-      for(j = 0; j < k-1; j++)
-        printf("%d ", vencedores[j].id);
-      printf("%d\n", vencedores[j].id);
-
-    }
-
-    cin >> G >> P;
-  }
-
+int main(int argc, char const *argv[]) {
+  int a, b;
+  cin >> a >> b;
+  for(int i = min(a,b); i <= max(a,b); i++)
+    cout << i << " ";
+  cout << endl;
   return 0;
 }

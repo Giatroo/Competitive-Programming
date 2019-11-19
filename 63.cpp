@@ -22,15 +22,24 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
+ll n;
+vector<ll> v;
+vector<ll> vo;
+ll tot;
 
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
+int main(int argc, char const *argv[]) {
+  cin >> n;
+  v.resize(n);
+  vo.resize(n);
+  fora(i, n) { cin >> v[i]; vo[i] = v[i]; }
+  sortvector(vo);
+
+  tot = 0;
+  fora(i, n) tot += abs(v[i] - (i + 1));
+
+  cout << tot << endl;
+
+
 
   return 0;
 }

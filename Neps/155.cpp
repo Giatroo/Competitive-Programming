@@ -23,14 +23,20 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
+  int n;
+  int aux;
+  int a2, a3, a4;
+  cin >> n;
+  a2 = a3 = a4 = 0;
+  fora(i, n)
+  {
+    cin >> aux;
+    if(aux % 2 == 0) a2++;
+    if(aux % 3 == 0) a3++;
+    if(aux % 4 == 0) a4++;
+  }
 
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
+  cout << a2 << endl << a3 << endl << a4 << endl;
 
   return 0;
 }

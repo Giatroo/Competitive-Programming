@@ -23,14 +23,9 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-  double a, b;
-  double m;
-  cin >> a >> b;
-  m = (2*a+3*b)/5.0;
-
-  if(m >= 7) cout << "Aprovado\n";
-  else if(m < 3) cout << "Reprovado\n";
-  else cout << "Final\n";
-
+  int c, a;
+  cin >> c >> a;
+  --c;
+  cout << ceil(((double)a) / c) << endl;
   return 0;
 }

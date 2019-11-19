@@ -1,36 +1,38 @@
 #include <bits/stdc++.h>
-typedef long long ll;
+typedef long long int ll;
+typedef long double lld;
+#define fora(i, n) for(ll i = 0; i < n; i++)
+#define forai(i, n) for(ll i = 1; i <= n; i++)
+#define ford(i, n) for(ll i = n-1; i >= 0; i--)
+#define fordi(i, n) for(ll i = n; i >= 0; i--)
+#define f first
+#define s second
+#define sortvector(v) sort(v.begin(), v.end())
+#define sortvectorby(v, f) sort(v.begin(), v.end(), f)
+
 using namespace std;
 
-ll A[112345];
-ll B[112345];
-ll C[112345];
-
-int main()
+ll min(ll a, ll b)
 {
-  ll N, i, j, counter;
+  return (a < b) ? a : b;
+}
 
-  cin >> N;
+ll max(ll a, ll b)
+{
+  return (a > b) ? a : b;
+}
 
-  for(i = 0; i < N; i++){
-    scanf("%lld", A+i);
-    B[i] = A[i];
+int main(int argc, char const *argv[]) {
+  int a;
+  int c = 0;
+
+  cin >> a;
+  while(a != 2018){
+    c++;
+    cin >> a;
   }
-
-  sort(A, A+N);
-
-  for(i = 0, j = 0, counter = 0; i < N; i++)
-    if(A[i] != B[i]){
-      counter++;
-      C[j++] = B[i];
-    }
-
-  sort(C, C+counter);
-  printf("%lld\n", counter);
-  for(j = 0; j < counter-1; j++)
-    printf("%lld ", C[j]);
-  if(counter != 0)
-    printf("%lld\n", C[j]);
+  
+  cout << c << endl;
 
   return 0;
 }
