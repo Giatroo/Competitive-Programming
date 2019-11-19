@@ -22,12 +22,8 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-  int a, b;
-  cin >> a >> b;
-  if(a*b == 0) cout << "eixos\n";
-  else if(a > 0 && b > 0) cout << "Q1\n";
-  else if(a > 0 && b < 0) cout << "Q4\n";
-  else if(a < 0 && b > 0) cout << "Q2\n";
-  else if(a < 0 && b < 0) cout << "Q3\n";
+  int x;
+  cin >> x;
+  fora(i, x) cout << "NepsAcademy eh Sucesso" << endl;
   return 0;
 }

@@ -22,12 +22,10 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-  int a, b;
-  cin >> a >> b;
-  if(a*b == 0) cout << "eixos\n";
-  else if(a > 0 && b > 0) cout << "Q1\n";
-  else if(a > 0 && b < 0) cout << "Q4\n";
-  else if(a < 0 && b > 0) cout << "Q2\n";
-  else if(a < 0 && b < 0) cout << "Q3\n";
+  int d;
+  cin >> d;
+  if(d <= 800) cout << 1 << endl;
+  else if(d <= 1400) cout << 2 << endl;
+  else cout << 3 << endl;
   return 0;
 }

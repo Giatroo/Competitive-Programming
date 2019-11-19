@@ -21,13 +21,41 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+double a, b, c;
+double aux;
+
 int main(int argc, char const *argv[]) {
-  int a, b;
-  cin >> a >> b;
-  if(a*b == 0) cout << "eixos\n";
-  else if(a > 0 && b > 0) cout << "Q1\n";
-  else if(a > 0 && b < 0) cout << "Q4\n";
-  else if(a < 0 && b > 0) cout << "Q2\n";
-  else if(a < 0 && b < 0) cout << "Q3\n";
+  int m, n;
+  a = b = c = 0;
+  cin >> m >> n;
+  fora(i, m)
+  {
+      cin >> aux;
+      a += pow(2, -(i+1)) * aux;
+  }
+  fora(i, n)
+  {
+      cin >> aux;
+      b += pow(2, -(i+1)) * aux;
+  }
+
+  c = a+b;
+
+  //printf("a = %lf b = %lf c = %lf\n", a, b, c);
+
+  for(int i = 0; c > 0.000001; i++)
+  {
+    aux = pow(2, -(i+1));
+    if(c - aux >= 0)
+    {
+      cout << 1 << " ";
+      c -= aux;
+    } else
+    {
+      cout << 0 << " ";
+    }
+  }
+  cout << endl;
+
   return 0;
 }
