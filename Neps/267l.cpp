@@ -22,7 +22,33 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+int n;
+string s;
+stack<char> sta;
+bool ok = true;
+
 int main(int argc, char const *argv[]) {
+  cin >> n;
+  fora(i, n+1)
+  {
+    getline(cin, s);
+    fora(j, s.size())
+    {
+      if(s[j] == '{')
+        sta.push(s[j]);
+      else if(s[j] == '}')
+      {
+        if(sta.empty()) ok = false;
+        else sta.pop();
+      }
+
+      if(!ok) break;
+    }
+    if(!ok) break;
+  }
+
+  if(ok && sta.empty()) cout << "S\n";
+  else cout << "N\n";
 
   return 0;
 }

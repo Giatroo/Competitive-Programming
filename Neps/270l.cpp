@@ -22,7 +22,26 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+queue<char> times;
+int M, N;
+char a, b;
+
 int main(int argc, char const *argv[]) {
+  fora(i, 16)
+    times.push('A'+i);
+
+  fora(i, 15)
+  {
+    cin >> M >> N;
+    a = times.front();
+    times.pop();
+    b = times.front();
+    times.pop();
+    if(M > N) times.push(a);
+    else times.push(b);
+  }
+
+  cout << times.front() << endl;
 
   return 0;
 }
