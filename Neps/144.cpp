@@ -21,13 +21,11 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+double PI = 3.1416;
+double r;
+
 int main(int argc, char const *argv[]) {
-  int a, b;
-  cin >> a >> b;
-  if(a*b == 0) cout << "eixos\n";
-  else if(a > 0 && b > 0) cout << "Q1\n";
-  else if(a > 0 && b < 0) cout << "Q4\n";
-  else if(a < 0 && b > 0) cout << "Q2\n";
-  else if(a < 0 && b < 0) cout << "Q3\n";
+  cin >> r;
+  cout << fixed << setprecision(2) << PI *r*r << endl;
   return 0;
 }
