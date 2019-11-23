@@ -9,7 +9,6 @@ typedef long double lld;
 #define s second
 #define sortvector(v) sort(v.begin(), v.end())
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
-#define forita(c) for(auto it = c.begin(); it != c.end(); it++)
 
 using namespace std;
 
@@ -23,7 +22,13 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int main(int argc, char const *argv[]) {
+ll n;
+ll aux;
+set<ll> notas;
 
+int main(int argc, char const *argv[]) {
+  cin >> n;
+  fora(i, n) { cin >> aux; notas.insert(aux); }
+  cout << notas.size() << endl;
   return 0;
 }

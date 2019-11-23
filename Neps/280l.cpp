@@ -9,7 +9,6 @@ typedef long double lld;
 #define s second
 #define sortvector(v) sort(v.begin(), v.end())
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
-#define forita(c) for(auto it = c.begin(); it != c.end(); it++)
 
 using namespace std;
 
@@ -23,7 +22,36 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+set<int> a, b, ac, bc;
+int na, nb;
+int aux;
+
 int main(int argc, char const *argv[]) {
+  //Input
+  cin >> na >> nb;
+
+  fora(i, na)
+  {
+    cin >> aux;
+    a.insert(aux);
+    ac.insert(aux);
+  }
+
+  fora(i, nb)
+  {
+    cin >> aux;
+    b.insert(aux);
+    bc.insert(aux);
+  }
+
+  //Processing
+  for(set<int>::iterator it = a.begin(); it != a.end(); it++)
+    bc.insert(*it);
+
+  for(set<int>::iterator it = b.begin(); it != b.end(); it++)
+    ac.insert(*it);
+
+  cout << min( ac.size() - a.size() , bc.size() - b.size() ) << endl;
 
   return 0;
 }

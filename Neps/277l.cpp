@@ -23,7 +23,24 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+ll c, t, aux;
+set<ll> s;
+
 int main(int argc, char const *argv[]) {
+  cin >> c;
+  t = 0;
+  fora(i, c)
+  {
+    cin >> aux;
+    if(s.find(aux) == s.end())
+    {
+      t += 2;
+      s.insert(aux);
+    } else
+      s.erase(aux);
+  }
+
+  cout << t << endl;
 
   return 0;
 }
