@@ -23,7 +23,34 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+int m[51234][11];
+ll col[11];
+int n, aux;
+ll p, nfat;
+
+ll fat(ll n)
+{
+  if(n <= 1) return 1;
+  else return n * fat(n-1);
+}
+
 int main(int argc, char const *argv[]) {
+  cin >> n;
+  nfat = fat(n);
+
+  fora(i, n) col[i] = 0;
+
+  fora(i, nfat-1) {
+    fora(j, n) {
+      cin >> m[i][j];
+      col[j] += m[i][j];
+    }
+  }
+
+  p = fat(n-1) * (n+1) * n / 2;
+  fora(i, n)
+    cout << p - col[i] << " ";
+  cout << endl;
 
   return 0;
 }

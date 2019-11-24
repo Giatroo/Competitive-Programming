@@ -24,6 +24,29 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
+  int n;
+  ll f2, f1, f;
+
+  f2 = 0;
+  f1 = 1;
+
+  cin >> n;
+
+  if(n == 1) {
+    cout << 0 << endl;
+    return 0;
+  }
+
+  cout << 0 << " " << 1 << " ";
+
+  for(int i = 2; i < n; i++)
+  {
+    f = f1 + f2;
+    f2 = f1;
+    f1 = f;
+    cout << f << " ";
+  }
+  cout << endl;
 
   return 0;
 }

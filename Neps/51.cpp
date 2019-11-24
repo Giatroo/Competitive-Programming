@@ -24,6 +24,19 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-
+  int p;
+  int s, a;
+  s = 0;
+  cin >> p;
+  cin >> s;
+  cin >> a;
+  s += a;
+  if(s % 2 == 0){
+    if(p == 0) cout << 0 << endl;
+    else cout << 1 << endl;
+  } else {
+    if(p == 0) cout << 1 << endl;
+    else cout << 0 << endl;
+  }
   return 0;
 }

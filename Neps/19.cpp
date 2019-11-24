@@ -23,7 +23,32 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+ll m[112];
+
 int main(int argc, char const *argv[]) {
+  int n;
+  int a;
+  int t = 0;
+  char c;
+
+  cin >> n;
+  for(int i = 30; i <= 60; i++) m[i] = 0;
+
+  fora(i, n) {
+    cin >> a >> c;
+
+    if (c == 'D') {
+      if(m[a] > 0)
+        t++;
+      m[a]--;
+    } else {
+      if(m[a] < 0)
+        t++;
+      m[a]++;
+    }
+  }
+
+  cout << t << endl;
 
   return 0;
 }

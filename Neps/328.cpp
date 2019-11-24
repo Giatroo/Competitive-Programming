@@ -23,7 +23,22 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int main(int argc, char const *argv[]) {
+double media_vetor(int n, int v[]){
+	double m = 0;
+  fora(i, n) m += v[i];
+  return m/n;
+}
 
+int main(){
+
+	int n, v[100100];
+	cin >> n;
+
+	for(int i=0;i < n;i++)
+		cin >> v[i];
+
+	cout << setprecision(2) << fixed;
+
+	cout << media_vetor(n,v) << "\n";
   return 0;
 }

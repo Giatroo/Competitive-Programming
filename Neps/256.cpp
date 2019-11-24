@@ -24,6 +24,8 @@ ll max(ll a, ll b)
 }
 
 int main(int argc, char const *argv[]) {
-
+  ll n;
+  cin >> n;
+  cout << n * (n+1) / 2 << endl;
   return 0;
 }
