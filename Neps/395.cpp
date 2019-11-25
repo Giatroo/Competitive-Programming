@@ -25,9 +25,29 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+vector<int> v;
+int x;
+bool b;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  fora(i, 10) {
+    cin >> x;
+    v.pb(x);
+  }
+
+  cin >> x;
+
+  b = false;
+
+  fora(i, 10)
+    if (v[i] == x) { b = true; break; }
+
+  if(b) cout << "SIM" << endl;
+  else cout << "NAO" << endl;
+
 
   return 0;
 }

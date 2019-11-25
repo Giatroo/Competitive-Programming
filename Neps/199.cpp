@@ -25,9 +25,23 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+int s;
+int aux;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  fora(i, 3)
+  {
+    s = 0;
+    fora(j, 3)
+    {
+      cin >> aux;
+      s += aux;
+    }
+    cout << "Linha " << i << ": " << s << endl;
+  }
 
   return 0;
 }
