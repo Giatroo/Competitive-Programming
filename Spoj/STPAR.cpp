@@ -9,8 +9,7 @@ typedef long double lld;
 #define s second
 #define sortvector(v) sort(v.begin(), v.end())
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
-#define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
-#define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
+#define forita(c) for(auto it = c.begin(); it != c.end(); it++)
 #define pb push_back
 #define mp make_pair
 
@@ -26,9 +25,45 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+stack<int> trucks;
+int n;
+int expectNum;
+int cur;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  cin >> n;
+  while(n != 0) {
+    while(!trucks.empty()) {
+      trucks.pop();
+    }
+    expectNum = 1;
+
+    fora(i, n) {
+      cin >> cur;
+      
+      if (cur == expectNum) {
+        expectNum++;
+        while (!trucks.empty() && trucks.top() == expectNum) {
+          trucks.pop();
+          expectNum++;
+        }
+
+      } else {
+        trucks.push(cur);
+      }
+    }
+
+    if (trucks.empty())
+      printf("yes\n");
+    else
+      printf("no\n");
+
+    cin >> n;
+  }
+
 
   return 0;
 }

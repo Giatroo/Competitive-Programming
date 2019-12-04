@@ -26,9 +26,29 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+ll n;
+map<ll, ll> cands;
+ll aux;
+map<ll, ll>::iterator maxi;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  cin >> n;
+  fora(i, n) {
+    cin >> aux;
+    if (cands.find(aux) != cands.end()) {
+      cands[aux]++;
+    } else cands[aux] = 1;
+  }
+
+  maxi = cands.begin();
+  forita(it, cands) {
+    if (it->s > maxi->s) maxi = it;
+  }
+
+  printf("%lld\n", maxi->f);
 
   return 0;
 }

@@ -9,8 +9,7 @@ typedef long double lld;
 #define s second
 #define sortvector(v) sort(v.begin(), v.end())
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
-#define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
-#define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
+#define forita(c) for(auto it = c.begin(); it != c.end(); it++)
 #define pb push_back
 #define mp make_pair
 
@@ -26,9 +25,24 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+int a[1123];
+int n;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  cin >> n;
+  fora(i, n)
+    cin >> a[i];
+
+  for(int i = 1; i < n-1; i++)
+    if(a[i-1] > a[i] && a[i] < a[i+1]) {
+      cout << "S\n";
+      return 0;
+    }
+
+  cout << "N\n";
 
   return 0;
 }

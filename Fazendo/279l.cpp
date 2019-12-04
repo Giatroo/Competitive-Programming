@@ -71,9 +71,10 @@ int main(int argc, char const *argv[]) {
 
       fora(j, k) {
         if (dic.find(palavras[j]) == dic.end())
-          cout << palavras[j] << " ";
+          cout << palavras[j];
         else
-          cout << dic[palavras[j]] << " ";
+          cout << dic[palavras[j]];
+        if(j != k-1) cout << " ";
       }
       cout << endl;
     }
