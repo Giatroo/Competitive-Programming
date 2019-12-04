@@ -26,16 +26,28 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int a[11];
+int n, a;
+vector<int> d(12);
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  fora(i, 10)
-    cin >> a[i];
-  ford(i, 10)
-    cout << a[i] << endl;
+  fora(i, 12) d[i] = 0;
+  cin >> n;
+  fora(i, n) {
+    cin >> a;
+    d[a-1]++;
+  }
+
+  a = d[0];
+  fora(i, 12)
+    a = max(a, d[i]);
+
+  fora(i, 12)
+    if(d[i] == a) cout << i + 1 << " ";
+  cout << endl;
+
 
   return 0;
 }

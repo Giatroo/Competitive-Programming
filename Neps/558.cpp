@@ -26,16 +26,31 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
-int a[11];
+int n, m;
+int p, c;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  fora(i, 10)
-    cin >> a[i];
-  ford(i, 10)
-    cout << a[i] << endl;
+  cin >> n >> m;
+  p = 0;
+  fora(i, n)
+  {
+    cin >> c;
+    if(c - p > m) {
+      cout << "N" << endl;
+      return 0;
+    }
+    p = c;
+  }
+
+  if(42195 - p > m) {
+    cout << "N" << endl;
+    return 0;
+  }
+
+  cout << "S" << endl;
 
   return 0;
 }
