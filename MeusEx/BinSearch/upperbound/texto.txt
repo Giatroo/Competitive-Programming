@@ -1,0 +1,39 @@
+Limite Superior
+
+Faça um programa que recebe uma lista de $N$ números em ordem crescente e devolve a posição do maior valor menor que $X$.
+
+#### Entrada
+A primeira linha contém dois números $N$ e $X$ representando respectivamente o números de elementos da lista e o limite superior.
+A próxima linha contém $N$ números $a_i$ que aparecem em ordem crescente (ou seja $a_{i-1} \ \leq \ a_i \ \leq \ a_{i+1}$ para todo $i$ de $1$ a $N-2$).
+
+#### Saída
+A saída deve ser um único número indicado a <b>posição</b> do maior valor menor que $X$, ou seja, aquele que é o mais próximo possível de $X$, mas menor ou igual a $X$.
+Se não existir um valor assim, seu programa deve imprimir $-1$.
+Se existir mais de um número assim, seu programa deve imprimir o índice do mais a direita possível (o maior i satisfazendo as condições do problema).
+
+#### Restrições
+
+* $0 \ \leq \ N \ \leq \ 10^{6}$
+* $-10^{9} < X \leq 10^{9}$
+* $-10^{9} < a_i \leq 10^{9} \ (\forall \ i \in \{0, \ \cdots \ N-1\})$
+* Todos os valores são inteiros
+
+
+Busca Binárias | Vetores
+
+Exemplos de Entrada:
+
+9 9
+0 1 2 2 5 6 10 10 13
+
+5
+
+6 10
+12 13 15 22 25 39
+
+-1
+
+6 5
+1 2 3 4 4 4
+
+5
