@@ -12,8 +12,7 @@ typedef long double lld;
 #define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
 #define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
 #define pb push_back
-#define mk make_pair
-#define coutp(a, b) cout << (a) << " " << (b)
+#define mp make_pair
 
 using namespace std;
 
@@ -30,6 +29,15 @@ ll max(ll a, ll b)
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  ll max, cur;
+  max = 0;
+  cur = 1;
+  while (cur) {
+    cin >> cur;
+    if (cur > max) max = cur;
+  }
+  cout << max << endl;
 
   return 0;
 }

@@ -12,8 +12,7 @@ typedef long double lld;
 #define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
 #define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
 #define pb push_back
-#define mk make_pair
-#define coutp(a, b) cout << (a) << " " << (b)
+#define mp make_pair
 
 using namespace std;
 
@@ -27,9 +26,33 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+queue<pair<ll, ll>> fila;
+priority_queue<ll> caixas;
+ll c, n;
+ll t, d;
+ll counter, cur;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  cin >> c >> n;
+  counter = 0;
+  fora(i, c) caixas.push(0);
+  fora(i, n) {
+    cin >> t >> d;
+    cur = -caixas.top();
+    caixas.pop();
+    //cout << "cur = " << cur << endl;
+    if (t + 20 < cur) {
+      counter++;
+      //cout << "contou" << endl;
+    }
+    caixas.push(-max(cur + d, t + d));
+  }
+
+  cout << counter << endl;
+
 
   return 0;
 }

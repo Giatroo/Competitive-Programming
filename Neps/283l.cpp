@@ -12,8 +12,7 @@ typedef long double lld;
 #define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
 #define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
 #define pb push_back
-#define mk make_pair
-#define coutp(a, b) cout << (a) << " " << (b)
+#define mp make_pair
 
 using namespace std;
 
@@ -27,9 +26,44 @@ ll max(ll a, ll b)
   return (a > b) ? a : b;
 }
 
+ll n, k;
+ll id[112345], sz[112345];
+
+void create() {
+  fora(i, n) { id[i] = i; sz[i] = 1; }
+}
+
+ll find(ll i) {
+  if (id[i] == i) return i;
+  return id[i] = find(id[i]);
+}
+
+void join(ll i, ll j) {
+  i = find(i); j = find(j);
+  if (i == j) return;
+  if (sz[i] > sz[j]) {
+    ll aux = i; i = j; j = aux;
+  }
+  //A partir daqui, i tem o menor tamanho
+  id[i] = j;
+  sz[j] += sz[i];
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  ll p, q; char c;
+  cin >> n >> k;
+  create();
+  fora(i, k) {
+    cin >> c >> p >> q;
+    if (c == 'C') {
+      if (find(p) == find(q)) cout << "S" << endl;
+      else cout << "N" << endl;
+    }
+    else join(p, q);
+  }
 
   return 0;
 }
