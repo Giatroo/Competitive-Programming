@@ -22,14 +22,44 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define min(a, b) (a) < (b) ? (a) : (b)
-#define max(a, b) (a) > (b) ? (a) : (b)
 
 using namespace std;
+
+ll min(ll a, ll b)
+{
+  return (a < b) ? a : b;
+}
+
+ll max(ll a, ll b)
+{
+  return (a > b) ? a : b;
+}
+
+ll n, m;
+ll t, a, b;
+vector<ll> adj[112345];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, m);
+
+  fora(i, m) {
+    get3(t, a, b);
+    if (t) { adj[a].pb(b); adj[b].pb(a); }
+    else {
+      bool achou = false;
+      forita(it, adj[a]) {
+        if (*it == b) {
+          achou = true; break;
+        }
+      }
+
+      if (achou) cout1e(1);
+      else cout1e(0);
+    }
+  }
 
   return 0;
 }

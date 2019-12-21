@@ -27,9 +27,42 @@ typedef long double lld;
 
 using namespace std;
 
+ll m, n;
+char c;
+ll mapa[1123][1123];
+pair<ll, ll> mov[4];
+ll sum;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  mov[0] = mk(0, 1);
+  mov[1] = mk(0, -1);
+  mov[2] = mk(1, 0);
+  mov[3] = mk(-1, 0);
+  sum = 0;
+
+  cin >> m >> n;
+
+  fora(i, m+2) fora(j, n+2) mapa[i][j] = 0;
+
+  forai(i, m) {
+    forai(j, n) {
+      get1(c);
+      mapa[i][j] = (c == '.') ? 0 : 1;
+    }
+  }
+
+  forai(i, m)
+    forai(j, n)
+      if (mapa[i][j])
+        fora(k, 4)
+          if (mapa[i + mov[k].f][j + mov[k].s] == 0) {
+            sum++; break;
+          }
+
+  cout1e(sum);
 
   return 0;
 }
