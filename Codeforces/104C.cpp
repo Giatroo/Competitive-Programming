@@ -5,12 +5,12 @@ typedef long double lld;
 #define forai(i, n) for (ll i = 1; i <= n; i++)
 #define ford(i, n) for (ll i = n-1; i >= 0; i--)
 #define fordi(i, n) for (ll i = n; i >= 0; i--)
-#define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
-#define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
 #define f first
 #define s second
 #define sortvector(v) sort(v.begin(), v.end())
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
+#define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
+#define foritd(it, c) for(auto it = c.rbegin(); it != c.rend(); it++)
 #define pb push_back
 #define mk make_pair
 #define cout1(a) cout << (a)
@@ -27,9 +27,47 @@ typedef long double lld;
 
 using namespace std;
 
+ll n, m;
+ll x, y;
+vector<ll> adj[112];
+
+bool dfs(ll v) {
+  stack<ll> s;
+  ll listed[112];
+  forai(i, n) listed[i] = -1;
+  s.push(v);
+  listed[v] = 1;
+
+  while (!s.empty()) {
+    v = s.top();
+    s.pop();
+
+    forita(it, adj[v]) {
+      if (listed[*it] == -1) {
+        s.push(*it);
+        listed[*it] = 1;
+      }
+    }
+  }
+
+  forai(i, n) if (listed[i] == -1) return false;
+  return true;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, m);
+
+  fora(i, m) {
+    get2(x, y);
+    adj[x].pb(y);
+    adj[y].pb(x);
+  }
+
+  if (m == n && dfs(1)) cout << "FHTAGN!" << endl;
+  else cout << "NO" << endl;
 
   return 0;
 }

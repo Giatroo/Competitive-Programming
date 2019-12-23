@@ -27,9 +27,32 @@ typedef long double lld;
 
 using namespace std;
 
+ll i;
+string ex;
+stack<char> st;
+bool correct;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+  
+  while (cin >> ex) {
+    i = 0;
+    correct = true;
+    // cout << "Expressão '" << ex << "'" << endl;
+    while (ex[i] && correct) {
+      // cout << "ex[i] = " << ex[i] << endl;
+      if (ex[i] == '(') st.push(ex[i]);
+      else if (ex[i] == ')') {
+        if (st.empty()) correct = false;
+        else st.pop();
+      }
+      i++;
+    }
+    if (correct && st.empty()) cout1e("correct");
+    else cout1e("incorrect");
+    while(!st.empty()) st.pop();
+  }
 
   return 0;
 }

@@ -27,9 +27,52 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+ll a, b;
+ll d1, d2;
+vector<ll> adj[11234];
+ll dist[11234];
+set<ll> nodos;
+
+ll bfs(ll v) {
+  queue<ll> q;
+  ll maxnode = v;
+  forita(it, nodos) dist[*it] = -1;
+  dist[v] = 0;
+  q.push(v);
+
+  while (!q.empty()) {
+    v = q.front(); q.pop();
+
+    forita(it, adj[v]) {
+      if (dist[*it] == -1) {
+        dist[*it] = dist[v] + 1;
+        maxnode = *it;
+        q.push(*it);
+      }
+    }
+  }
+  return maxnode;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  forai(i, n-1) {
+    get2(a, b);
+    nodos.insert(a);
+    nodos.insert(b);
+    adj[a].pb(b);
+    adj[b].pb(a);
+  }
+
+  ll root = *nodos.begin();
+  root = bfs(root);
+  root = bfs(root);
+  cout << dist[root] << endl;
+
 
   return 0;
 }

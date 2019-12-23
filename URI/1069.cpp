@@ -27,9 +27,31 @@ typedef long double lld;
 
 using namespace std;
 
+stack<char> st;
+string s;
+ll n;
+ll t;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-
+  
+  get1(n);
+  fora(i, n) {
+    get1(s);
+    t = 0;
+    fora(i, s.size()) {
+      if (s[i] == '<') st.push(s[i]);
+      else if (s[i] == '>' && !st.empty()) {
+        st.pop();
+        t++;
+      }
+    }
+    
+    cout1e(t);
+    while (!st.empty()) st.pop();
+  }
+  
+    
   return 0;
 }

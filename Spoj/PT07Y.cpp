@@ -27,9 +27,42 @@ typedef long double lld;
 
 using namespace std;
 
+ll n, m;
+ll u, v;
+vector<ll> adj[11234];
+bool listed[11234];
+
+void dfs(ll v) {
+  listed[v] = true;
+  forita(it, adj[v])
+    if (!listed[*it])
+      dfs(*it);
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, m);
+  if(m != n - 1) {
+    cout1e("NO");
+    return 0;
+  }
+
+  fora(i, m) {
+    get2(u, v);
+    adj[u].pb(v);
+    adj[v].pb(u);
+  }
+
+  forai(i, n) listed[i] = false;
+  dfs(1);
+  forai(i, n) if (!listed[i]) {
+    cout1e("NO");
+    return 0;
+  }
+
+  cout1e("YES");
 
   return 0;
 }
