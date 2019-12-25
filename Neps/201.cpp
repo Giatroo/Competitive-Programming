@@ -13,7 +13,6 @@ typedef long double lld;
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 #define pb push_back
 #define mk make_pair
-#define pll pair<ll, ll>
 #define cout1(a) cout << (a)
 #define cout2(a, b) cout << (a) << " " << (b)
 #define cout3(a, b, c) cout << (a) << " " << (b) << " " << (c)
@@ -25,13 +24,25 @@ typedef long double lld;
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define min(a, b) (a) < (b) ? (a) : (b)
 #define max(a, b) (a) > (b) ? (a) : (b)
-#define INF INT_MAX
 
 using namespace std;
+
+ll m[3][3];
+ll pri, sec;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  pri = sec = 0;
+  fora (i, 3) fora (j, 3) {
+    get1(m[i][j]);
+    if (i == j) pri += m[i][j];
+    if (i + j == 2) sec += m[i][j];
+  }
+
+  cout << "Diagonal principal: " << pri << endl;
+  cout << "Diagonal secundaria: " << sec << endl;
 
   return 0;
 }

@@ -29,9 +29,45 @@ typedef long double lld;
 
 using namespace std;
 
+ll n, m;
+ll s, t, b;
+vector<pll> adj[1123];
+ll dist[1123];
+
+void dijkstra(ll S) {
+  set<pll> f;
+  fora(i, n+2) dist[i] = INF;
+  f.insert(mk(0, S));
+
+  while (!f.empty()) {
+    pll aux = *f.begin(); f.erase(f.begin());
+
+    if (dist[aux.s] == INF) {
+      // cout << "Olhando " << aux.s << endl;
+      dist[aux.s] = aux.f;
+
+      forita (it, adj[aux.s])
+        if (dist[it->f] > dist[aux.s] + it->s)
+          f.insert(mk(dist[aux.s] + it->s, it->f));
+    }
+  }
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, m);
+  n += 2;
+  fora(i, m) {
+    get3(s, t, b);
+    adj[s].pb(mk(t, b));
+    adj[t].pb(mk(s, b));
+  }
+
+  dijkstra(0);
+  cout << dist[n-1] << endl;
+
 
   return 0;
 }

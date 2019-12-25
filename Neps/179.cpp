@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-typedef long long int ll;
+typedef long long ll;
 typedef long double lld;
 #define fora(i, n) for (ll i = 0; i < n; i++)
 #define forai(i, n) for (ll i = 1; i <= n; i++)
@@ -13,7 +13,6 @@ typedef long double lld;
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 #define pb push_back
 #define mk make_pair
-#define pll pair<ll, ll>
 #define cout1(a) cout << (a)
 #define cout2(a, b) cout << (a) << " " << (b)
 #define cout3(a, b, c) cout << (a) << " " << (b) << " " << (c)
@@ -25,13 +24,24 @@ typedef long double lld;
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define min(a, b) (a) < (b) ? (a) : (b)
 #define max(a, b) (a) > (b) ? (a) : (b)
-#define INF INT_MAX
 
 using namespace std;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  bool ligado;
+  ll a, b;
+  a = 0; b = 1;
+  ligado = true;
+
+  fora(i, 16) {
+    printf("a = %lld <-> b = %lld\n", a, b);
+    a += 0; b += 1;
+    printf("a = %lld <-> b = %lld\n", a, b);
+    a += 2; b += 2;
+  }
 
   return 0;
 }
