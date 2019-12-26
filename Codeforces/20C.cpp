@@ -29,9 +29,68 @@ typedef long double lld;
 
 using namespace std;
 
+ll n, m;
+ll a, b, w;
+vector<pll> adj[112345];
+pll dist[112345];
+
+void dijkstra(ll S) {
+  set<pair<pll, ll>> pq;
+  pair<pll, ll> aux;
+  fora(i, n + 3) dist[i] = mk(INF, -1);
+  pq.insert(mk(mk(0, S), -1));
+
+  while (!pq.empty()) {
+    aux = *pq.begin(); pq.erase(pq.begin());
+
+    if (dist[aux.f.s].s == -1) {
+      dist[aux.f.s].f = aux.f.f;
+      dist[aux.f.s].s = aux.s;
+
+      forita (it, adj[aux.f.s])
+        if (dist[it->f].f > aux.f.f + it->s)
+          pq.insert(mk(mk(aux.f.f + it->s, it->f), aux.f.s));
+    }
+  }
+}
+
+void getPath() {
+  stack<ll> path;
+  ll cur = n;
+
+  if (dist[cur].f == INF) {
+    cout1e(-1);
+    return;
+  }
+
+  while (cur != 1) {
+    path.push(cur);
+    cur = dist[cur].s;
+  }
+
+  cout1(1) << " ";
+  while (!path.empty()) {
+    cout1(path.top()) << " ";
+    path.pop();
+  }
+  cout << endl;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, m);
+  fora(i, m) {
+    get3(a, b, w);
+    if (a == b) continue;
+    adj[a].pb(mk(b, w));
+    adj[b].pb(mk(a, w));
+  }
+
+  dijkstra(1);
+  getPath();
+
 
   return 0;
 }
