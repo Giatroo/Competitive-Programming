@@ -27,9 +27,33 @@ typedef long double lld;
 
 using namespace std;
 
+ll s, n;
+ll sz[2123], vl[2123];
+ll pb[2123][2123];
+
+ll maxValue(ll curS, ll i) {
+  if (curS < 0) return LLONG_MIN;
+  if (i == n) return 0;
+  if (pb[curS][i] != -1) return pb[curS][i];
+
+  ll pega = maxValue(curS - sz[i], i + 1);
+  ll passa = maxValue(curS, i + 1);
+
+  return pb[curS][i] = max(vl[i] + pega, passa);
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(s, n);
+  fora(i, n) get2(sz[i], vl[i]);
+  fora (i, s + 3) fora (j, n + 3) pb[i][j] = -1;
+  cout1e(maxValue(s, 0));
+  // fora (i, s + 3) {
+  //   fora (j, n + 3) cout1(pb[i][j]) << " ";
+  //   cout << endl;
+  // }
 
   return 0;
 }

@@ -27,9 +27,24 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+pll caixa[1123];
+
+ll caixas(ll Wmin, ll cont) {
+  ll maxi = 0;
+  if (cont >= n || Wmin < 0) return 0;
+
+  fora(i, n) {
+    maxi = max(maxi, caixas())
+  }
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  fora(i, n) get2(caixa[i].f, caixa[i].s);
 
   return 0;
 }

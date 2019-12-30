@@ -27,9 +27,25 @@ typedef long double lld;
 
 using namespace std;
 
+string s;
+ll qs[112];
+ll tot;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(s);
+  tot = 0;
+  qs[0] = (s[0] == 'Q') ? 1 : 0;
+  forai(i, s.size()-1)
+    qs[i] = (s[i] == 'Q') ? qs[i-1] + 1 : qs[i-1];
+  fora(i, s.size())
+    if (s[i] == 'A')
+      tot += (qs[i]) * (qs[s.size()-1] - qs[i]);
+  cout1e(tot);
+
+
 
   return 0;
 }

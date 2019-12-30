@@ -27,9 +27,33 @@ typedef long double lld;
 
 using namespace std;
 
+ll n, k, m;
+ll a[1123];
+ll f[1123];
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get3(n, k, m);
+  forai(i, n) get1(a[i]);
+  forai(i, k) f[i] = -1;
+  forai(i, n) get1(f[i]);
+
+  if (k <= n) { cout1e(f[k]); return 0; }
+
+  for (ll i = n + 1; i <= k; i++)
+  {
+    ll fi = 0;
+    forai(j, n) {
+      fi += a[j] * f[i-j];
+      fi %= m;
+    }
+    f[i] = fi;
+  }
+
+  cout1e(f[k]);
+
 
   return 0;
 }

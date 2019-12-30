@@ -27,9 +27,35 @@ typedef long double lld;
 
 using namespace std;
 
+ll cuts[3];
+ll len;
+ll pb[4123];
+
+ll cuting(ll curlen) {
+  ll tot = LLONG_MIN;
+  ll a, b, c;
+  if (curlen < 0) return LLONG_MIN;
+  if (pb[curlen] != -1) return pb[curlen];
+
+  a = cuting(curlen - cuts[0]);
+  b = cuting(curlen - cuts[1]);
+  c = cuting(curlen - cuts[2]);
+  tot = max(a, b);
+  tot = max(tot, c);
+  tot++;
+  return pb[curlen] = tot;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(len);
+  get3(cuts[0], cuts[1], cuts[2]);
+  fora(i, len + 5) pb[i] = -1;
+  pb[0] = 0;
+  cout1e(cuting(len));
+  // fora(i, len + 3) cout2e(i, pb[i]);
 
   return 0;
 }

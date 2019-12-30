@@ -27,9 +27,46 @@ typedef long double lld;
 
 using namespace std;
 
+set<pll> notas;
+ll s;
+
+ll pb[5123];
+
+ll formas(ll curS) {
+  if (curS > s) return LLONG_MIN;
+  if (curS == s)
+  forita(it, notas) {
+    if (it->s > 0) {
+      it->s--;
+      pb[curS] = 1 + formas(curS + it->f);
+    }
+  }
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(s);
+  ll aux;
+  get1(aux);
+  set.insert(mk(2, aux));
+  get1(aux);
+  set.insert(mk(5, aux));
+  get1(aux);
+  set.insert(mk(10, aux));
+  get1(aux);
+  set.insert(mk(20, aux));
+  get1(aux);
+  set.insert(mk(50, aux));
+  get1(aux);
+  set.insert(mk(100, aux));
+
+  fora(i, s + 1) pb[i] = -1;
+  pb[0] = 0;
+
+
+
 
   return 0;
 }

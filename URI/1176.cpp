@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 typedef long long int ll;
 typedef long double lld;
+typedef unsigned long long int ull;
 #define fora(i, n) for (ll i = 0; i < n; i++)
 #define forai(i, n) for (ll i = 1; i <= n; i++)
 #define ford(i, n) for (ll i = n-1; i >= 0; i--)
@@ -27,9 +28,28 @@ typedef long double lld;
 
 using namespace std;
 
+ll t;
+unsigned long long int fi[70];
+ll n;
+
+unsigned long long int fib(ll n) {
+  if (fi[n] != -1) return fi[n];
+  else return fi[n] = fib(n-1) + fib(n-2);
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  fora(i, 61) fi[i] = -1;
+  fi[0] = 0; fi[1] = 1;
+
+  get1(t);
+  fora(i, t) {
+    get1(n);
+    cout << "Fib(" << n << ") = " << fib(n) << endl;
+  }
+
 
   return 0;
 }
