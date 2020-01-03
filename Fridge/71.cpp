@@ -27,44 +27,23 @@ typedef long double lld;
 
 using namespace std;
 
-set<pll> notas;
 ll s;
-
-ll pb[5123];
-
-ll formas(ll curS) {
-  if (curS > s) return LLONG_MIN;
-  if (curS == s)
-  forita(it, notas) {
-    if (it->s > 0) {
-      it->s--;
-      pb[curS] = 1 + formas(curS + it->f);
-    }
-  }
-}
+ll pb[5123][7];
+//pb[i][0] how many ways
+//pb[i][1] bills of 2
+//pb[i][2] bills of 5
+// ...
+//pb[i][6] bills of 100
+ll bills[7] = {0, 2, 5, 10, 20, 50, 100}; //conversion
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
   get1(s);
-  ll aux;
-  get1(aux);
-  set.insert(mk(2, aux));
-  get1(aux);
-  set.insert(mk(5, aux));
-  get1(aux);
-  set.insert(mk(10, aux));
-  get1(aux);
-  set.insert(mk(20, aux));
-  get1(aux);
-  set.insert(mk(50, aux));
-  get1(aux);
-  set.insert(mk(100, aux));
-
-  fora(i, s + 1) pb[i] = -1;
-  pb[0] = 0;
-
+  pb[0][0] = 1; //one way of summing 0 (not using bills at all)
+  forai (i, 6) get1(pb[0][i]);
+  //In the start, we have all bills
 
 
 

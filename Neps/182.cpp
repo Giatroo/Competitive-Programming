@@ -24,41 +24,42 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
+#define M 1000000007
 
 using namespace std;
 
 ll n;
-ll box[112][112];
-
-//sum of line i starting at j and ending in j + i
-ll pb[112][112];
-
-ll sum(ll i, ll j) {
-  if (i == 0) return 0;
-  return pb[i][j] + min(sum(i-1, j), sum(i-1, j+1));
-}
+ll sum, num;
+vector<ll> divi;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
   get1(n);
-  forai (i, n) box[i][0] = 0;
-  forai (i, n) forai (j, n) {
-    get1(box[i][j]);
-    box[i][j] += box[i][j-1];
-    pb[i][j] = -1;
-  }
 
-  for (ll i = 1; i <= n; i++) {
-    ll j = 1;
-    while (j + i <= n + 1) {
-      pb[i][j] = box[i][j+i-1] - box[i][j-1];
-      j++;
+  for (ll i = 1; i*i <= n; i++) {
+    if (n % i == 0) {
+      divi.pb(i);
+      num++;
+      sum += i;
+
+      if (n/i != i) {
+        divi.pb(n/i);
+        sum += n/i;
+        num++;
+      }
     }
   }
 
-  cout1e(sum(n, 1));
+  cout << num << " divisor(es): ";
+  sortvector(divi);
+  forita(it, divi) cout << *it << " ";
+  cout << endl;
+  cout << "Soma de divisores = " << sum << endl;
+  if (divi.size() == 2) cout << "Primo" << endl;
+  else cout << "Nao primo" << endl;
+
 
   return 0;
 }

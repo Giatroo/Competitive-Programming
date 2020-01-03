@@ -28,9 +28,27 @@ typedef long double lld;
 
 using namespace std;
 
+ll a[112345];
+ll n, l, r;
+ll sl, sr;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  l = 0; r = n-1;
+  sl = sr = 0;
+  fora(i, n) get1(a[i]);
+
+  while (l <= r) {
+    if (sl > sr)
+      sr += a[r--];
+    else
+      sl += a[l++];
+  }
+
+  cout1e(l);
 
   return 0;
 }

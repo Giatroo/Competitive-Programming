@@ -24,13 +24,44 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
+
+// Problem: Given a number n and a n by n grid of numbers,
+// find the path that goes from (1,1) to (n,n) moving only
+// right or down that minimizes the sum through the path
+
+ll n; // n <= 10^3
+ll grid[1123][1123]; // 1-indexed
+ll dp[1123][1123]; // the dynamic programing table
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
+  get1(n);
+  forai (i, n) forai (j, n) get1(grid[i][j]);
+
+
+  // Ideia: the minumum path P to a point (i, j) is
+  // the minumum between P(i-1, j) and P(i, j-1) plus
+  // the value of (i, j)
+
+  //Base case is the up-left corner
+  fora (i, n + 3) dp[i][0] = INF;
+  fora (i, n + 3) dp[0][i] = INF;
+  dp[0][1] = dp[1][0] = 0;
+
+  forai (i, n)
+    forai (j, n)
+      dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+
+  cout1e(dp[n][n]);
+  forai (i, n) {
+    forai (j, n)
+      cout << dp[i][j] << " ";
+    cout << endl;
+  }
+  
   return 0;
 }

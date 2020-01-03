@@ -24,13 +24,20 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
+
+ll a[4];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(a[0], a[1]);
+  get2(a[2], a[3]);
+
+  sort(a, a+4);
+  cout1e(abs((a[3]+a[0])-(a[2]+a[1])));
 
   return 0;
 }
