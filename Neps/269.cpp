@@ -28,27 +28,24 @@ typedef long double lld;
 
 using namespace std;
 
-ll n;
-ll cur, ant;
-
-ll mdc(ll a, ll b) {
-  return (b == 0) ? a : mdc(b, a % b);
-}
+bool prime[11234567];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
+  ll n;
   get1(n);
-  get2(ant, cur);
-  cur = mdc(ant, cur);
-  fora(i, n-2) {
-    ant = cur;
-    get1(cur);
-    cur = mdc(ant, cur);
-  }
+  forai(i, n) prime[i] = true;
+  prime[1] = false;
 
-  cout1e(cur);
+  for (ll i = 2; i <= n; i++)
+    if (prime[i])
+      for (ll j = 2*i; j <= n; j += i)
+        prime[j] = false;
+
+  forai(i, n) if (prime[i]) cout1(i) << " ";
+  cout << endl;
 
   return 0;
 }

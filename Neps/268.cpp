@@ -28,27 +28,27 @@ typedef long double lld;
 
 using namespace std;
 
-ll n;
-ll cur, ant;
+ll a, b, c, d;
+ll e, f;
 
-ll mdc(ll a, ll b) {
-  return (b == 0) ? a : mdc(b, a % b);
+ll mdc(ll x, ll y) {
+  return (y == 0) ? x : mdc(y, x%y);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(n);
-  get2(ant, cur);
-  cur = mdc(ant, cur);
-  fora(i, n-2) {
-    ant = cur;
-    get1(cur);
-    cur = mdc(ant, cur);
-  }
+  get2(a, b); get2(c, d);
 
-  cout1e(cur);
+  e = a*d + b*c;
+  f = b*d;
+
+  ll m = mdc(e, f);
+  e /= m;
+  f /= m;
+  cout2e(e, f);
+
 
   return 0;
 }

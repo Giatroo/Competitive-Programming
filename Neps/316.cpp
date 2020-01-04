@@ -29,26 +29,29 @@ typedef long double lld;
 using namespace std;
 
 ll n;
-ll cur, ant;
+pll p1, p2;
 
-ll mdc(ll a, ll b) {
-  return (b == 0) ? a : mdc(b, a % b);
+void getPoints() {
+  get2(p1.f, p1.s);
+  get2(p2.f, p2.s);
+}
+
+ll distSq() {
+  return (p1.f - p2.f) * (p1.f - p2.f) + //(x0 - x1)^2 +
+         (p1.s - p2.s) * (p1.s - p2.s);  //(y0 - y1)^2
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
+  ll sum = 0;
   get1(n);
-  get2(ant, cur);
-  cur = mdc(ant, cur);
-  fora(i, n-2) {
-    ant = cur;
-    get1(cur);
-    cur = mdc(ant, cur);
+  fora (i, n) {
+    getPoints();
+    sum += distSq();
   }
-
-  cout1e(cur);
+  cout1e(sum);
 
   return 0;
 }
