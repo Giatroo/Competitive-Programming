@@ -28,30 +28,64 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll l, c;
+bool grid[512][512];
+ll a;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll dist[512][512];
+
+bool isIn(ll i, ll j) {
+  return 0 <= i && i <= l-1 && 0 <= j && j <= c-1;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get2(l, c);
+  fora (i, l) fora (j, c) {
+    get1(a);
+    grid[i][j] = (a == 1) ? true : false;
+    dist[i][j] = INF;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  // cout << endl;
+  // fora (i, l) {
+  //   fora (j, c) cout1(grid[i][j]) << " ";
+  //   cout << endl;
+  // }
+
+  dist[0][0] = 0;
+  queue<pll> q;
+  q.push(mk(0, 0));
+
+  while (!q.empty()) {
+    pll cur = q.front();
+    q.pop();
+
+    for (ll i = -2; i <= 2; i++) {
+      for (ll j = -2; j <= 2; j++) {
+        if (isIn(cur.f + i, cur.s + j) && grid[cur.f + i][cur.s + j] &&
+            dist[cur.f][cur.s] + 1 < dist[cur.f + i][cur.s + j]) {
+          dist[cur.f + i][cur.s + j] = dist[cur.f][cur.s] + 1;
+          q.push(mk(cur.f + i, cur.s + j));
+        }
+      }
+    }
+  }
+
+  if (dist[l-1][c-1] < INF - 112345)
+    cout1e(dist[l-1][c-1]);
+  else cout1e(-1);
+
+  // cout << endl;
+  // fora (i, l) {
+  //   fora (j, c)
+  //     if (dist[i][j] < INF - 112345)
+  //       cout1(dist[i][j]) << " ";
+  //     else cout1(-1) << " ";
+  //   cout << endl;
+  // }
 
 
   return 0;

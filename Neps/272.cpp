@@ -29,11 +29,14 @@ typedef long double lld;
 using namespace std;
 
 string s;
-bool d2, d3, d5;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll myPow(ll b, ll e) {
+  ll ret = 1;
+  fora (i, e) {
+    ret *= b;
+    ret %= 11;
+  }
+  return ret;
 }
 
 int main(int argc, char const *argv[]) {
@@ -41,18 +44,13 @@ int main(int argc, char const *argv[]) {
   cin.tie(NULL);
 
   get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
   ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  fora(i, s.size()) {
+    sum += (s[i] - '0') * (myPow(10, s.size()-i));
+    sum %= 11;
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  if (sum == 0) cout1e("S");
+  else cout1e("N");
 
   return 0;
 }
