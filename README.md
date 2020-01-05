@@ -1,9 +1,18 @@
-Este repositório contém centenas de problemas de maratona resolvidos por mim. Desde problemas do URI solucionados com a linguagem C# (durante o ano de 2017) até problemas solucionados mais recentemente com o uso de C++ em sites como CodeForces e CodCad.
+This repository has lots of problems of competitive programing I solved through the years I'm training. The first ones I made are in C# and they are of the brazilian site URI Online Judge. I solved them in 2017 and more recentily I'm coding for sites like CodeForces, SPOJ and Neps.
 
-Os arquivos que não estão em nenhum diretório são aqueles em que estou trabalhando no momento e aqueles que estão nos diretórios com nomes de sites são aqueles que já resolvi e estão aí como histórico.
 
-Minhas contas no URI e CodeForces são:
+If a file is in the root folder, that means I'm trying to pass that problem right now. When I solve a problem, I send the file to its respective directory. Then, I can know the history of problems I made.
+
+
+I try to have a good pattern in the names of files. So files from Neps or URI are named by the problem's number, the same for CodeForces but with the letter of the problem at the end. For SPOJ I use the problem's code (which is some capital letters and numbers at the end).
+
+
+Nowadays I'm coding in C++ and some of my accounts are:
 
 https://codeforces.com/profile/Giatro
+
+https://neps.academy/user/6015
+
+https://www.spoj.com/myaccount/
 
 https://www.urionlinejudge.com.br/judge/en/profile/144513
