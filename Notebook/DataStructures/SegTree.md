@@ -113,3 +113,89 @@ To code that, we need the original array $arr[1\cdots N]$, the tree array $t[1\c
 
 Notice one thing which is very important in segment trees. We could do other types of segment tree with other operations instead of addition. That could multiplication, finding the min or the max or any other associative math operation. Moreover, we could set the value of $a_p$ to be $v$ instead of adding $v$. (we could do actually any operation we want). That's the powerness of this data structure.
 
+### Range-Query Range-Update Segment Trees
+
+We can also make a range-update point-query segtree, but as point-query is a particular case of range-query, I'll no show that implementation.
+
+To make a range-query and update segment tree with O(log(N)) in both operations, we need first to understant an important tecnique to improve the velocity of this structure: the Lazy Propagation.
+
+#### Lazy Propagation
+
+In this tecnique, we will need one more array for each node of our tree: $lz[1\cdots N]$. Then, when we're updating a segment by a value, we'll stop whenever we find a node with segment entirely inside the query segment and update just this node, marking its children and indicating that we need to update they and everything above that nodes.
+
+For instance, supose we have this call: `update(1, 8, 1, 3, 4, 2)`. It is, we want to update our segment tree with 8 nodes in the segment [3, 4] by adding 2 to all elements in this range.
+
+The root node represents the segment [1, 8], its left child represents [1, 4] and its right child represents [3, 4], the range we want to update. Above this node we have the left child representing [3, 3] (the element 3 itself) and the right child representing [4, 4]. 
+
+In a naive way of updating, we would first update 3 by 2 and update all the nodes in the path from the root to the node representing [3, 3] and, after that, update 4 by 2 and all the nodes in the path from the root to the node representing [4, 4].
+We can see clearly that as the node representing [3, 4] is the lowest common ancestor of [3, 3] and [4, 4], we'll update [3, 4] and all the nodes in the path from the root to [3, 4] twice.
+Then, instead of that, we update [3, 4] just one time by adding in it the value 2 * 2, making *lz* of its children equal to 2 and returning without exploring more down in the tree.
+
+But now supose we have this call: `query(1, 8, 1, 3, 3)`. It is, we want to know the value of the sum in the interval [3, 3] (i.e. just the value of the element 3). We'll do the same thing we're doing and find the node that represents [3, 3]. But after finding that value, we see that its value didn't change in the last update operation becausa we had just updated the node [3, 4]. 
+
+To make sure we are using the laze propagation correctly, as soon as we reach in the node, we check if `lz` of that node is different of 0. If it is, we have an late update to do and we need to do that before returning the value of that node. So first we increment 2 in that node and then return its value.
+
+If the tree was bigger, then we would update lazily that node and propagate the update of +2 to the nodes above making their  `lz` increment by 2.
+
+Finally, we need to undestant one more thing generically: how much do we sum in the ending node. We saw that the update was telling us to update 2 in the leaf nodes (which belong to the update segment) but we've updated 2 * 2 in the ending node. Now let's understand why 2 * 2.
+
+One of these twos is because the +2 of the update. The other one is becausa we had 2 leaf in the segment. So a generic formula of how much we need to increment is actually $v \cdot (r-l+1)$, where $v$ is the value of the update and $l$ and $r$ are the left and right end points of the segment represented by the node we're updating. Notice that $r-l+1$ represents the number of elements that we would update if we were in the naive solution (the number of leaves under that particular node).
+If lz if not zero in the node i, we do `t[i] += lz[i] * (l-r+1)` before doing any thing in that node. Then, we make `lz[i]` become zero, indicating that there are no more lazy updates in that node. But, of course, before clearing lz, we propagate the value to i children and as their $l$ and $r$ are different, they will be updated by the right value.
+
+That's the idea, let's check out the code:
+
+#### Implementation
+
+The implementation can be found in the archive `LazySegTree.cpp`. There I say that we can create an auxiliary function to check if the node has lazy value or not. Here I'll just implement this version. It's a fast way to implement.
+
+```cpp
+ll const N = 112345;
+ll arr[N], t[4 * N], lz[4 * N];
+
+void build(ll l, ll r, ll i) {
+    if (l == r) t[i] = arr[l];
+    else
+    {
+        ll m = l + (r-l)/2;
+        build(l, m, 2*i);
+        build(m+1, r, 2*i+1);
+        t[i] = t[2*i] + t[2*i+1];
+    }
+    lz[i] = 0;
+}
+
+void push(ll l, ll r, ll i) {
+    if (lz[i]) {
+        t[i] += lz[i] * (r-l+1);
+        if (l != r) {
+            lz[2*i] += lz[i];
+            lz[2*i+1] += lz[i];
+        }
+        lz[i] = 0;
+    }
+}
+
+void update(ll l, ll r, ll i, ll ql, ll qr, ll x) {
+    push(l, r, i);
+    if (qr < l || r < ql) return;
+    if (ql <= l && r <= qr) {
+        lz[i] = x;
+        push(l, r, i);
+    } else {
+        int m = (l+r)/2;
+        update(l, m, 2*i, ql, qr, x);
+        update(m+1, r, 2*i+1, ql, qr, x);
+        t[i] = t[2*i] + t[2*i+1];
+    }
+}
+
+ll query(int l, int r, int i, int ql, int qr) {
+    push(l, r, i);
+    if (ql <= l && r <= qr) return t[i];
+    if (r < ql || qr < l) return 0;
+
+    int m = (l+r)/2;
+    return query(l, m, 2*i, ql, qr) +
+           query(m+1, r, 2*i+1, ql, qr);
+}
+```
