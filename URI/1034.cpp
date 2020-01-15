@@ -29,9 +29,27 @@ typedef long double lld;
 
 using namespace std;
 
+ll dp[1123456];
+ll n, m, t;
+vector<ll> a;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(t);
+  fora (k, t) {
+    get2(n, m);
+    fora (i, n) { ll b; get1(b); a.pb(b); }
+    forai (i, m) dp[i] = INF;
+    dp[0] = 0;
+    forai (i, m)
+      forita (it, a)
+        if (i - *it >= 0) dp[i] = min(dp[i], dp[i-*it]+1);
+    // forai (i, m) cout2e(i, dp[i]);
+    cout1e(dp[m]);
+    a.clear();
+  }
 
   return 0;
 }

@@ -23,15 +23,43 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
 #define M 1000000007
 
 using namespace std;
 
+ll n1, n2, n3;
+string s;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(s);
+  n1 = n2 = n3 = 0;
+  fora (i, s.size()) {
+    switch (s[i]) {
+      case '1': n1++; break;
+      case '2': n2++; break;
+      case '3': n3++; break;
+    }
+  }
+
+  fora (i, n1) {
+    cout1('1');
+    if (n2 + n3 != 0 || i != n1-1) cout1('+');
+  }
+
+  fora (i, n2) {
+    cout1('2');
+    if (n3 != 0 || i != n2-1) cout1('+');
+  }
+
+  fora (i, n3) {
+    cout1('3');
+    if (i != n3-1) cout1('+');
+  }
+  cout << endl;
 
   return 0;
 }

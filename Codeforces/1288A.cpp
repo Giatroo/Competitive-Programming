@@ -29,9 +29,21 @@ typedef long double lld;
 
 using namespace std;
 
+lld n, d, t, x;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(t);
+  fora (i, t) {
+    get2(n, d);
+    x = 0;
+    while (x + ceil(d/(x+1)) > n && x < n) x++;
+
+    if (x >= n) cout1e("NO");
+    else cout1e("YES");
+  }
 
   return 0;
 }

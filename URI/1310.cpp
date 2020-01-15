@@ -29,9 +29,25 @@ typedef long double lld;
 
 using namespace std;
 
+ll maxi;
+ll n, m;
+ll cur, bestSoFar;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  while (cin >> n) {
+    get1(m);
+    get1(bestSoFar); bestSoFar -= m;
+    maxi = max(bestSoFar, (ll)0);
+    fora (i, n-1) {
+      get1(cur); cur -= m;
+      bestSoFar = max(bestSoFar + cur, cur);
+      maxi = max(maxi, bestSoFar);
+    }
+    cout1e(maxi);
+  }
 
   return 0;
 }

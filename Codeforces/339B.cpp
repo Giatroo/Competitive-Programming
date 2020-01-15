@@ -23,15 +23,28 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
 #define M 1000000007
 
 using namespace std;
 
+ll n, m;
+ll a[112345];
+ll tot;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, m);
+  get1(a[0]);
+  tot += a[0] - 1;
+  forai (i, m-1) {
+    get1(a[i]);
+    tot += (a[i] < a[i-1]) ? a[i] - a[i-1] + n : a[i] - a[i-1];
+  }
+
+  cout1e(tot);
 
   return 0;
 }
