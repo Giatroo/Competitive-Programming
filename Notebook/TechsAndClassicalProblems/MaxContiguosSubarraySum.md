@@ -4,7 +4,7 @@
 
 ## Definitions
 
-Today we'll be studing a Dynamic Programming problem and applying it to a URI's problem (number 1310 - Profit).
+Today we'll be studing a Dynamic Programming problem and applying it to an URI's problem (number 1310 - Profit).
 
 **Definition:** given an array $A =[a_1, \cdots, a_n]$, a *contiguos subarray of A* is an array $B = [b_1, \cdots, b_m]$ where $b_1 = a_i$ for some $i$ and, for all $b_j$, if $b_j = a_i$ then $b_{j+1} = a_{i+1}$.
 
