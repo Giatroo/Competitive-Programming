@@ -30,9 +30,22 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+ll f1, f2;
+
+ll mdc(ll a, ll b) {
+  return (b == 0) ? a : mdc(b, a % b);
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  fora (i, n) {
+    get2(f1, f2);
+    cout1e(mdc(f1, f2));
+  }
 
   return 0;
 }

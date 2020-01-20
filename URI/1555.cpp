@@ -30,9 +30,27 @@ typedef long double lld;
 
 using namespace std;
 
+ll t;
+pair<ll, string> v[3];
+ll x, y;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(t);
+
+  fora (k, t) {
+    get2(x, y);
+    v[0].f = 9*x*x + y*y;
+    v[0].s = "Rafael ganhou";
+    v[1].f = 2*x*x + 25*y*y;
+    v[1].s = "Beto ganhou";
+    v[2].f = -100*x + y*y*y;
+    v[2].s = "Carlos ganhou";
+    sort(v, v+3);
+    cout1e(v[2].s);
+  }
 
   return 0;
 }

@@ -30,9 +30,26 @@ typedef long double lld;
 
 using namespace std;
 
+ll dp[32];
+ll n, m;
+
+ll fat(ll i) {
+  if (dp[i] != -1) return dp[i];
+  if (i <= 1) return dp[i] = 1;
+  return dp[i] = i * fat(i-1);
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  fora (i, 21) dp[i] = -1;
+  while (get2(n, m)) {
+    if (m > n) swap(n, m);
+    n = fat(n);
+    m = fat(m);
+    cout1e(n+m);
+  }
 
   return 0;
 }

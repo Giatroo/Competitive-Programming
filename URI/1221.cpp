@@ -30,9 +30,28 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+ll x;
+
+bool prime(ll number) {
+  bool is = true;
+  if (number <= 1) return false;
+  for (ll i = 2; i*i <= number && is; i++)
+    is = (number % i != 0);
+  return is;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  fora (i, n) {
+    get1(x);
+    if (prime(x)) cout1e("Prime");
+    else cout1e("Not Prime");
+  }
+
 
   return 0;
 }

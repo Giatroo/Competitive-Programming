@@ -30,9 +30,55 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+
+void mergesort(vector<ll> &v) {
+  // cout << "Entrando: ";
+  // forita (it, v) cout1(*it) << " ";
+  // cout << endl << endl;
+
+
+  if (v.size() == 1) {
+    // cout << "Saindo: ";
+    // forita (it, v) cout1(*it) << " ";
+    // cout << endl << endl;
+    return;
+  }
+
+  vector<ll> v1, v2;
+  ll m = (v.size())/2;
+  fora (i, m) v1.pb(v[i]);
+  for (ll i = m; i <= v.size()-1; i++) v2.pb(v[i]);
+
+  mergesort(v1);
+  mergesort(v2);
+
+  v1.pb(MINF);
+  v2.pb(MINF);
+
+  ll ini1, ini2;
+  ini1 = ini2 = 0;
+
+  for (ll i = 0; i < v.size(); i++) {
+    if (v1[ini1] > v2[ini2]) v[i] = v1[ini1++];
+    else v[i] = v2[ini2++];
+  }
+
+  // cout << "Saindo: ";
+  // forita (it, v) cout1(*it) << " ";
+  // cout << endl << endl;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  vector<ll> a;
+  fora (i, n) { ll b; get1(b); a.pb(b); }
+  mergesort(a);
+  forita (it, a) cout1(*it) << " ";
+  cout << endl;
 
   return 0;
 }

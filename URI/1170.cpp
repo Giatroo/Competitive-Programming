@@ -30,9 +30,22 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+lld x;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  fora (i, n) {
+    get1(x);
+    ll a = 2, t = 1;
+    while (a < x) {
+      a += a; t++;
+    }
+    cout2e(t, "dias");
+  }
 
   return 0;
 }
