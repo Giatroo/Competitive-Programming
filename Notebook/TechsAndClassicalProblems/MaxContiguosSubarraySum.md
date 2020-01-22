@@ -67,7 +67,7 @@ int maxCSS(int arr[N]) {
 }
 ```
 
-We can, instead of that, use Dynamic Programming to improve the time complexity to $O(n)$ and the time complexity to $O(1)$.
+We can, instead of that, use Dynamic Programming to improve the time complexity to $O(n)$ and the space complexity to $O(1)$.
 
 ### Dynamic Programming solution
 
