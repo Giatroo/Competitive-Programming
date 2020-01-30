@@ -27,9 +27,43 @@ typedef long double lld;
 
 using namespace std;
 
+ll n, q;
+vector<ll> v;
+ll a, b, t;
+
+ll bs(ll l, ll r, ll x) {
+  ll m;
+  while (l <= r) {
+    m = l + (r - l) / 2;
+    if (v[m] >= x) r = m - 1;
+    else l = m + 1;
+  }
+
+  if (l <= n && v[l] == x) return l;
+  return -1;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(n, q);
+  t = 1;
+  while (n * q != 0) {
+    v.clear();
+    v.pb(0);
+    fora(i, n) { get1(a); v.pb(a); }
+    sortvector(v);
+    cout << "CASE# " << t++ << ":" << endl;
+    fora(i, q) {
+      get1(a);
+      if ((b = bs(1, n, a)) == -1)
+        cout << a << " not found" << endl;
+      else cout << a << " found at " << b << endl;
+    }
+
+    get2(n, q);
+  }
 
   return 0;
 }
