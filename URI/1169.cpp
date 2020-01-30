@@ -23,36 +23,33 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+#define ull unsigned long long int
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ull n, x;
+
+ull fastpow(ll b, ll e) {
+  if (e == 0) return 1;
+  if (e % 2 == 0)
+    return fastpow(b, e/2) * fastpow(b, e/2);
+  return b * fastpow(b, e-1);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(n);
+  fora (i, n) {
+    get1(x);
+    cout2e((fastpow(2, x)-1)/12000, "kg");
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

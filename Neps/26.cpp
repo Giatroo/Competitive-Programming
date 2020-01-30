@@ -28,31 +28,52 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll l, c;
+char m[112][112];
+pll ini;
+pll mov[4];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+bool inside(pll pt) {
+  return pt.f >= 0 && pt.f < l && pt.s >= 0 && pt.s < c;
+}
+
+pll bfs() {
+  stack<pll> st;
+  st.push(ini);
+  m[ini.f][ini.s] = '.';
+
+  while (!st.empty()) {
+    ini = st.top(); st.pop();
+    bool last = true;
+    fora (i, 4) {
+      pll pt = mk(ini.f + mov[i].f, ini.s + mov[i].s);
+      if (inside(pt) && m[pt.f][pt.s] == 'H') {
+        st.push(pt);
+        m[pt.f][pt.s] = '.';
+        last = false;
+      }
+    }
+    if (last) return ini;
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  mov[0] = mk(1, 0);
+  mov[1] = mk(0, 1);
+  mov[2] = mk(-1, 0);
+  mov[3] = mk(0, -1);
+  get2(l, c);
+  fora (i, l) fora (j, c)
+  {
+    get1(m[i][j]);
+    if (m[i][j] == 'o') ini = mk(i, j);
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  pll pt = bfs();
+  cout2e(pt.f+1, pt.s+1);
 
   return 0;
 }

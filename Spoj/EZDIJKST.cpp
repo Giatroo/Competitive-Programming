@@ -23,35 +23,59 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define INF LLONG_MAX
-#define M 1000000007
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll t;
+ll v, k;
+ll a, b, c;
+ll v1, v2;
+vector<pll> adj[11234];
+ll dist[11234];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void dijkstra(ll S) {
+  set<pll> f;
+  pll aux;
+  forai(i, v) dist[i] = INT_MAX;
+  f.insert(mk(0, S));
+
+  while (!f.empty()) {
+    aux = *f.begin();
+    f.erase(f.begin());
+    if (dist[aux.s] != INT_MAX) continue;
+    // cout << "Olhando " << aux.s << endl;
+    dist[aux.s] = aux.f;
+
+    forita (it, adj[aux.s]) {
+      // if (dist[it->f] != INT_MAX) continue;
+      if (aux.f + it->s < dist[it->f])
+        f.insert(mk(aux.f + it->s, it->f));
+      }
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(t);
+  fora(i, t) {
+    get2(v, k);
+    fora(j, k) {
+      get3(a, b, c);
+      adj[a].pb(mk(b, c));
+    }
+    get2(v1, v2);
+    dijkstra(v1);
+    if (dist[v2] == INT_MAX) cout << "NO" << endl;
+    else cout << dist[v2] << endl;
+    // forai(i, v) cout << dist[i] << " ";
+    // cout << endl;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    fora(j, v + 2) adj[j].clear();
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
 
 
   return 0;

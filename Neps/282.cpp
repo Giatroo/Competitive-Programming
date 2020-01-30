@@ -28,31 +28,22 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
-
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  ll n;
+  get1(n);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
+  bool isPrime = true;
 
-  print(d2);  print(d3);  print(d5);
+  if (n == 1) { cout1e("N"); return 0; }
 
+  for (ll i = 2; i*i <= n && isPrime; i++)
+    isPrime = !(n % i == 0);
+
+  if (!isPrime) cout1e("S");
+  else cout1e("N");
 
   return 0;
 }

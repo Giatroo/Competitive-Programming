@@ -28,30 +28,55 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n[16], o[8], q[4], s[2], f[1];
+ll a, b;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  fora (i, 16) get1(n[i]);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  a = 0;
+  fora (i, 8) {
+    if ((n[a] == 1 && n[a+1] == 9) || (n[a] == 9 && n[a+1] == 1))
+    {  cout1e("oitavas"); return 0; }
+    if (n[a] == 1 || n[a] == 9) o[i] = n[a];
+    else if (n[a+1] == 1 || n[a+1] == 9) o[i] = n[a+1];
+    else o[i] = n[a];
+    a += 2;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  // fora (i, 8) cout << o[i] << " ";
+  // cout << endl;
+
+  a = 0;
+  fora (i, 4) {
+    if ((o[a] == 1 && o[a+1] == 9) || (o[a] == 9 && o[a+1] == 1))
+    {  cout1e("quartas"); return 0; }
+    if (o[a] == 1 || o[a] == 9) q[i] = o[a];
+    else if (o[a+1] == 1 || o[a+1] == 9) q[i] = o[a+1];
+    else q[i] = o[a];
+    a += 2;
+  }
+
+  // fora (i, 4) cout << q[i] << " ";
+  // cout << endl;
+
+  a = 0;
+  fora (i, 2) {
+    if ((q[a] == 1 && q[a+1] == 9) || (q[a] == 9 && q[a+1] == 1))
+    {  cout1e("semifinal"); return 0; }
+    if (q[a] == 1 || q[a] == 9) s[i] = q[a];
+    else if (q[a+1] == 1 || q[a+1] == 9) s[i] = q[a+1];
+    else s[i] = q[a];
+    a += 2;
+  }
+
+  // fora (i, 2) cout << s[i] << " ";
+  // cout << endl;
+
+  cout1e("final");
 
 
   return 0;

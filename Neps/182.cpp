@@ -28,30 +28,37 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n;
+ll sum, num;
+vector<ll> divi;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(n);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  for (ll i = 1; i*i <= n; i++) {
+    if (n % i == 0) {
+      divi.pb(i);
+      num++;
+      sum += i;
+
+      if (n/i != i) {
+        divi.pb(n/i);
+        sum += n/i;
+        num++;
+      }
+    }
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  cout << num << " divisor(es): ";
+  sortvector(divi);
+  forita(it, divi) cout << *it << " ";
+  cout << endl;
+  cout << "Soma de divisores = " << sum << endl;
+  if (divi.size() == 2) cout << "Primo" << endl;
+  else cout << "Nao primo" << endl;
 
 
   return 0;

@@ -23,36 +23,63 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, s, k, t;
+vector<ll> a;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(t);
+  fora (j, t) {
+    get3(n, s, k);
+    a.resize(k);
+    fora (i, k) get1(a[i]);
+    sortvector(a);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    ll ind = lower_bound(a.begin(), a.end(), s) - a.begin();
+    ll l, r;
+    l = r = INF;
+
+    if (a[ind] != s) { cout1e(0); continue; }
+
+    // cout2e(ind, a[ind]);
+
+    ll i;
+    for (i = ind; i >= 0; i--) {
+      if (a[i] != s - (ind - i)) {
+        l = (ind - i);
+        break;
+      }
+    }
+    // cout2e("i = ", i);
+    if (a[i+1] == 1) l = INF;
+    else l = (ind - i);
+
+    for (i = ind; i < a.size(); i++) {
+      if (a[i] != s + (i - ind)) {
+        r = (i - ind);
+        break;
+      }
+    }
+    // cout2e("i = ", i);
+    if (a[i-1] == n) r = INF;
+    else r = (i-ind);
+
+
+    // cout1e(l);
+    // cout1e(r);
+    cout1e(min(l, r));
+
+    a.clear();
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

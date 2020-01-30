@@ -23,36 +23,44 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, l;
+vector<ll> a;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll bs(vector<ll> v) {
+  ll inv = 0;
+  for (ll i = 0; i < v.size(); i++) {
+    for (ll j = 0; j < v.size()-1; j++) {
+      if (v[j] > v[j+1]) {
+        inv++;
+        swap(v[j], v[j+1]);
+      }
+    }
+  }
+
+  return inv;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(n);
+  fora (k, n) {
+    get1(l);
+    a.resize(l);
+    fora (i, l) get1(a[i]);
+    cout << "Optimal train swapping takes "
+         << bs(a) << " swaps." << endl;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    a.clear();
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

@@ -30,51 +30,93 @@ typedef long double lld;
 
 using namespace std;
 
-ll n;
-vector<ll> vo;
+typedef struct node {
+  ll v;
+  struct node *l;
+  struct node *r;
+} Node;
 
-ll inv(vector<ll> &v) {
-  ll ic = 0;
-  if (v.size() == 1) return ic;
+ll t, n, a;
+Node *tree;
 
-  vector<ll> u1, u2;
-  for (ll i = 0; i < v.size()/2; i++) u1.pb(v[i]);
-  for (ll i = v.size()/2; i < v.size(); i++) u2.pb(v[i]);
+void insert(ll val) {
+  Node *newN, *cur, *prev;
+  newN = (Node*)malloc(sizeof *newN);
+  newN->v = val;
+  newN->l = newN->r = NULL;
 
-  // forita (it, u1) cout << *it << " ";
-  // cout << endl;
-  // forita (it, u2) cout << *it << " ";
-  // cout << endl;
-  // return 0;
+  if (tree == NULL) { tree = newN; return; }
 
-  ic += inv(u1);
-  ic += inv(u2);
-
-  u1.pb(INF);
-  u2.pb(INF);
-
-  ll ini1, ini2;
-  ini1 = ini2 = 0;
-  for (ll i = 0; i < v.size(); i++) {
-    if (u1[ini1] <= u2[ini2]) v[i] = u1[ini1++];
-    else {
-      v[i] = u2[ini2++];
-      ic += u1.size() - 1 - ini1;
-    }
+  cur = tree;
+  prev = NULL;
+  while (cur != NULL) {
+    prev = cur;
+    cur = (cur->v > val) ? cur->l : cur->r;
   }
+  if (prev->v > val) prev->l = newN;
+  else prev->r = newN;
+}
 
-  // cout << "Retornando " << ic << endl;
-  return ic;
+vector<ll> path;
+
+void Pre(Node *t) {
+  if (t != NULL) {
+    path.pb(t->v);
+    Pre(t->l);
+    Pre(t->r);
+  }
+}
+
+void In(Node *t) {
+  if (t != NULL) {
+    In(t->l);
+    path.pb(t->v);
+    In(t->r);
+  }
+}
+
+void Post(Node *t) {
+  if (t != NULL) {
+    Post(t->l);
+    Post(t->r);
+    path.pb(t->v);
+  }
+}
+
+void printpath() {
+  fora (i, path.size()) {
+    cout << path[i];
+    if (i != path.size()-1) cout << " ";
+  }
+  cout << endl;
+  path.clear();
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(n);
-  vo.resize(n);
-  fora (i, n) get1(vo[i]);
-  cout1e(inv(vo));
+  get1(t);
+  fora (k, t) {
+    get1(n);
+    tree = NULL;
+    fora (i, n) {
+      get1(a);
+      insert(a);
+    }
+
+    cout << "Case " << k+1 << ":" << endl;
+    Pre(tree);
+    cout << "Pre.: ";
+    printpath();
+    In(tree);
+    cout << "In..: ";
+    printpath();
+    Post(tree);
+    cout << "Post: ";
+    printpath();
+    cout << endl;
+  }
 
   return 0;
 }

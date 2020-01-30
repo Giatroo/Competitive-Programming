@@ -23,36 +23,50 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, m;
+ll u, v, w;
+vector<pll> adj[1123];
+ll key[1123];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll prim(ll S) {
+  set<pll> pq; //cost, vertice
+  pll aux;
+  ll mini = 0;
+  pq.insert(mk(0, S));
+  fora (i, n) key[i] = INF;
+
+  while (!pq.empty()) {
+    aux = *pq.begin(); pq.erase(pq.begin());
+
+    if (key[aux.s] == INF) {
+      key[aux.s] = aux.f;
+      mini += aux.f;
+      forita (it, adj[aux.s])
+        pq.insert(mk(it->s, it->f));
+    }
+  }
+  
+  return mini;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get2(n, m);
+  fora(i, m) {
+    get3(u, v, w);
+    adj[u].pb(mk(v, w));
+    adj[v].pb(mk(u, w));
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  cout1e(prim(0));
 
   return 0;
 }

@@ -23,36 +23,67 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, f, r;
+ll u, v, w;
+vector<pair<ll, pll>> fer, rod;
+ll mini;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+//Union Find
+ll id[512], sz[512];
+void makeSets() { forai (i, n) id[i] = i, sz[i] = 1; }
+ll find(ll i) { return (id[i] == i) ? i : id[i] = find(id[i]); }
+void join(ll i, ll j) {
+  i = find(i); j = find(j);
+  if (i == j) return;
+  if (sz[i] > sz[j]) swap(i, j);
+  id[i] = j; sz[j] += sz[i];
+}
+
+void kruskalFer() {
+  sortvector(fer);
+  forita (it, fer) {
+    if (find(it->s.f) != find(it->s.s)) {
+      join(it->s.f, it->s.s);
+      mini += it->f;
+    }
+  }
+}
+
+void kruskalRod() {
+  sortvector(rod);
+  forita (it, rod) {
+    if (find(it->s.f) != find(it->s.s)) {
+      join(it->s.f, it->s.s);
+      mini += it->f;
+    }
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get3(n, f, r);
+  fora(i, f) {
+    get3(u, v, w);
+    fer.pb(mk(w, mk(u, v)));
   }
-  d3 = (sum == 0);
+  fora(i, r) {
+    get3(u, v, w);
+    rod.pb(mk(w, mk(u, v)));
+  }
 
-  print(d2);  print(d3);  print(d5);
-
+  mini = 0;
+  makeSets();
+  kruskalFer();
+  kruskalRod();
+  cout1e(mini);
 
   return 0;
 }

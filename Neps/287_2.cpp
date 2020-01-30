@@ -23,36 +23,62 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void mergesort(vector<ll> &v) {
+  // cout << "Entrando: ";
+  // forita (it, v) cout1(*it) << " ";
+  // cout << endl << endl;
+
+
+  if (v.size() == 1) {
+    // cout << "Saindo: ";
+    // forita (it, v) cout1(*it) << " ";
+    // cout << endl << endl;
+    return;
+  }
+
+  vector<ll> v1, v2;
+  ll m = (v.size())/2;
+  fora (i, m) v1.pb(v[i]);
+  for (ll i = m; i <= v.size()-1; i++) v2.pb(v[i]);
+
+  mergesort(v1);
+  mergesort(v2);
+
+  v1.pb(MINF);
+  v2.pb(MINF);
+
+  ll ini1, ini2;
+  ini1 = ini2 = 0;
+
+  for (ll i = 0; i < v.size(); i++) {
+    if (v1[ini1] > v2[ini2]) v[i] = v1[ini1++];
+    else v[i] = v2[ini2++];
+  }
+
+  // cout << "Saindo: ";
+  // forita (it, v) cout1(*it) << " ";
+  // cout << endl << endl;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  get1(n);
+  vector<ll> a;
+  fora (i, n) { ll b; get1(b); a.pb(b); }
+  mergesort(a);
+  forita (it, a) cout1(*it) << " ";
+  cout << endl;
 
   return 0;
 }

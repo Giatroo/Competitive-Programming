@@ -23,36 +23,27 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll h1, h2, m1, m2;
+ll t1, t2;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  get2(h1, m1);
+  get2(h2, m2);
+  t1 = h1 * 60 + m1;
+  t2 = h2 * 60 + m2;
+  if (t2 - t1 >= 45)
+    cout1e("Sucesso");
+  else
+    cout1("Atrasado ") << 45 - (t2 - t1) << endl;
 
   return 0;
 }

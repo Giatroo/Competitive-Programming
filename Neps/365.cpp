@@ -23,35 +23,42 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, t, a, b;
+ll cima[112345], baixo[112345];
+ll arr[112345];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get2(n, t);
+  fora (i, n) get1(cima[i]);
+  fora (i, n) { get1(baixo[i]); arr[i] = 0; }
+  arr[n] = 0;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  fora (i, t) {
+    get2(a, b);
+    a--; b--;
+    arr[a]++;
+    arr[b+1]--;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  forai (i, n) arr[i] += arr[i-1];
+
+  fora (i, n)
+    if (arr[i] % 2 == 1)
+      swap(cima[i], baixo[i]);
+
+  fora (i, n) cout << cima[i] << " ";
+  cout << endl;
+
 
 
   return 0;

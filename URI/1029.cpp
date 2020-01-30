@@ -20,39 +20,42 @@ typedef long double lld;
 #define cout1e(a) cout1(a) << endl
 #define cout2e(a, b) cout2(a, b) << endl
 #define cout3e(a, b, c) cout3(a, b, c) << endl
-#define get1(a) cin >> (a)
-#define get2(a, b) cin >> (a) >> (b)
-#define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get1(a) cin >> (a) >> ws
+#define get2(a, b) cin >> (a) >> (b) >> ws
+#define get3(a, b, c) cin >> (a) >> (b) >> (c) >> ws
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d) >> ws
 #define INF LLONG_MAX
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll pbv[50];
+ll pbc[50];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll n, x;
+ll fib;
+
+ll f(ll i) {
+  if (pbv[i] != -1) {
+    return pbv[i];
+  }
+  if (i == 1 || i == 0) { pbc[i] = 0; return pbv[i] = i; }
+  pbv[i] = f(i-1) + f(i-2);
+  pbc[i] = 2 + pbc[i-1] + pbc[i-2];
+  return pbv[i];
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(n);
+  fora (j, n) {
+    cin >> x;
+    fora (i, x+1) pbv[i] = pbc[i] = -1;
+    f(x);
+    printf("fib(%lld) = %lld calls = %lld\n", x, pbc[x], pbv[x]);
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

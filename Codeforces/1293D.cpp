@@ -23,36 +23,70 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll xz, yz, ax, ay, bx, by;
+ll xs, ys, t;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+vector<pll> pts;
+ll dist, mindist;
+ll num;
+
+ll d(pll p1, pll p2) {
+  return abs(p1.f - p2.f) + abs(p1.s - p2.s);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get3(xz, yz, ax);
+  get3(ay, bx, by);
+  get3(xs, ys, t);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  mindist = INF;
+  pll my = mk(xs, ys);
+  pll pt = mk(xz, yz);
+
+  while (d(pt, my) < mindist) {
+    pts.pb(pt);
+    mindist = d(pt, my);
+    pt.f = ax*pt.f + bx;
+    pt.s = ay*pt.s + by;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  pll lp;
+  lp.f = pt.f;
+  lp.s = pt.s;
 
+  num = 0;
+  while (true) {
+    pt = pts.back();
+    pts.pop_back();
+    // cout3e("Analysing point", pt.f, pt.s);
+    if (d(pt, my) > t) break;
+    else {
+      num++;
+      // cout3e("collecting", pt.f, pt.s);
+      t -= d(pt, my);
+      // cout2e("time left is", t);
+      my.f = pt.f;
+      my.s = pt.s;
+    }
+
+    if (pts.empty()) {
+      pts.pb(lp);
+      lp.f = ax*lp.f + bx;
+      lp.s = ay*lp.s + by;
+    }
+  }
+
+  cout1e(num);
 
   return 0;
 }

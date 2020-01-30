@@ -23,36 +23,66 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n;
+pll p;
+vector<ll> a;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll dist(pll pt) {
+  return pt.f*pt.f + pt.s*pt.s;
+}
+
+ll inv(vector<ll> &v) {
+  ll ic = 0;
+  if (v.size() == 1) return ic;
+
+  vector<ll> u1, u2;
+  for (ll i = 0; i < v.size()/2; i++) u1.pb(v[i]);
+  for (ll i = v.size()/2; i < v.size(); i++) u2.pb(v[i]);
+
+  ll ini1, ini2;
+  ini1 = ini2 = 0;
+
+  ic += inv(u1);
+  ic += inv(u2);
+  u1.pb(MINF);
+  u2.pb(MINF);
+
+  for (ll i = 0; i < v.size(); i++) {
+    if (u1[ini1] > u2[ini2]) v[i] = u1[ini1++];
+    else {
+      v[i] = u2[ini2++];
+      ic += u1.size() - ini1 - 1;
+    }
+  }
+
+  // cout << "u1 = ";
+  // fora (i, u1.size()) cout << u1[i] << " ";
+  // cout << endl;
+  // cout << "u2 = ";
+  // fora (i, u2.size()) cout << u2[i] << " ";
+  // cout << endl;
+  // cout << "Retornando " << ic << endl;
+  return ic;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(n);
+  fora (i, n) { get2(p.f, p.s); a.pb(dist(p)); }
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
+  // fora (i, n) cout << a[i] << " ";
+  // cout << endl;
 
-  print(d2);  print(d3);  print(d5);
-
+  cout << inv(a) << endl;
 
   return 0;
 }

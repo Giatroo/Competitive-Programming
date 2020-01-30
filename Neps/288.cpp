@@ -28,31 +28,28 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+bool prime[12123456];
+ll n;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(n);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  forai (i, 12000100) prime[i] = true;
+
+  prime[1] = false;
+  ll i, c;
+  for (i = 2, c = 1; c <= n; i++) {
+    if (prime[i]) {
+      c++;
+      for (ll j = 2*i; j <= 12000100; j += i)
+        prime[j] = false;
+    }
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  cout1e(i-1);
 
   return 0;
 }

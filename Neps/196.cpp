@@ -28,31 +28,34 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, q;
+vector<ll> v;
+ll x;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+bool bs(ll l, ll r, ll val) {
+  ll m;
+  while (l <= r) {
+    m = l + (r-l)/2;
+    if (v[m] == val) return true;
+    if (v[m] > val) r = m-1;
+    else l = m+1;
+  }
+  return false;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(n);
+  fora (i, n) { get1(x); v.pb(x); }
+  sortvector(v);
+  get1(q);
+  fora (i, q) {
+    get1(x);
+    if (bs(0, n-1, x)) cout1e("Sim");
+    else cout1e("Nao");
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

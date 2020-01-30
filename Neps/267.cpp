@@ -23,36 +23,34 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n;
+ll arr[1123], dp[1123];
+ll maxi = 1;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(n);
+  fora (i, n) { get1(arr[i]); dp[i] = 1; }
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
+  for (ll j = 1; j < n; j++)
+    for (ll i = 0; i < j; i++)
+      if (arr[j] >= arr[i]) {
+        dp[j] = max(dp[j], dp[i] + 1);
+        maxi = max(maxi, dp[j]);
+      }
 
-  print(d2);  print(d3);  print(d5);
-
+  // fora (i, n) cout << dp[i] << " ";
+  // cout << endl;
+  cout1e(maxi);
 
   return 0;
 }

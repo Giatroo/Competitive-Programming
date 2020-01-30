@@ -23,36 +23,83 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+typedef struct node {
+  ll v;
+  struct node *l;
+  struct node *r;
+} Node;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll t, n, a;
+Node *tree;
+
+void insert(ll val) {
+  Node *newN, *cur, *prev;
+  newN = (Node*)malloc(sizeof *newN);
+  newN->v = val;
+  newN->l = newN->r = NULL;
+
+  if (tree == NULL) { tree = newN; return; }
+
+  cur = tree;
+  prev = NULL;
+  while (cur != NULL) {
+    prev = cur;
+    cur = (cur->v > val) ? cur->l : cur->r;
+  }
+  if (prev->v > val) prev->l = newN;
+  else prev->r = newN;
+}
+
+vector<ll> path;
+
+void BFS() {
+  queue<Node *> q;
+  Node *cur;
+  q.push(tree);
+
+  while (!q.empty()) {
+    cur = q.front(); q.pop();
+    if (cur == NULL) continue;
+    path.pb(cur->v);
+    q.push(cur->l);
+    q.push(cur->r);
+  }
+}
+
+void printpath() {
+  fora (i, path.size()) {
+    cout << path[i];
+    if (i != path.size()-1) cout << " ";
+  }
+  cout << endl;
+  path.clear();
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(t);
+  fora (k, t) {
+    get1(n);
+    tree = NULL;
+    fora (i, n) {
+      get1(a);
+      insert(a);
+    }
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    cout << "Case " << k+1 << ":" << endl;
+    BFS();
+    printpath();
+    cout << endl;
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

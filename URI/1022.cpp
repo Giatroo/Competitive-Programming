@@ -23,36 +23,58 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll t;
+ll n1, n2, d1, d2;
+ll n3, n4, d3, d4;
+ll m;
+char op;
+char dummy;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll mdc(ll a, ll b) {
+  return (b == 0) ? a : mdc(b, a%b);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(t);
+  fora (i, t) {
+    get3(n1, dummy, d1);
+    get1(op);
+    get3(n2, dummy, d2);
+    switch (op) {
+      case '+':
+      n3 = n1*d2 + n2*d1;
+      d3 = d1*d2;
+      break;
+      case '-':
+      n3 = n1*d2 - n2*d1;
+      d3 = d1*d2;
+      break;
+      case '*':
+      n3 = n1*n2;
+      d3 = d1*d2;
+      break;
+      case '/':
+      n3 = n1*d2;
+      d3 = n2*d1;
+      break;
+    }
+    m = mdc(n3, d3);
+    n4 = n3 / m;
+    d4 = d3 / m;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    if (d4 <= 0) { d4 *= -1; n4 *= -1; }
+
+    printf("%lld/%lld = %lld/%lld\n", n3, d3, n4, d4);
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

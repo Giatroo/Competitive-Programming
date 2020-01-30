@@ -28,31 +28,37 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, q;
+ll a[51][51];
+ll li, ci, lf, cf;
+ll tot;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  tot = 0;
+  get1(n);
+  fora (i, n) fora (j, n) get1(a[i][j]);
+  get1(q);
+  fora (i, q) {
+    get2(li, ci);
+    get2(lf, cf);
+    li--; lf--; ci--; cf--;
+    for (ll c = li; c <= lf; c++)
+      for (ll b = ci; b <= cf; b++)
+        if (a[c][b] > 0) {
+          tot += a[c][b]; a[c][b] = 0;
+        }
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  // fora (i, n) {
+  //   fora (j, n) cout1(a[i][j]) << " ";
+  //   cout << endl;
+  // }
+  // cout << endl << endl;
 
+  cout1e(tot);
 
   return 0;
 }

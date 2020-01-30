@@ -23,36 +23,51 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, m;
+pll cavalo;
+pll mov[9];
+set<pll> buraco;
+ll t;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  //up -> y+
+  //left -> x+
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  mov[0] = mk(0, 0);
+  mov[1] = mk(1, 2);
+  mov[2] = mk(2, 1);
+  mov[3] = mk(2, -1);
+  mov[4] = mk(1, -2);
+  mov[5] = mk(-1, -2);
+  mov[6] = mk(-2, -1);
+  mov[7] = mk(-2, 1);
+  mov[8] = mk(-1, 2);
+  buraco.insert(mk(1, 3));
+  buraco.insert(mk(2, 3));
+  buraco.insert(mk(2, 5));
+  buraco.insert(mk(5, 4));
+  cavalo.f = 4; cavalo.s = 3;
+
+  get1(n);
+  t = 0;
+  fora(i, n) {
+    get1(m);
+    cavalo.f += mov[m].f;
+    cavalo.s += mov[m].s;
+    t++;
+    if (buraco.find(cavalo) != buraco.end()) break;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  cout1e(t);
 
   return 0;
 }

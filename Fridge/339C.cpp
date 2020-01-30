@@ -28,30 +28,48 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll m;
+vector<ll> w;
+vector<ll> used;
+ll lu;
+ll l, r;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  string in;
+  get1(in);
+  fora (i, 10) if (in[i] == '1') w.pb(i+1);
+  get1(m);
+  l = r = 0;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  if (w.empty()) { cout1e("NO"); return 0; }
+  lu = w[0];
+  l += w[0];
+  used.pb(lu);
+
+  forai (i, m-1) {
+    ll next = 0;
+    forita (it, w) {
+      if (*it == lu) continue;
+      if ((i % 2 == 0 && l + *it > r) ||
+          (i % 2 == 1 && r + *it > l)) {
+        next = *it; break;
+      }
+    }
+    if (next == 0) { cout1e("NO"); return 0; }
+    lu = next;
+    if (i % 2 == 0) l += next;
+    else r += next;
+    used.pb(lu);
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  cout1e("YES");
+  forita (it, used) cout1(*it) << " ";
+  cout << endl;
+
+
 
 
   return 0;

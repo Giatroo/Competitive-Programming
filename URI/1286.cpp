@@ -23,36 +23,49 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, p;
+ll t, a;
+ll dp[21][31];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  cin >> n;
+  while (n != 0) {
+    cin >> p;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    cin >> t >> a;
+    fora (i, p+1) dp[0][i] = -1;
+    dp[0][a] = t;
+
+    forai (i, n-1) {
+      cin >> t >> a;
+      forai (j, p) {
+        dp[i][j] = max((ll)-1, dp[i-1][j]);
+        if (j - a > 0 && dp[i-1][j-a] != -1)
+          dp[i][j] = max(dp[i][j], dp[i-1][j-a] + t);
+      }
+      dp[i][a] = max(dp[i][a], t);
+    }
+
+    // fora (i, n) {
+    //   forai (j, p) cout1(dp[i][j]) << " ";
+    //   cout << endl;
+    // }
+    // cout << endl;
+
+    ll maxi = 0;
+    forai (i, p) maxi = max(maxi, dp[n-1][i]);
+    cout2e(maxi, "min.");
+    cin >> n;
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

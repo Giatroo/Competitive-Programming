@@ -28,30 +28,25 @@ typedef long double lld;
 
 using namespace std;
 
+map<char, char> m;
 string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
+  fora (i, 3) m['A'+i] = '2';
+  fora (i, 3) m['D'+i] = '3';
+  fora (i, 3) m['G'+i] = '4';
+  fora (i, 3) m['J'+i] = '5';
+  fora (i, 3) m['M'+i] = '6';
+  fora (i, 4) m['P'+i] = '7';
+  fora (i, 3) m['T'+i] = '8';
+  fora (i, 4) m['W'+i] = '9';
   get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
+  fora (i, s.size())
+    if (isalpha(s[i])) s[i] = m[s[i]];
+  cout1e(s);
 
 
   return 0;

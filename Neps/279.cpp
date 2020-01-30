@@ -24,34 +24,35 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, k, m;
+ll a[1123];
+ll f[1123];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get3(n, k, m);
+  forai(i, n) get1(a[i]);
+  forai(i, k) f[i] = -1;
+  forai(i, n) get1(f[i]);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  if (k <= n) { cout1e(f[k]); return 0; }
+
+  for (ll i = n + 1; i <= k; i++)
+  {
+    ll fi = 0;
+    forai(j, n) {
+      fi += a[j] * f[i-j];
+      fi %= m;
+    }
+    f[i] = fi;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  cout1e(f[k]);
 
 
   return 0;

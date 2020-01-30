@@ -23,36 +23,44 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+queue<ll> d;
+vector<ll> t;
+ll n;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  cin >> n;
+  while (n != 0) {
+    forai (i, n) d.push(i);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    while (d.size() >= 2) {
+      t.pb(d.front());
+      d.pop();
+      d.push(d.front());
+      d.pop();
+    }
+
+    cout << "Discarded cards: ";
+    forita (it, t) {
+      cout << *it;
+      if (it+1 != t.end()) cout << ", ";
+      else cout << endl;
+    }
+
+    cout << "Remaining card: " << d.front() << endl;
+
+    d.pop();
+    t.clear();
+    cin >> n;
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

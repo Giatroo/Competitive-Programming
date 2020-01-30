@@ -24,35 +24,38 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll cuts[3];
+ll len;
+ll pb[4123];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll cuting(ll curlen) {
+  ll tot = LLONG_MIN;
+  ll a, b, c;
+  if (curlen < 0) return LLONG_MIN;
+  if (pb[curlen] != -1) return pb[curlen];
+
+  a = cuting(curlen - cuts[0]);
+  b = cuting(curlen - cuts[1]);
+  c = cuting(curlen - cuts[2]);
+  tot = max(a, b);
+  tot = max(tot, c);
+  tot++;
+  return pb[curlen] = tot;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  get1(len);
+  get3(cuts[0], cuts[1], cuts[2]);
+  fora(i, len + 5) pb[i] = -1;
+  pb[0] = 0;
+  cout1e(cuting(len));
+  // fora(i, len + 3) cout2e(i, pb[i]);
 
   return 0;
 }

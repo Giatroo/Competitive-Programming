@@ -23,36 +23,64 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, q;
+bool m[3][112345];
+pll mov[8];
+ll prob;
+pll pt;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+bool inside(pll p) {
+  return p.f >= 1 && p.f <= 2 && p.s >= 1 && p.s <= n;
+}
+
+bool lava(pll p) {
+  return m[p.f][p.s];
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  mov[0] = mk(0, 1);
+  mov[1] = mk(1, 0);
+  mov[2] = mk(0, -1);
+  mov[3] = mk(-1, 0);
+  mov[4] = mk(1, 1);
+  mov[5] = mk(-1, -1);
+  mov[6] = mk(-1, 1);
+  mov[7] = mk(1, -1);
+  get2(n, q);
+  forai (i, n) m[1][i] = m[2][i] = false;
+  prob = 0;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  fora (i, q) {
+    get2(pt.f, pt.s);
+    ll inc = (lava(pt)) ? -1 : 1;
+
+    fora (k, 8) {
+      pll neighbor = mk(pt.f + mov[k].f, pt.s + mov[k].s);
+      // cout3e("looking", neighbor.f, neighbor.s);
+      // if (inside(neighbor)) cout1e("inside");
+      // if (lava(neighbor)) cout1e("lava");
+      if (inside(neighbor) && lava(neighbor)) {
+        if (!(abs(neighbor.s - pt.s) == 1 && pt.f == neighbor.f)) {
+          prob += inc;
+          // cout3e("incrementing in", neighbor.f, neighbor.s);
+          // cout1e(prob);
+        }
+      }
+    }
+    m[pt.f][pt.s] = (lava(pt)) ? false : true;
+
+    cout << ((prob == 0) ? "Yes" : "No") << endl;
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

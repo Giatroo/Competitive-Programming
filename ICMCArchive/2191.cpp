@@ -28,31 +28,66 @@ typedef long double lld;
 
 using namespace std;
 
+const ll N = 200100;
+ll arr[N];
+ll t[4*N];
+ll n;
 string s;
-bool d2, d3, d5;
+ll a, b;
+ll num;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void build(ll i, ll l, ll r) {
+  if (l == r) t[i] = arr[l];
+  else {
+    ll m = l + (r-l)/2;
+    build(2*i, l, m);
+    build(2*i+1, m+1, r);
+    t[i] = t[2*i] + t[2*i+1];
+  }
+}
+
+void update(ll i, ll l, ll r, ll p, ll x) {
+  if (l == r) t[i] = x;
+  else {
+    ll m = l + (r-l)/2;
+    if (p <= m) update(2*i, l, m, p, x);
+    else update(2*i+1, m+1, r, p, x);
+    t[i] = t[2*i] + t[2*i+1];
+  }
+}
+
+ll querry(ll i, ll l, ll r, ll ql, ll qr) {
+  if (ql <= l && r <= qr) return t[i];
+  if (qr < l || r < ql) return 0;
+
+  ll m = l + (r-l)/2;
+  return querry(2*i, l, m, ql, qr) +
+         querry(2*i+1, m+1, r, ql, qr);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  scanf("%lld", &n);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  num = 1;
+  while (n != 0) {
+    forai (i, n) scanf("%lld", arr+i);
+    build(1, 1, n);
+
+    printf("Case %lld:\n", num++);
+    while (true) {
+      cin >> s;
+      if (s[0] == 'E') { break; }
+      cin >> a >> b;
+      if (s[0] == 'M') printf("%lld\n", querry(1, 1, n, a, b));
+      else update(1, 1, n, a, b);
+    }
+
+    scanf("%lld", &n);
+    if (n != 0) printf("\n");
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

@@ -23,35 +23,55 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll t, n;
+vector<ll> a;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll invcnt(vector<ll> &v) {
+  ll inv = 0;
+
+  if (v.size() == 1) return inv;
+
+  vector<ll> u1, u2;
+  ll ini1, ini2;
+  for (ll i = 0; i < v.size()/2; i++) u1.pb(v[i]);
+  for (ll i = v.size()/2; i < v.size(); i++) u2.pb(v[i]);
+
+  inv += invcnt(u1);
+  inv += invcnt(u2);
+
+  ini1 = ini2 = 0;
+  u1.pb(INF); u2.pb(INF);
+
+  fora (i, v.size()) {
+    if (u1[ini1] <= u2[ini2]) v[i] = u1[ini1++];
+    else {
+      v[i] = u2[ini2++];
+      inv += u1.size() - 1 - ini1;
+    }
+  }
+
+  return inv;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(t);
+  fora (k, t) {
+    get1(n);
+    a.resize(n);
+    fora (i, n) get1(a[i]);
+    cout1e(invcnt(a));
+    a.clear();
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
 
 
   return 0;

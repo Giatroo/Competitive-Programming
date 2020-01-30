@@ -23,36 +23,53 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+#define ull unsigned long long int
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+string a, b;
+ull ca, cb;
+ull c;
+ll numc;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get2(a, b);
+  while (a[0] != '0' && b[0] != '0') {
+    numc = 0;
+    c = 0;
+    if (a.size() < b.size()) swap(a, b);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+
+    fora (i, b.size()) {
+      ca = a[i] - '0';
+      cb = b[i] - '0';
+      if (ca + cb + c >= 10) {
+        numc++;
+        c = 1;
+        // cout2e(ca, cb);
+        // cout2e(numc, "no primeiro.");
+      } else c = 0;
+    }
+
+    for (ll i = b.size(); a[i] == '9' && c == 1; i++, numc++);
+
+    if (numc == 0) cout << "No carry operation.";
+    else if (numc == 1) cout << "1 carry operation.";
+    else cout << numc << " carry operations.";
+    cout << endl;
+
+    get2(a, b);
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

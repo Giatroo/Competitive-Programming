@@ -23,36 +23,52 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define INF LLONG_MAX
-#define M 1000000007
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
+#define INF INT_MAX
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n;
+ll mina[112][112];
+ll dist[112][112];
+pll mov[4];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void dijkstra(pll S) {
+  set<pair<ll, pll>> f;
+  pair<ll, pll> aux;
+  forai(i, n) forai(j, n) dist[i][j] = INF;
+  f.insert(mk(0, S));
+
+  while(!f.empty()) {
+    aux = *f.begin(); f.erase(f.begin());
+    if (dist[aux.s.f][aux.s.s] != INF) continue;
+    // cout << "Olhando " << aux.s.f << " " << aux.s.s << endl;
+    dist[aux.s.f][aux.s.s] = aux.f;
+
+    fora(i, 4) {
+      pll listing = mk(aux.s.f + mov[i].f, aux.s.s + mov[i].s);
+      if (dist[listing.f][listing.s] >
+          dist[aux.s.f][aux.s.s] + mina[listing.f][listing.s])
+        f.insert(mk(dist[aux.s.f][aux.s.s] + mina[listing.f][listing.s], listing));
+    }
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(n);
+  fora(i, n + 2) fora(j, n + 2) mina[i][j] = 0;
+  forai(i, n) forai(j, n) get1(mina[i][j]);
+  mov[0] = mk(0, 1);
+  mov[1] = mk(0, -1);
+  mov[2] = mk(1, 0);
+  mov[3] = mk(-1, 0);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  dijkstra(mk(1, 1));
+  cout << dist[n][n] << endl;
 
   return 0;
 }

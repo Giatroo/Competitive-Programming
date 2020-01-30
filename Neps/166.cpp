@@ -24,35 +24,44 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n;
+ll caixas[112][112];
+ll memo[112][112];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll f(ll i, ll j) {
+  // printf("i = %lld j = %lld\n", i, j);
+  if (j - i < 0) return 0;
+
+  if (memo[i][j] == -1) {
+    memo[i][j] = (caixas[j-i+1][j] - caixas[j-i+1][i-1]);
+    memo[i][j] += min(f(i, j-1), f(i+1, j));
+  }
+  // printf("memo[%lld][%lld] = %lld\n", i, j, memo[i][j]);
+  return memo[i][j];
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(n);
+  forai (i, n) forai (j, n) {
+    get1(caixas[i][j]);
+    caixas[i][j] += caixas[i][j-1];
   }
-  d3 = (sum == 0);
+  fora (i, n) caixas[i][0] = 0;
+  fora (i, n + 2) fora (j, n + 2) memo[i][j] = -1;
 
-  print(d2);  print(d3);  print(d5);
+  // forai (i, n) {
+  //   forai (j, n)
+  //     cout1(caixas[i][j]) << " ";
+  //   cout << endl;
+  // }
 
+  cout1e(f(1, n));
 
   return 0;
 }

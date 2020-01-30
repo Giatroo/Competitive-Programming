@@ -28,31 +28,40 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+pll p0, p1, q0, q1;
+//0 -> mais à esquerda e mais para baixo
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+bool between(ll a, ll b, ll c) {
+  return (a <= b && b <= c);
+}
+
+bool equals(pll pt1, pll pt2) {
+  return (pt1.f == pt2.f && pt1.s == pt2.s);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get2(p0.f, p0.s);
+  get2(p1.f, p1.s);
+  get2(q0.f, q0.s);
+  get2(q1.f, q1.s);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  if (equals(p0, q0) || equals(p0, q1) || equals(p1, q0) || equals(p1, q1))
+  {
+    cout1e(1);
+    return 0;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  if ((between(p0.f, q0.f, p1.f) && between(p0.s, q0.s, p1.s)) ||
+      (between(p0.f, q1.f, p1.f) && between(p0.s, q1.s, p1.s)))
+  {
+    if ((between(p0.f, q0.f, p1.f) && between(p0.s, q0.s, p1.s)) &&
+        (between(p0.f, q1.f, p1.f) && between(p0.s, q1.s, p1.s)))
+        cout1e(0);
+    else cout1e(1);
+  } else cout1e(0);
 
   return 0;
 }

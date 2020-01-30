@@ -13,6 +13,7 @@ typedef long double lld;
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 #define pb push_back
 #define mk make_pair
+#define pll pair<ll, ll>
 #define cout1(a) cout << (a)
 #define cout2(a, b) cout << (a) << " " << (b)
 #define cout3(a, b, c) cout << (a) << " " << (b) << " " << (c)
@@ -22,8 +23,10 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define min(a, b) (a) < (b) ? (a) : (b)
-#define max(a, b) (a) > (b) ? (a) : (b)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
+#define INF LLONG_MAX
+#define MINF LLONG_MIN
+#define M 1000000007
 
 using namespace std;
 

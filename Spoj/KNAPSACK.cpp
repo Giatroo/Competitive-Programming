@@ -24,35 +24,36 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll s, n;
+ll sz[2123], vl[2123];
+ll pb[2123][2123];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll maxValue(ll curS, ll i) {
+  if (curS < 0) return LLONG_MIN;
+  if (i == n) return 0;
+  if (pb[curS][i] != -1) return pb[curS][i];
+
+  ll pega = maxValue(curS - sz[i], i + 1);
+  ll passa = maxValue(curS, i + 1);
+
+  return pb[curS][i] = max(vl[i] + pega, passa);
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
-  }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  get2(s, n);
+  fora(i, n) get2(sz[i], vl[i]);
+  fora (i, s + 3) fora (j, n + 3) pb[i][j] = -1;
+  cout1e(maxValue(s, 0));
+  // fora (i, s + 3) {
+  //   fora (j, n + 3) cout1(pb[i][j]) << " ";
+  //   cout << endl;
+  // }
 
   return 0;
 }

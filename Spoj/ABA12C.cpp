@@ -24,35 +24,50 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll c, n, k;
+ll price[112]; //1-indexed
+ll memo[112][112][112];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+//parcial k, parcial n, package i'm considering
+ll f(ll pk, ll pn, ll pack) {
+  if (pk < 0 || pn > n || pack > k) return 1112345; //inf
+  if (pk == 0) return 0;
+
+
+  if (memo[pk][pn][pack] == -1) {
+    ll a = INF;
+    if (price[pack] >= 0)
+      a = price[pack] + f(pk - pack, pn + 1, pack);
+    ll b = f(pk, pn, pack + 1);
+
+    // cout3e(pk, pn, pack);
+    // cout << "a, b " << a << " " << b << endl;
+    memo[pk][pn][pack] = min(a, b);
+  }
+  return memo[pk][pn][pack];
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(c);
+  fora (q, c) {
+    get2(n, k);
+    forai (i, k) get1(price[i]);
+    fora(i, k + 3) fora(j, n + 3) fora(h, k + 3)
+      memo[i][j][h] = -1;
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    // cout << "ola" << endl;
+    ll ans = f(k, 0, 1);
+    if (ans < 0 || ans >= 1112345)
+      cout1e(-1);
+    else
+      cout1e(ans);
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

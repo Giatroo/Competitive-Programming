@@ -23,36 +23,33 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
 #define INF LLONG_MAX
+#define MINF LLONG_MIN
 #define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll n, m;
+ll seq1[1123], seq2[1123];
+ll lcs[1123][1123];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get2(n, m);
+  forai (i, n) get1(seq1[i]);
+  forai (i, m) get1(seq2[i]);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  fora (i, max(n, m)+1) lcs[i][0] = lcs[0][i] = 0;
+
+  forai (i, n) forai (j, m) {
+    if (seq1[i] == seq2[j]) lcs[i][j] = lcs[i-1][j-1] + 1;
+    else lcs[i][j] = max(lcs[i-1][j], lcs[i][j-1]);
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  cout2e(n - lcs[n][m], m - lcs[n][m]);
 
   return 0;
 }

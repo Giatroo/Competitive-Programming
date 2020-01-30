@@ -13,7 +13,6 @@ typedef long double lld;
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 #define pb push_back
 #define mk make_pair
-#define pll pair<ll, ll>
 #define cout1(a) cout << (a)
 #define cout2(a, b) cout << (a) << " " << (b)
 #define cout3(a, b, c) cout << (a) << " " << (b) << " " << (c)
@@ -23,36 +22,54 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define INF LLONG_MAX
-#define M 1000000007
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, m;
+ll x, y;
+bool cat[212345];
+vector<ll> adj[212345];
+set<ll> leaves;
+ll consec[212345];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void dfs(ll v) {
+  stack<ll> st;
+  forai(i, n) consec[i] = -1;
+  st.push(v);
+  consec[v] = (cat[v]) ? 1 : 0;
+
+  while (!st.empty()) {
+    v = st.top(); st.pop();
+    if (consec[v] > m) continue;
+
+    forita(it, adj[v]) {
+      if (consec[*it] == -1) {
+        consec[*it] = (cat[*it]) ? consec[v] + 1 : 0;
+        st.push(*it);
+      }
+    }
+
+    if (v != 1 && adj[v].size() == 1) leaves.insert(v);
+
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get2(n, m);
+  forai(i, n) { get1(x); cat[i] = (x == 1); }
+  fora(i, n - 1) {
+    get2(x, y);
+    adj[x].pb(y);
+    adj[y].pb(x);
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  dfs(1);
+  cout1e(leaves.size());
 
   return 0;
 }

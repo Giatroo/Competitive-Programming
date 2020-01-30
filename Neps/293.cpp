@@ -28,30 +28,40 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+bool prime[1312345];
+ll q, p;
+map<ll, ll> primes;
+ll numP;
+ll maxP;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void sieve(ll n) {
+  ll i, c;
+  for (i = maxP+1; i <= n; i++) {
+    if (prime[i]) {
+      primes[i] = numP++;
+      maxP = i;
+      for (ll j = 2*i; j <= 1300100; j += i)
+        prime[j] = false;
+    }
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(q);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  forai (i, 1300100) prime[i] = true;
+  prime[1] = false;
+  maxP = 1;
+  numP = 1;
+
+  fora(i, q) {
+    get1(p);
+    if (maxP > p) cout1e(primes[p]);
+    else { sieve(p); cout1e(primes[p]); }
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
 
 
   return 0;

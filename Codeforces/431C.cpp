@@ -28,30 +28,47 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
-
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
-}
+ll dp[112][2];
+ll n, k, d;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get3(n, k, d);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  dp[0][1] = 0;
+  dp[0][0] = 1;
+
+  forai (i, n) {
+    dp[i][0] = dp[i][1] = 0;
+
+    forai (j, k) {
+      if (i-j < 0) break;
+
+      if (j < d) {
+        dp[i][0] += dp[i-j][0];
+        dp[i][0] %= M;
+        dp[i][1] += dp[i-j][1];
+        dp[i][1] %= M;
+      } else {
+        dp[i][1] += dp[i-j][0];
+        dp[i][1] %= M;
+        dp[i][1] += dp[i-j][1];
+        dp[i][1] %= M;
+      }
+    }
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  cout1e(dp[n][1]);
+
+  // cout << endl;
+  // forai (i, n)
+  //   cout1(dp[i][0]) << " ";
+  // cout << endl;
+  // forai (i, n)
+  //   cout1(dp[i][1]) << " ";
+  // cout << endl;
 
 
   return 0;

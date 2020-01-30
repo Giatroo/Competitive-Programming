@@ -28,31 +28,30 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n;
+pll p1, p2;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void getPoints() {
+  get2(p1.f, p1.s);
+  get2(p2.f, p2.s);
+}
+
+ll distSq() {
+  return (p1.f - p2.f) * (p1.f - p2.f) + //(x0 - x1)^2 +
+         (p1.s - p2.s) * (p1.s - p2.s);  //(y0 - y1)^2
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
   ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(n);
+  fora (i, n) {
+    getPoints();
+    sum += distSq();
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
+  cout1e(sum);
 
   return 0;
 }

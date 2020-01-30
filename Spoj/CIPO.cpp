@@ -23,36 +23,66 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n, m;
+ll u, v, w;
+ll miniCost;
+ll num;
+vector<pair<ll, pll>> edges; //cost, u, v
+ll id[1123], sz[1123]; //UF (0-indexed)
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void makeSets() {
+  forai(i, n)
+    id[i] = i, sz[i] = 1;
+}
+
+ll find(ll i) {
+  if (id[i] == i) return i;
+  return id[i] = find(id[i]);
+}
+
+void join(ll i, ll j) {
+  i = find(i);
+  j = find(j);
+  if (i == j) return;
+  if (sz[i] > sz[j]) { ll aux = i; i = j; j = aux; }
+  id[i] = j;
+  sz[j] += sz[i];
+}
+
+void Kruskal() {
+  makeSets();
+  sortvector(edges);
+  miniCost = 0; //cost >= 1 for all edges
+  forita (it, edges) {
+    if (find(it->s.f) == find(it->s.s)) continue;
+    miniCost += it->f;
+    join(it->s.f, it->s.s);
+  }
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  num = 1;
+  while (get2(n, m))
+  {
+    fora(i, m) {
+      get3(u, v, w);
+      edges.pb(mk(w, mk(u, v)));
+    }
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+    Kruskal();
+    cout << "Instancia " << num++ << endl;
+    cout << miniCost << endl << endl;
+    edges.clear();
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

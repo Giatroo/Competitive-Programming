@@ -24,35 +24,45 @@ typedef long double lld;
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
 #define INF LLONG_MAX
-#define M 1000000007
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+vector<ll> adj[5];
+ll n, d, x;
+ll td, tx;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+bool isNeighbor(ll u, ll v) {
+  forita(it, adj[u])
+    if (*it == v) return true;
+  return false;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  adj[0].pb(1);
+  adj[0].pb(2);
+  adj[1].pb(2);
+  adj[1].pb(3);
+  adj[2].pb(3);
+  adj[2].pb(4);
+  adj[3].pb(4);
+  adj[3].pb(0);
+  adj[4].pb(0);
+  adj[4].pb(1);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  td = tx = 0;
+
+  get1(n);
+  fora(i, n) {
+    get2(d, x);
+    if (isNeighbor(d, x)) td++;
+    else tx++;
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
-
+  if (tx > td) cout << "xerxes" << endl;
+  else cout << "dario" << endl;
 
   return 0;
 }

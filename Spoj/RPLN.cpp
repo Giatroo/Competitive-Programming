@@ -28,31 +28,46 @@ typedef long double lld;
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll t, n, q, a, b;
+ll arr[112345];
+ll st[412345];
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+void build(ll l, ll r, ll i) {
+  if (l == r) st[i] = arr[l];
+  else {
+    ll m = l + (r-l)/2;
+    build(l, m, 2*i);
+    build(m+1, r, 2*i+1);
+    st[i] = min(st[2*i], st[2*i+1]);
+  }
+}
+
+ll query(ll l, ll r, ll i, ll ql, ll qr) {
+  if (ql <= l && r <= qr) return st[i];
+  if (l > qr || ql > r) return INF;
+  ll m = l + (r-l)/2;
+  return min(query(l, m, 2*i, ql, qr), query(m+1, r, 2*i+1, ql, qr));
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
+  get1(t);
 
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  forai (test, t) {
+    get2(n, q);
+    forai (i, n) get1(arr[i]);
+    build(1, n, 1);
+
+    // forai (i, 2*n) cout1e(st[i]);
+
+    cout << "Scenario #" << test << ":" << endl;
+    fora (i, q) {
+      get2(a, b);
+      cout1e(query(1, n, 1, a, b));
+    }
   }
-  d3 = (sum == 0);
-
-  print(d2);  print(d3);  print(d5);
-
 
   return 0;
 }

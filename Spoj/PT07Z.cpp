@@ -13,7 +13,6 @@ typedef long double lld;
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
 #define pb push_back
 #define mk make_pair
-#define pll pair<ll, ll>
 #define cout1(a) cout << (a)
 #define cout2(a, b) cout << (a) << " " << (b)
 #define cout3(a, b, c) cout << (a) << " " << (b) << " " << (c)
@@ -23,35 +22,56 @@ typedef long double lld;
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define INF LLONG_MAX
-#define M 1000000007
+#define min(a, b) (a) < (b) ? (a) : (b)
+#define max(a, b) (a) > (b) ? (a) : (b)
 
 using namespace std;
 
-string s;
-bool d2, d3, d5;
+ll n;
+ll a, b;
+ll d1, d2;
+vector<ll> adj[11234];
+ll dist[11234];
+set<ll> nodos;
 
-void print(bool a) {
-  if (a) cout1e("S");
-  else cout1e("N");
+ll bfs(ll v) {
+  queue<ll> q;
+  ll maxnode = v;
+  forita(it, nodos) dist[*it] = -1;
+  dist[v] = 0;
+  q.push(v);
+
+  while (!q.empty()) {
+    v = q.front(); q.pop();
+
+    forita(it, adj[v]) {
+      if (dist[*it] == -1) {
+        dist[*it] = dist[v] + 1;
+        maxnode = *it;
+        q.push(*it);
+      }
+    }
+  }
+  return maxnode;
 }
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(s);
-  d2 = ((s[s.size()-1] - '0') % 2 == 0);
-  d5 = ((s[s.size()-1] - '0') % 5 == 0);
-
-  ll sum = 0;
-  fora (i, s.size()) {
-    sum += s[i] - '0';
-    sum %= 3;
+  get1(n);
+  forai(i, n-1) {
+    get2(a, b);
+    nodos.insert(a);
+    nodos.insert(b);
+    adj[a].pb(b);
+    adj[b].pb(a);
   }
-  d3 = (sum == 0);
 
-  print(d2);  print(d3);  print(d5);
+  ll root = *nodos.begin();
+  root = bfs(root);
+  root = bfs(root);
+  cout << dist[root] << endl;
 
 
   return 0;
