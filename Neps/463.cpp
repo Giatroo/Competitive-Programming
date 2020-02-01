@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 typedef long long int ll;
-typedef unsigned long long int ull;
 typedef long double lld;
 #define fora(i, n) for (ll i = 0; i < n; i++)
 #define forai(i, n) for (ll i = 1; i <= n; i++)
@@ -31,9 +30,17 @@ typedef long double lld;
 
 using namespace std;
 
+ll a[3];
+ll m;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get3(a[0], a[1], a[2]);
+  m = max(a[1], a[2]);
+  m = max(m, a[0]-a[1]-a[2]);
+  cout1e(m);
 
   return 0;
 }

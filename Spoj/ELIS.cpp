@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 typedef long long int ll;
-typedef unsigned long long int ull;
 typedef long double lld;
 #define fora(i, n) for (ll i = 0; i < n; i++)
 #define forai(i, n) for (ll i = 1; i <= n; i++)
@@ -31,9 +30,31 @@ typedef long double lld;
 
 using namespace std;
 
+ll n;
+ll a[112];
+
+ll LIS() {
+  vector<ll> top(n+6, INF);
+  top[0] = MINF;
+  ll maxi = 0;
+  fora (i, n) {
+    ll j = lower_bound(top.begin(), top.end(), a[i])
+                    - top.begin();
+
+    if (top[j] == INF) maxi++;
+    top[j] = a[i];
+  }
+
+  return maxi;
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n);
+  fora (i, n) get1(a[i]);
+  cout1e(LIS());
 
   return 0;
 }

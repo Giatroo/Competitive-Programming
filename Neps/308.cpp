@@ -31,9 +31,34 @@ typedef long double lld;
 
 using namespace std;
 
+ll k, C;
+int const N = 1123;
+bool DP[N];
+int S[N];
+
+// k is the number of coins
+bool change(int C, int k) {
+  for (int i = 1; i <= C; i++) DP[i] = false;
+  DP[0] = true;
+
+  for (int i = 1; i <= C; i++) {
+    for (int j = 0; j < k && !DP[i]; j++) {
+      if (i - S[j] < 0) continue;
+      DP[i] = DP[i - S[j]];
+      // As soon DP[i] become true, we leave the for
+    }
+  }
+
+  return DP[C];
+}
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get2(k, C);
+  fora (i, k) get1(S[i]);
+  cout << (change(C, k) ? "S" : "N") << endl; 
 
   return 0;
 }

@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 typedef long long int ll;
-typedef unsigned long long int ull;
 typedef long double lld;
 #define fora(i, n) for (ll i = 0; i < n; i++)
 #define forai(i, n) for (ll i = 1; i <= n; i++)
@@ -31,9 +30,21 @@ typedef long double lld;
 
 using namespace std;
 
+ll a1, d1, a2, d2;
+bool umGanha, doisGanha;
+
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get4(a1, d1, a2, d2);
+
+  umGanha = (a1 != d2);
+  doisGanha = (a2 != d1);
+
+  if (!(umGanha ^ doisGanha)) cout1e(-1);
+  else if (umGanha) cout1e(1);
+  else cout1e(2);
 
   return 0;
 }

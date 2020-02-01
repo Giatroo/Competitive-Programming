@@ -192,8 +192,8 @@ int LIS(int arr[N]) {
   // For all element of the sequence
   for (int i = 0; i < n; i++) {
     // gets the position of the first element 
-    // greater than arr[i]
-    int j = upper_bound(tops.begin(), tops.end(), arr[i]) - 
+    // equal or greater than arr[i]
+    int j = lower_bound(tops.begin(), tops.end(), arr[i]) - 
                         tops.being();
     // The minus thing is because C++
 

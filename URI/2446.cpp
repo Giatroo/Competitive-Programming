@@ -31,9 +31,29 @@ typedef long double lld;
 
 using namespace std;
 
-int main(int argc, char const *argv[]) {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+int DP[112345][1123];
+int S[1123];
 
+int K, C;
+
+int change(int c, int k) {
+  if (c < 0 || k > K) return 0;
+  if (c == 0) return 1;
+
+  int &d = DP[c][k];
+  if (d != -1) return d;
+
+  return d = ((change(c, k+1) == 1 || change(c-S[k], k+1) == 1) ? 1 : 0);
+}
+
+int main() {
+  cin >> C >> K;
+  for (int i = 0; i < K; i++) cin >> S[i];
+
+  for (int i = 0; i <= C; i++)
+    for (int j = 0; j < K; j++)
+      DP[i][j] = -1;
+
+  cout << (change(C, 0) == 1 ? "S" : "N") << endl;
   return 0;
 }
