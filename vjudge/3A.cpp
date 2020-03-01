@@ -31,58 +31,22 @@ typedef long double lld;
 
 using namespace std;
 
-ll seg[1212345];
-ll n, m;
-
-void init(ll l, ll r, ll i) {
-  if (l == r) seg[i] = delta[i] = 0;
-  else {
-    ll m = l + (r-l)/2;
-    init(l, m, 2*i);
-    init(m+1, r, 2*i+1);
-    seg[i] = delta[i] = 0;
-  }
-}
-
-void update(ll l, ll r, ll i, ll ql, ll qr, ll x) {
-  if (l > qr || r < ql) return;
-  if (ql <= l && r <= qr) {
-    if (seg[i] == 0) seg[i] = x;
-  }
-  else {
-    ll m = l + (r-l)/2;
-    update(l, m, 2*i, ql, qr, x);
-    update(m+1, r, 2*i+1, ql, qr, x);
-  }
-}
-
-/*void traverse(ll l, ll r, ll i) {
-  push(l, r, i);
-  if (l < r) {
-    ll m = l + (r-l)/2;
-    traverse(l, m, 2*i);
-    traverse(m+1, r, 2*i+1);
-  } else if (l == r) {
-    cout << seg[i] << " ";
-  }
-}*/
+ll n, k, a;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get2(n, m);
-  init(1, n, 1);
-  ll a, b, x;
-  fora (i, m) {
-    get3(a, b, x);
-    if (x-1-a >= 1)
-      update(1, n, 1, a, x-1, x);
-    if (b - x -1 >= 1)
-      update(1, n, 1, x+1, b, x);
+  get2(n, k);
+
+  while (k > 0) {
+    a = n % 10;
+    if (a == 0) { n /= 10; k--; }
+    else if (a <= k) { n -= a; k -= a; }
+    else { n -= k; k = 0; }
   }
+  cout1e(n);
 
 
-  cout << endl;
   return 0;
 }

@@ -31,77 +31,30 @@ typedef long double lld;
 
 using namespace std;
 
-ll seg[1212345], delta[1212345];
-ll n, m;
+#define EPS 10e-10
 
-void init(ll l, ll r, ll i) {
-  if (l == r) seg[i] = delta[i] = 0;
-  else {
-    ll m = l + (r-l)/2;
-    init(l, m, 2*i);
-    init(m+1, r, 2*i+1);
-    seg[i] = delta[i] = 0;
-  }
-}
-
-void push(ll l, ll r, ll i) {
-  if (delta[i] != 0) {
-    if (l == r) {
-      if (seg[i] == 0 && l != delta[i]) seg[i] = delta[i];
-    } else {
-      ll m = l + (r-l)/2;
-
-      if (delta[2*i] != 0) push(l, m, 2*i);
-      if (delta[2*i+1] != 0) push(m+1, r, 2*i+1);
-      delta[2*i] = delta[2*i+1] = delta[i];
-    }
-
-    delta[i] = 0;
-  }
-}
-
-void update(ll l, ll r, ll i, ll ql, ll qr, ll x) {
-  push(l, r, i);
-
-  if (l > qr || r < ql) return;
-  if (ql <= l && r <= qr) delta[i] = x;
-  else {
-    ll m = l + (r-l)/2;
-    update(l, m, 2*i, ql, qr, x);
-    update(m+1, r, 2*i+1, ql, qr, x);
-  }
-}
-
-void traverse(ll l, ll r, ll i) {
-  push(l, r, i);
-  if (l < r) {
-    ll m = l + (r-l)/2;
-    traverse(l, m, 2*i);
-    traverse(m+1, r, 2*i+1);
-  } else if (l == r) {
-    cout << seg[i] << " ";
-  }
-}
+string s;
+ll k;
+ll len;
+ll l, r;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get2(n, m);
-  init(1, n, 1);
-  ll a, b, x;
-  fora (i, m) {
-    get3(a, b, x);
-    update(1, n, 1, a, b, x);
+  get2(s, k);
+  len = s.size() / k;
+  if (s.size() % k != 0) { cout1e("NO"); return 0; }
+  fora (i, k) {
+    l = i*len; r = (i+1)*len-1;
+    ll iniL = l;
+    for (; r >= iniL; l++, r--) {
+      // cout2e(l, r);
+      if (s[l] != s[r]) { cout1e("NO"); return 0; }
+    }
   }
 
-  traverse(1, n, 1);
-  cout << endl;
-
-  /*fora (i, 4*n) {
-    cout3e(i, seg[i], delta[i]);
-  }*/
-
+  cout1e("YES");
 
   return 0;
 }
