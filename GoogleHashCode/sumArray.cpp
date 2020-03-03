@@ -31,58 +31,44 @@ typedef long double lld;
 
 using namespace std;
 
-ll seg[1212345];
-ll n, m;
+int books[112345];
+int sums[112345];
+int s[112345];
+int n_books, ship_time, d;
 
-void init(ll l, ll r, ll i) {
-  if (l == r) seg[i] = delta[i] = 0;
-  else {
-    ll m = l + (r-l)/2;
-    init(l, m, 2*i);
-    init(m+1, r, 2*i+1);
-    seg[i] = delta[i] = 0;
-  }
+void reverse() {
+  for (int i = 0; i < n_books/2; i++) swap(sums[i], sums[n_books-i-1]);
 }
 
-void update(ll l, ll r, ll i, ll ql, ll qr, ll x) {
-  if (l > qr || r < ql) return;
-  if (ql <= l && r <= qr) {
-    if (seg[i] == 0) seg[i] = x;
-  }
-  else {
-    ll m = l + (r-l)/2;
-    update(l, m, 2*i, ql, qr, x);
-    update(m+1, r, 2*i+1, ql, qr, x);
-  }
-}
+int make_s(int day_i) {
+  sort(books, books+n_books, greater<int>());
 
-/*void traverse(ll l, ll r, ll i) {
-  push(l, r, i);
-  if (l < r) {
-    ll m = l + (r-l)/2;
-    traverse(l, m, 2*i);
-    traverse(m+1, r, 2*i+1);
-  } else if (l == r) {
-    cout << seg[i] << " ";
-  }
-}*/
+  // cout << "AFTER SORT\n";
+  // fora (i, n_books) cout << books[i] << " ";
+  // cout << endl;
+
+  sums[0] = books[0];
+  for (int i = 1; i <= n_books-1; i++)
+    sums[i] = sums[i-1] + books[i];
+  reverse();
+
+  // cout << "SUM:\n";
+  // fora (i, n_books) cout << sums[i] << " ";
+  // cout << endl;
+
+  int len = n_books / ship_time;
+  return sums[max(((day_i+len-1)-d)*ship_time, 0)];
+}
 
 int main(int argc, char const *argv[]) {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+  cin >> n_books >> ship_time >> d;
+  for (int i = 0; i < n_books; i++) cin >> books[i];
 
-  get2(n, m);
-  init(1, n, 1);
-  ll a, b, x;
-  fora (i, m) {
-    get3(a, b, x);
-    if (x-1-a >= 1)
-      update(1, n, 1, a, x-1, x);
-    if (b - x -1 >= 1)
-      update(1, n, 1, x+1, b, x);
+  cout << "final\n";
+  for (int i = 0; i <= d; i++) {
+    cout << (make_s(i)) << " ";
   }
-
-
   cout << endl;
+
   return 0;
 }
