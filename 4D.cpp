@@ -33,50 +33,108 @@ using namespace std;
 
 ll n;
 vector<pll> s;
-vector<ll> inter, qnt;
-
+vector<ll> inter[312345];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get1(n); s.resize(n); inter.resize(n); qnt.resize(n);
-  fora (i, n) { get2(s[i].f, s[i].s); inter[i] = qnt[i] = 0; }
+  get1(n); s.resize(n);
+  fora (i, n) get2(s[i].f, s[i].s);
+
+  if (n == 2) {
+    ll a, b;
+    a = s[0].s - s[0].f;
+    b = s[1].s - s[1].f;
+    cout1e((a > b ? a : b));
+    return 0;
+  }
+
   sortvector(s);
 
-  forita (it, s) {
-    cout2e(it->f, it->s);
-  }
-  cout << endl << endl;
+  // forita (it, s) cout2e(it->f, it->s);
+  // cout << endl << endl;
 
   forita (it, s) {
     for (auto jt = it+1; jt != s.end() && jt->f <= it->s; jt++) {
-      if (jt->s > it->s) {
-        inter[it - s.begin()] += it->s - jt->f;
-        inter[jt - s.begin()] += it->s - jt->f;
+      if (jt->s < it->s) {
+        inter[it-s.begin()].pb(jt->s-jt->f);
+        inter[jt-s.begin()].pb(jt->s-jt->f);
       } else {
-        inter[it - s.begin()] += jt->s - jt->f;
-        inter[jt - s.begin()] += jt->s - jt->f;
+        inter[it-s.begin()].pb(it->s-jt->f);
+        inter[jt-s.begin()].pb(it->s-jt->f);
       }
-      qnt[it - s.begin()]++;
-      qnt[jt - s.begin()]++;
     }
-    forita (it, inter) { cout << *it << " "; }
-    cout << endl << endl;
   }
 
-  ll sum, mini;
-  sum = 0; mini = INF;
-  forita (it, inter) {
-    sum += *it;
-    if (*it /**2*/* qnt[it-inter.begin()] < mini)
-      mini = *it /**2*/* qnt[it-inter.begin()];
+  // fora (i, n) {
+  //   cout << "Na lista " << i << ": ";
+  //   forita (jt, inter[i])
+  //     cout << *jt << " ";
+  //   cout << endl;
+  // }
+
+  ll maxi = MINF, mini = INF;
+  ll index;
+  fora (i, n) {
+    maxi = MINF;
+    if (inter[i].size() == 0) maxi = 0;
+    forita (jt, inter[i])
+      if (*jt > maxi) maxi = *jt;
+    inter[i].clear();
+    if (maxi < mini) {
+      mini = maxi;
+      index = i;
+    }
   }
 
-  forita (it, qnt) cout << *it << " ";
-  cout << endl;
+  // cout1e(index);
+  auto iii = s.begin();
+  fora (i, index) iii++;
+  s.erase(iii);
+  sortvector(s);
 
-  cout1e(sum-2*mini);
+  forita (it, s) {
+    for (auto jt = it+1; jt != s.end() && jt->f <= it->s; jt++) {
+      if (jt->s < it->s) {
+        inter[it-s.begin()].pb(jt->s-jt->f);
+        inter[jt-s.begin()].pb(jt->s-jt->f);
+      } else {
+        inter[it-s.begin()].pb(it->s-jt->f);
+        inter[jt-s.begin()].pb(it->s-jt->f);
+      }
+    }
+  }
+
+  mini = 10e9+10;
+  fora (i, n-1) {
+    maxi = MINF;
+    forita (jt, inter[i])
+      if (*jt < mini) mini = *jt;
+  }
+  if (mini == 10e9+10) mini = 0;
+
+  // fora (i, n) {
+  //   cout << "Na lista " << i << ": ";
+  //   forita (jt, inter[i])
+  //     cout << *jt << " ";
+  //   cout << endl;
+  // }
+  cout1e(mini);
+
+
+  // ll sum, mini;
+  // sum = 0; mini = INF;
+  // forita (it, inter) {
+  //   sum += *it;
+  //   if (*it /**2*/* qnt[it-inter.begin()] < mini)
+  //     mini = *it /**2*/* qnt[it-inter.begin()];
+  // }
+  //
+  // forita (it, qnt) cout << *it << " ";
+  // cout << endl;
+  //
+  // cout1e(sum-2*mini);
 
 
   return 0;
