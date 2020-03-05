@@ -43,28 +43,30 @@ int main(int argc, char const *argv[]) {
   get1(n); s.resize(n);
   fora (i, n) get2(s[i].f, s[i].s);
 
-  min1 = min2 = max1 = max2 = 0;
+  min1 = max1 = 0;
   fora (i, n) {
-    if (s[min1].s < s[i].s) min1 = i;
-    if (s[max1].f > s[i].f) max1 = i;
+    if (s[min1].s > s[i].s) min1 = i;
+    if (s[max1].f < s[i].f) max1 = i;
   }
 
+  min2 = (min1 == 0 ? 1 : 0);
+  max2 = (max1 == 0 ? 1 : 0);
   fora (i, n) {
-    if (s[min2].s < s[i].s && i != min1) min2 = i;
-    if (s[max2].f > s[i].f && i != max1) max2 = i;
+    if (s[min2].s >= s[i].s && i != min1) min2 = i;
+    if (s[max2].f <= s[i].f && i != max1) max2 = i;
   }
 
-  cout2e(max1, max2);
-  cout2e(min1, min2);
+  // cout << endl;
+  // cout2e(max1, max2);
+  // cout2e(min1, min2);
+  // cout << endl;
+
+  if (min1 != max1)
+    maxInter = max(s[min1].s - s[max2].f, s[min2].s - s[max1].f);
+  else
+    maxInter = s[min2].s - s[max2].f;
+  maxInter = max(maxInter, (ll)0);
+  cout1e(maxInter);
 
   return 0;
 }
-
-/*
-5
-10 11
-1 8
-7 17
-15 22
-9 12
-*/
