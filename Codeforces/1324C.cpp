@@ -16,9 +16,8 @@ typedef std::pair<ll, ll> pll;
 #define f first
 #define s second
 #define cout1e(a) cout << (a) << endl
-#define cout2e(a, b) cout << (a) << " " << (b) << endl
-#define cout3e(a, b, c) cout << (a) << " " << (b) << " " << (c) << endl
-#define cout4e(a, b, c, d) cout << (a) << " " << (b) << " " << (c) << " " << (d) << endl
+#define cout2e(a, b) cout << (a) << (b) << endl
+#define cout3e(a, b, c) cout << (a) << (b) << (c) << endl
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
@@ -29,10 +28,29 @@ typedef std::pair<ll, ll> pll;
 using namespace std;
 // ===================================================== //
 
+string s;
+ll d, t;
+ll maxL, curL;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(t);
+  fora (k, t) {
+    curL = maxL = 0;
+    get1(s);
+    fora (i, s.size())
+      if (s[i] == 'L') curL++;
+      else {
+        if (maxL < curL) maxL = curL;
+        curL = 0;
+      }
+
+    if (maxL < curL) maxL = curL;
+
+    cout1e(maxL+1);
+  }
 
   return 0;
 }

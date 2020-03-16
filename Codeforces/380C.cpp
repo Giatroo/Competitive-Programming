@@ -30,82 +30,67 @@ typedef long double lld;
 #define M 1000000007
 
 using namespace std;
+// ===================================================== //
 
-ll n, q, k, a, b, o;
-ll seg[412345], lz[412345], arr[112345];
+const int N = 1123456;
+
+string s;
+pair<pll, ll> seg[4*N]; // #'(', #')', #tot
+ll m, n;
+ll a, b;
 
 void build(ll l, ll r, ll i) {
-  if (l == r)
-    seg[i] = arr[l];
-  else {
+  if (l == r) {
+    seg[i].f.f = (s[l-1] == '(') ? 1 : 0;
+    seg[i].f.s = (s[l-1] == ')') ? 1 : 0;
+    seg[i].s = 0;
+  } else {
     ll m = l + (r-l)/2;
     build(l, m, 2*i);
     build(m+1, r, 2*i+1);
-    seg[i] = seg[2*i] + seg[2*i+1];
-  }
-  lz[i] = 0;
-}
 
-void push(ll l, ll r, ll i) {
-  if (lz[i] != 0) {
-    seg[i] = lz[i]*(r-l+1);
-    if (l != r)
-      lz[2*i] = lz[2*i+1] = lz[i];
-    lz[i] = 0;
+    ll mi = min(seg[2*i].f.f, seg[2*i+1].f.s);
+    seg[i].s = seg[2*i].s + seg[2*i+1].s + 2*mi;
+    seg[i].f.f = seg[2*i].f.f + seg[2*i+1].f.f - mi;
+    seg[i].f.s = seg[2*i].f.s + seg[2*i+1].f.s - mi;
   }
 }
 
-void update(ll l, ll r, ll i, ll ql, ll qr, ll x) {
-  push(l, r, i);
-  if (ql > r || qr < l) return;
-  if (ql <= l && r <= qr) {
-    lz[i] = x; push(l, r, i);
-  } else {
-    ll m = l + (r-l)/2;
-    update(l, m, 2*i, ql, qr, x);
-    update(m+1, r, 2*i+1, ql, qr, x);
-    seg[i] = seg[2*i] + seg[2*i+1];
-  }
-}
-
-int query(ll l, ll r, ll i, ll ql, ll qr) {
-  push(l, r, i);
-  if (r < ql || qr < l) return 0;
+pair<pll, ll> query(ll l, ll r, ll i, ll ql, ll qr) {
+  if (qr < l || r < ql) return mk(mk(0, 0), 0);
   if (ql <= l && r <= qr) return seg[i];
+
   ll m = l + (r-l)/2;
-  return query(l, m, 2*i, ql, qr) + query(m+1, r, 2*i+1, ql, qr);
+  pair<pll, ll> left = query(l, m, 2*i, ql, qr);
+  pair<pll, ll> right = query(m+1, r, 2*i+1, ql, qr);
+  pair<pll, ll> ret;
+
+  ll mi = min(left.f.f, right.f.s);
+  ret.s = left.s + right.s + 2*mi;
+  ret.f.f = left.f.f + right.f.f - mi;
+  ret.f.s = left.f.s + right.f.s - mi;
+  return ret;
 }
+
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  get2(n, q);
-  forai (i, n) get1(arr[i]);
+  cin >> s; n = s.size();
+  cin >> m;
   build(1, n, 1);
 
-  // cout << endl;
   // fora (i, 4*n) {
-  //   cout3e(i, seg[i], lz[i]);
+  //   cout << i << " " << seg[i].f.f << " "
+  //        << seg[i].f.s << " " << seg[i].s << endl;
   // }
-  // cout << endl;
 
-  fora (i, q) {
-    cin >> o;
-    if (o == 1) {
-      cin >> a >> b >> k;
-      update(1, n, 1, a, b, k);
-    } else {
-      cin >> a >> b;
-      cout << query(1, n, 1, a, b) << endl;
-    }
-
-    // cout << endl;
-    // fora (i, 4*n) {
-    //   cout3e(i, seg[i], lz[i]);
-    // }
-    // cout << endl;
+  fora (i, m) {
+    cin >> a >> b;
+    cout << query(1, n, 1, a, b).s << endl;
   }
+
 
   return 0;
 }

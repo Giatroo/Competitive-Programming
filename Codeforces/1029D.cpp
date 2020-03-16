@@ -16,9 +16,8 @@ typedef std::pair<ll, ll> pll;
 #define f first
 #define s second
 #define cout1e(a) cout << (a) << endl
-#define cout2e(a, b) cout << (a) << " " << (b) << endl
-#define cout3e(a, b, c) cout << (a) << " " << (b) << " " << (c) << endl
-#define cout4e(a, b, c, d) cout << (a) << " " << (b) << " " << (c) << " " << (d) << endl
+#define cout2e(a, b) cout << (a) << (b) << endl
+#define cout3e(a, b, c) cout << (a) << (b) << (c) << endl
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
@@ -29,10 +28,47 @@ typedef std::pair<ll, ll> pll;
 using namespace std;
 // ===================================================== //
 
+ll n, a[212345], k;
+ll ans;
+vector<ll> digit[11];
+ll tenToIModK[11];
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  ans = 0;
+  scanf("%d%d", &n, &k);
+  ll d;
+  fora (i, n) {
+    scanf("%d", a+i);
+    d = ceil(log10(a[i]+1));
+    digit[d].pb(a[i]%k);
+  }
+
+  forai (i, 10) sortvector(digit[i]);
+
+  tenToIModK[0] = 1;
+  forai (i, 10) tenToIModK[i] = (tenToIModK[i-1]*10)%k;
+
+  ll amod, j;
+  fora (i, n) { // iterating on i
+    amod = a[i] % k;
+    forai (db, 10) { // iterating on digits of j
+      j = k - ((amod * tenToIModK[db])%k);
+      if (j == k) j = 0;
+
+      if (j == amod && ceil(log10(a[i]+1)) == db)
+        ans--;
+
+
+      auto lb = lower_bound(digit[db].begin(), digit[db].end(), j);
+      auto ub = upper_bound(digit[db].begin(), digit[db].end(), j);
+      ans += ub - lb;
+    }
+  }
+
+  cout1e(ans);
 
   return 0;
 }

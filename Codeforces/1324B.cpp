@@ -16,9 +16,8 @@ typedef std::pair<ll, ll> pll;
 #define f first
 #define s second
 #define cout1e(a) cout << (a) << endl
-#define cout2e(a, b) cout << (a) << " " << (b) << endl
-#define cout3e(a, b, c) cout << (a) << " " << (b) << " " << (c) << endl
-#define cout4e(a, b, c, d) cout << (a) << " " << (b) << " " << (c) << " " << (d) << endl
+#define cout2e(a, b) cout << (a) << (b) << endl
+#define cout3e(a, b, c) cout << (a) << (b) << (c) << endl
 #define get1(a) cin >> (a)
 #define get2(a, b) cin >> (a) >> (b)
 #define get3(a, b, c) cin >> (a) >> (b) >> (c)
@@ -29,10 +28,36 @@ typedef std::pair<ll, ll> pll;
 using namespace std;
 // ===================================================== //
 
+ll t, n, a1, a2;
+bool yes;
+multiset<ll> s;
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(t);
+  fora (k, t) {
+    get1(n); yes = false;
+    get1(a2);
+    s.insert(a2);
+    fora (i, n-1) {
+      get1(a1);
+
+      if (s.count(a1) >= 2) {
+        yes = true;
+      } else if (s.count(a1) == 1 && a2 != a1) {
+        yes = true;
+      } else {
+        s.insert(a1);
+      }
+
+      a2 = a1;
+    }
+
+    cout1e((yes ? "YES" : "NO"));
+    s.clear();
+  }
 
   return 0;
 }

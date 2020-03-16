@@ -29,10 +29,35 @@ typedef std::pair<ll, ll> pll;
 using namespace std;
 // ===================================================== //
 
+ll const N = 212345;
+
+ll n, ans;
+ll a[N], b[N];
+vector<ll> c;
+
 
 int main(int argc, char const *argv[]) {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
+
+  get1(n); c.resize(n);
+  fora (i, n) get1(a[i]);
+  fora (i, n) get1(b[i]);
+  fora (i, n) c[i] = a[i] - b[i];
+
+  sortvector(c);
+
+  ll j;
+  ans = 0;
+  for (ll i = n-1; i > 0; i--) {
+    if (c[i] <= 0) break;
+    j = lower_bound(c.begin(), c.end(), -c[i]+1) - c.begin();
+    // cout2e(i, j);
+    ans += i-j;
+  }
+
+  cout1e(ans);
+
 
   return 0;
 }
