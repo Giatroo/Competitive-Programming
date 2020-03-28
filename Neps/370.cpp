@@ -37,7 +37,25 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+const int N = 11234;
+ll dp[N];
+int n;
+
 int main(int argc, char const *argv[]) { fastio;
+  dp[0] = 1;
+  dp[1] = 1;
+  dp[2] = 5;
+  scanf("%d", &n);
+
+  for (int i = 3; i <= n; i++) {
+    dp[i] = dp[i-1];
+    dp[i] += (4*dp[i-2]) % M;
+    dp[i] %= M;
+    dp[i] += (2*dp[i-3]) % M;
+    dp[i] %= M;
+  }
+
+  printf("%lld\n", dp[n]);
 
   return 0;
 }

@@ -37,7 +37,27 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int main(int argc, char const *argv[]) { fastio;
+ll primeNum;
+ll n;
+
+void findPrimeFactorization() {
+  int c = 0;
+  for (int i = 2; i*i <= n; i++) {
+    c = 0;
+    while (n % i == 0) {
+      n /= i;
+      c++;
+    }
+    if (c > 0) primeNum++;
+  }
+  if (n != 1) primeNum++;
+}
+
+int main(int argc, char const *argv[]) {
+  scanf("%lld", &n);
+  findPrimeFactorization();
+   // debug(primeNum);
+  printf("%lld\n", (ll)pow(2, primeNum)-primeNum-1);
 
   return 0;
 }
