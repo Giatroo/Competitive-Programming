@@ -6,8 +6,6 @@ typedef unsigned long long int ull;
 typedef long double lld;
 typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
-typedef vector<int> vi;
-typedef pair<int, int> pii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 
@@ -39,12 +37,29 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+int t;
+string s;
+
 int main(int argc, char const *argv[]) { fastio;
+	cin >> t;
+	while (t--) {
+		cin >> s;
+		switch (s[s.size()-1]) {
+		case 'o':
+			cout1e("FILIPINO");
+			break;
+		case 'u':
+			cout1e("JAPANESE");
+			break;
+		case 'a':
+			cout1e("KOREAN");
+			break;
+		default: break;
+		}
+	}
 
   return 0;
 }
-
-
 
 
 

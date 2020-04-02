@@ -6,7 +6,6 @@ typedef unsigned long long int ull;
 typedef long double lld;
 typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
-typedef vector<int> vi;
 typedef pair<int, int> pii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
@@ -39,9 +38,78 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+int n, a, b;
+string s, t;
+int k;
+
+struct cpms {
+	bool operator()(pii p1, pii p2) {
+		if (p1.f == p1.s) return true;
+		if (p2.f == p2.s) return false;
+		return true;
+	}
+};
+
+set<int> sa, sb;
+set<pii , cpms > sk;
+
 int main(int argc, char const *argv[]) { fastio;
 
-  return 0;
+	get1(n);
+	get2(s, t);
+	
+	a = b = 0;
+
+	fr (i, n) {
+		if (s[i] != t[i]) {
+			if (s[i] == 'a') { a++; sa.insert(i); }
+			else { b++; sb.insert(i); }
+		}
+	}
+
+	// a
+
+	k = a/2;
+	a %= 2;
+	int a1, a2;	
+	fr (i, k) {
+		auto it = sa.begin();
+		a1 = *it; it++;
+		a2 = *it;
+		sk.insert(mk(a1, a2));
+		sa.erase(sa.begin());
+		sa.erase(sa.begin());
+	}
+
+	// b
+	k = b/2;
+	b %= 2;
+	int b1, b2;	
+	fr (i, k) {
+		auto it = sb.begin();
+		b1 = *it; it++;
+	  b2 = *it;
+		sk.insert(mk(b1, b2));
+		sb.erase(sb.begin());
+		sb.erase(sb.begin());
+	}
+	
+	if (sa.size() == sb.size()) {
+		if (sa.size() == 1) {
+			sk.insert(mk(*sa.begin(), *sa.begin()));
+			sk.insert(mk(*sa.begin(), *sb.begin()));
+		}
+	} else {
+		cout1e(-1);
+		return 0;
+	}
+
+	cout1e(sk.size());
+	forita (it, sk) cout2e(it->f+1, it->s+1);
+
+
+
+	return 0;
 }
 
 

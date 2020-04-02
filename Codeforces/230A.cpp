@@ -6,7 +6,6 @@ typedef unsigned long long int ull;
 typedef long double lld;
 typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
-typedef vector<int> vi;
 typedef pair<int, int> pii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
@@ -39,7 +38,25 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+int s, n;
+pii dragon[1123]; // .f -> strength | .s -> bonus
+
 int main(int argc, char const *argv[]) { fastio;
+
+	get2(s, n);
+	fr (i, n) get2(dragon[i].f, dragon[i].s);
+
+	sort(dragon, dragon+n);
+
+	fr (i, n) {
+		if (s > dragon[i].f) s += dragon[i].s;
+		else {
+			cout1e("NO");
+			return 0;
+		}
+	}
+
+	cout1e("YES");
 
   return 0;
 }
