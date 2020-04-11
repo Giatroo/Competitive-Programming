@@ -39,27 +39,59 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+vector<int> adj[512];
+int w[512];
+int v[512];
+int t[512];
+bool vis[512];
+int n, m, o;
+int a, b;
+char c;
 
-int main(int argc, char const *argv[]) { fastio;
+int dfs(int s) {
+	int mini = INF;
+	stack<int> st;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+	frr (i, n) vis[i] = false;
+	vis[s] = true;
 
-  return 0;
+	forita (it, adj[s]) {
+		st.push(*it);
+	}
+
+	while (!st.empty()) {
+		s = st.top(); st.pop();
+		vis[s] = true;
+		mini = min(mini, t[v[s]]);
+		forita (it, adj[s])
+			if (!vis[*it]) st.push(*it);
+	}
+	return mini;
 }
 
+int main() { fastio;
+	get3(n, m, o);
 
+	frr (i, n) get1(t[i]);
+	frr (i, n) { w[i] = v[i] = i; }
+	frr (i, m) {
+		get2(a, b);
+		adj[b].pb(a);
+	}
+	fr (i, o) {
+		get1(c);
+		if (c == 'P') {
+			get1(a);
+			b = dfs(w[a]);
+			if (b == INF) cout1e("*");
+			else cout1e(b);
+		} else {
+			get2(a, b);
+			swap(v[w[a]], v[w[b]]);
+			swap(w[a], w[b]);
+		}
+	}
+	
 
-
-
-
-
-
-
-
-
-
-
-
+	return 0;
+}

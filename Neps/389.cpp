@@ -39,13 +39,25 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+string s, sout;
+bool del;
 
 int main(int argc, char const *argv[]) { fastio;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+	del = true;
+	sout = "";
+	getline(cin, s);
+
+	fr (i, s.size()) {
+		if (s[i] == 'p' && del) {
+			del = false;
+		}	else {
+			sout += s[i];
+			del = true;	
+		}
+	}
+	
+	cout1e(sout);
 
   return 0;
 }

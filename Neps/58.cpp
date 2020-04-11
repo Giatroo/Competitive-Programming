@@ -39,13 +39,41 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+stack<pii> st;
+int n;
+int h;
+int tot;
+pii cur;
 
 int main(int argc, char const *argv[]) { fastio;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+	cin >> n;
+	tot = 0;
+	fr (i, n) {
+		cin >> h;
+		if (st.empty()) {
+			st.push(mk(h, 1));
+			continue;
+		}
+
+		if (st.top().f < h) {
+			while (!st.empty() && st.top().f < h) {
+				cur = st.top(); st.pop();
+				if (!st.empty()) tot += cur.s;				
+			}
+
+			if (!st.empty() && st.top().f == h) 
+				st.top().s++;
+			else
+				st.push(mk(h, 1));
+
+		} else if (st.top().f == h) 
+			st.top().s++;
+		else if (st.top().f > h)
+			 st.push(mk(h, 1));
+	}
+
+	cout1e(tot);
 
   return 0;
 }

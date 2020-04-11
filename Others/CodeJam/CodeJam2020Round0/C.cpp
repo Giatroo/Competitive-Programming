@@ -39,27 +39,47 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+#define start f.f
+#define end f.s
+
+pair<pii, int> s[1123];
+int t, c, n;
+string ans;
+int endc, endj;
 
 int main(int argc, char const *argv[]) { fastio;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+  cin >> t;
+  c = 0;
+  while (t--) {
+    cin >> n;
+    fr (i, n) {
+      get2(s[i].start, s[i].end);
+      s[i].s = i;
+    }
+    sort(s, s+n);
+
+    ans.resize(n);
+
+    ans[s[0].s] = 'C';
+    endc = s[0].end;
+    endj = 0;
+    frr (i, n-1) {
+      if (s[i].start >= endc) {
+        ans[s[i].s] = 'C';
+        endc = s[i].end;
+      } else if (s[i].start >= endj) {
+        ans[s[i].s] = 'J';
+        endj = s[i].end;
+      } else {
+        ans = "IMPOSSIBLE";
+        break;
+      }
+    }
+
+    cout << "Case #" << ++c << ": ";
+    cout << ans << endl;
+  }
 
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

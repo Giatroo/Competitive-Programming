@@ -8,6 +8,7 @@ typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
 typedef vector<int> vi;
 typedef pair<int, int> pii;
+typedef vector<pii> vii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 
@@ -39,27 +40,33 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+const int MAX = 112345;
 
-int main(int argc, char const *argv[]) { fastio;
+int n;
+bool vis[MAX];
+vii a;
+int num, maxi;
+int h;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+int main() {
+	cin >> n;
+	vis[0] = vis[n+1] = true;
+	frr (i, n) {
+		vis[i] = false;
+		cin >> h;
+		a.pb(mk(h, i));
+	}
 
-  return 0;
+	num = maxi = 1;
+	sort(a.begin(), a.end());
+	fr (i, n) {
+		if (!vis[a[i].s - 1] && !vis[a[i].s + 1]) num++;
+		if (vis[a[i].s - 1] && vis[a[i].s + 1]) num--;
+		if (a[i].f != a[i+1].f || i == n-1) maxi = max(maxi, num);
+		vis[a[i].s] = true;
+	}
+
+	cout1e(maxi+1);
+
+	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

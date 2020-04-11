@@ -39,13 +39,47 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+int const N = 512;
+int t, l, o, d;
+int n, m;
+
+vector<int> g[2*N];
+vector<int> dist;
+
+int bfs(int s) {
+	queue<int> q;
+	dist[s] = 0;
+	q.push(s);
+
+	while (!q.empty()) {
+		s = q.front(); q.pop();
+		if (s == d) return dist[s];
+		for (int v : g[s]) {
+			if (dist[v] == -1) {
+				dist[v] = dist[s] + 1;
+				q.push(v);
+			}
+		} 
+	}
+
+	return -1;
+}
 
 int main(int argc, char const *argv[]) { fastio;
-
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+	get4(t, l, o, d);
+	
+	dist = vector<int>(t+l+3, -1);
+	
+	frr (a, l) {
+		get1(n);
+		fr (i, n) {
+			cin >> m;
+			g[m].pb(t+a);
+			g[t+a].pb(m);
+		}
+	}
+		
+	cout << bfs(o)/2 << endl;
 
   return 0;
 }

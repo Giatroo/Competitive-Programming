@@ -39,13 +39,36 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+int n, m;
+int g[112][112];
+int sum = 0;
+int maxi;
 
 int main(int argc, char const *argv[]) { fastio;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+	maxi = 0;
+	cin >> n >> m;
+	fr (i, n) {
+		sum = 0;
+		fr (j, m) {
+			cin >> g[i][j];
+			sum += g[i][j];
+		}
+		g[i][m] = sum;
+		maxi = max(sum, maxi);
+	}
+
+	fr (j, m) {
+		sum = 0;	
+		fr (i, n) {
+			sum += g[i][j];
+		}
+		g[n][j] = sum;
+		maxi = max(sum, maxi);
+	}
+
+	cout1e(maxi);
+
 
   return 0;
 }

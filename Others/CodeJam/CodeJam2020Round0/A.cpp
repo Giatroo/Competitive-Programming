@@ -39,27 +39,44 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int l1, c1, l2, c2;
+int t, n;
+int m[112][112];
+int c;
+int trace, numc, numr;
+set<int> s;
 
 int main(int argc, char const *argv[]) { fastio;
 
-	get2(c1, l1);
-	get2(c2, l2);
-	cout << max(c1*l1, c2*l2) << endl;
+	cin >> t;
+	c = 0;
+	while (t--) {
+		cin >> n;
+		trace = numc = numr = 0;
+
+		fr (i, n) fr (j, n) cin >> m[i][j];
+		fr (i, n) trace += m[i][i];
+
+
+		fr (i, n) {
+			s.clear();
+			fr (j, n) {
+				if (s.count(m[i][j])) { numr++; break; }
+				s.insert(m[i][j]);
+			}
+		}
+
+		fr (i, n) {
+			s.clear();
+			fr (j, n) {
+				if (s.count(m[j][i])) { numc++; break; }
+				s.insert(m[j][i]);
+			}
+		}
+
+		cout << "Case #" << ++c << ": ";
+		cout3e(trace, numr, numc);
+
+	}
 
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
