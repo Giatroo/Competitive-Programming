@@ -39,7 +39,30 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+ll n;
+vector<ll> v; 
+ll prod;
+
 int main(int argc, char const *argv[]) { fastio;
+	cin >> n;
+	fr (i, n) { cin >> prod; v.pb(prod); }
+	prod = v[v.size()-1]*v[v.size()-2]*v[v.size()-3];
+	prod = max(prod, v[0]*v[1]*v[v.size()-1]);
+	printf("%lld\n", prod);
 
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

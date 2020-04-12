@@ -39,7 +39,48 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+int n;
+int ar[112345];
+int a, b, c;
+
+bool ehTri() {
+	return (a < b+c && b < a+c && c < a+b);
+}
+
+bool cmp(int x, int y) {
+	return x > y;
+}
+
 int main(int argc, char const *argv[]) { fastio;
+
+	cin >> n;
+	fr (i, n) cin >> ar[i];
+	sort(ar, ar+n, cmp);
+	fr (i, n) {
+		a = ar[i];
+		for (int j = i+1; j < n; j++) {
+			b = ar[j];
+			for (int k = j+1; k < n; k++) {
+				c = ar[k];
+				if (ehTri()) { cout3e(c, b, a); return 0; }
+			}
+		} 
+	}		
+
 
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

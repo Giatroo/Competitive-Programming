@@ -39,7 +39,42 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int main(int argc, char const *argv[]) { fastio;
+const int N = 212345;
+int a[N];
+int l[N];
+int g[N];
+int n;
+pii l1, l2, g1, g2;
 
-  return 0;
+int main(int argc, char const *argv[]) { fastio;
+	cin >> n;
+	l1 = l2 = mk(INF, INF);
+	g1 = g2 = mk(-INF, -INF); 
+	fr (i, n) {
+		cin >> a[i];
+		if (i+a[i] >= g1.f) {
+			g2.f = g1.f; g2.s = g1.s;
+			g1.f = i+a[i]; g1.s = i;
+		}
+	}
+
+	for (int i = n-1; i >=0; i--) {
+		if (i-a[i] <= l1.f) {
+			l2.f = l1.f; l2.s = l1.s;
+			l1.f = i-a[i]; l1.s = i;
+		}
+	}
+
+	// cout3e("l1", l1.f, l1.s);
+	// cout3e("l2", l2.f, l2.s);
+	// cout3e("g1", g1.f, g1.s);
+	// cout3e("g2", g2.f, g2.s); 
+	
+	int ans = 0;
+	if (l1.s < g1.s) ans = max(ans, g1.f - l1.f); 
+	if (l1.s < g2.s) ans = max(ans, g2.f - l1.f);
+	if (l2.s < g1.s) ans = max(ans, g1.f - l2.f);
+	cout1e(ans);
+
+	return 0;
 }
