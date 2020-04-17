@@ -40,47 +40,54 @@ const ll M = 1000000007;
 // ===================================================== //
 
 const int N = 1123;
-pll box[N];
-ll n;
-ll memo[N][N];
+int n, m, u, v, p;
+vector<pii> adj[N];
+int s;
+int d[N];
 
-bool cmp(pll a, pll b) {
-	return a.f + a.s < b.f + b.s;
-}
-
-ll res(ll i, ll tam) {
-	if (tam == 0) return memo[i][tam] = INF;
-	if (i == 0) {
-		if (tam == 1) return memo[i][tam] = box[0].s;
-		else return memo[i][tam] = -1;
+void dij(int sr) {
+	set<pii> dj;
+	frr (i, n) d[i] = INF;
+	d[sr] = 0;
+	dj.insert(mk(0, sr));	
+	
+	pii p;
+	while (!dj.empty()) {
+		p = *dj.begin(); dj.erase(dj.begin());
+		
+		forita (it, adj[p.s]) {
+			if (d[p.s] + it->s < d[it->f]) {
+				d[it->f] = d[p.s] + it->s;
+				dj.insert(mk(d[it->f], it->f));
+			}
+		}
 	}
-	
-	if (memo[i][tam] != -2) return memo[i][tam];
-	
-	ll ans = res(i-1, tam);
-  ll rp = res(i-1, tam-1);
-	
-	if (rp >= box[i].f) ans = max(ans, min(rp-box[i].f, box[i].s));
-	return memo[i][tam] = ans;
+
 }
 
 int main(int argc, char const *argv[]) { fastio;
-	cin >> n;
-	fr (i, n) {
-		cin >> box[i].f >> box[i].s;
-		box[i].s -= box[i].f; 
-	}
-	
-	sort(box, box+n, cmp);
-	// fr (i, n) cout2e(box[i].f, box[i].s);
-	
-	fr (i, n+2) fr (j, n+2) memo[i][j] = -2; // not listed
 
-	int i = 0;
-	while (i < n && res(n-1, i) != -1) {
-		i++;
+	cin >> n >> m;
+	fr (i, m) {
+		get3(u, v, p);
+		adj[u].pb(mk(v, p));
+		adj[v].pb(mk(u, p));
 	}
-	cout1e(i);
+	
+	cin >> s;
+	dij(s);
+
+	// frr (i, n) printf("d[%d] = %d\n", i, d[i]);
+
+	int l, h;
+	l = INF; h = -INF;
+	frr (i, n) {
+		if (i == s) continue;
+		h = max(h, d[i]);
+		l = min(l, d[i]);
+	}
+
+	cout << h-l << endl;
 
   return 0;
 }

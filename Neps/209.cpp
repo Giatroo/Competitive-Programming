@@ -39,48 +39,19 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-const int N = 1123;
-pll box[N];
-ll n;
-ll memo[N][N];
-
-bool cmp(pll a, pll b) {
-	return a.f + a.s < b.f + b.s;
-}
-
-ll res(ll i, ll tam) {
-	if (tam == 0) return memo[i][tam] = INF;
-	if (i == 0) {
-		if (tam == 1) return memo[i][tam] = box[0].s;
-		else return memo[i][tam] = -1;
-	}
-	
-	if (memo[i][tam] != -2) return memo[i][tam];
-	
-	ll ans = res(i-1, tam);
-  ll rp = res(i-1, tam-1);
-	
-	if (rp >= box[i].f) ans = max(ans, min(rp-box[i].f, box[i].s));
-	return memo[i][tam] = ans;
-}
+const int N = 11234;
+int n;
+int w[N];
 
 int main(int argc, char const *argv[]) { fastio;
 	cin >> n;
-	fr (i, n) {
-		cin >> box[i].f >> box[i].s;
-		box[i].s -= box[i].f; 
-	}
-	
-	sort(box, box+n, cmp);
-	// fr (i, n) cout2e(box[i].f, box[i].s);
-	
-	fr (i, n+2) fr (j, n+2) memo[i][j] = -2; // not listed
+	w[0] = 0;
+	frr (i, n) cin >> w[i];
+	sort(w, w+n+1);
+	fr (i, n) if (w[i+1]-w[i]>8) { cout1e("N"); return 0; }
 
-	int i = 0;
-	while (i < n && res(n-1, i) != -1) {
-		i++;
-	}
-	cout1e(i);
+	cout1e('S');
+
 
   return 0;
 }

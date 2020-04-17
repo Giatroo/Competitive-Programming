@@ -40,47 +40,28 @@ const ll M = 1000000007;
 // ===================================================== //
 
 const int N = 1123;
-pll box[N];
-ll n;
-ll memo[N][N];
-
-bool cmp(pll a, pll b) {
-	return a.f + a.s < b.f + b.s;
-}
-
-ll res(ll i, ll tam) {
-	if (tam == 0) return memo[i][tam] = INF;
-	if (i == 0) {
-		if (tam == 1) return memo[i][tam] = box[0].s;
-		else return memo[i][tam] = -1;
-	}
-	
-	if (memo[i][tam] != -2) return memo[i][tam];
-	
-	ll ans = res(i-1, tam);
-  ll rp = res(i-1, tam-1);
-	
-	if (rp >= box[i].f) ans = max(ans, min(rp-box[i].f, box[i].s));
-	return memo[i][tam] = ans;
-}
+const int C = 1123;
+int n, c;
+int s, e;
+int t;
+bool deu;
 
 int main(int argc, char const *argv[]) { fastio;
-	cin >> n;
-	fr (i, n) {
-		cin >> box[i].f >> box[i].s;
-		box[i].s -= box[i].f; 
-	}
-	
-	sort(box, box+n, cmp);
-	// fr (i, n) cout2e(box[i].f, box[i].s);
-	
-	fr (i, n+2) fr (j, n+2) memo[i][j] = -2; // not listed
 
-	int i = 0;
-	while (i < n && res(n-1, i) != -1) {
-		i++;
+	get2(n, c);
+	t = 0;
+	deu = true;
+	fr (i, n) {
+		get2(s, e);
+		t -= s;
+		t += e;
+		if (t > c) 
+			deu = false;
 	}
-	cout1e(i);
+
+	if (!deu) cout << "S" << endl;
+	else cout1e("N");
+
 
   return 0;
 }
