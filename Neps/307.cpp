@@ -8,7 +8,6 @@ typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
 typedef vector<int> vi;
 typedef pair<int, int> pii;
-typedef vector<pii> vii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 
@@ -40,7 +39,31 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+int s, c;
+int a, b, d;
+int adj[312][312];
+
 int main(int argc, char const *argv[]) { fastio;
+
+  cin >> s >> c;
+  fr (i, s) fr (j, s) adj[i][j] = INF;
+  fr (i, s) adj[i][i] = 0;
+  fr (i, c) { cin >> a >> b >> d; a--; b--; adj[a][b] = adj[b][a] = d; }
+
+  fr (k, s) fr (i, s) fr (j, s) 
+    adj[i][j] = min(adj[i][j], adj[i][k]+adj[k][j]);
+
+  int mini, maxi;
+  mini = INF;
+  fr (i, s) {
+    maxi = -INF;
+    fr (j, s) {
+      maxi = max(maxi, adj[i][j]);
+    }
+    mini = min(mini, maxi);
+  }
+
+  cout1e(mini);
 
   return 0;
 }

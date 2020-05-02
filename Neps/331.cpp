@@ -8,7 +8,6 @@ typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
 typedef vector<int> vi;
 typedef pair<int, int> pii;
-typedef vector<pii> vii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 
@@ -40,7 +39,48 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+vector<int> adj[51234];
+int deg[51234];
+vector<int> tsort;
+int n, m;
+int u, v;
+
+bool topsort() {
+  set<int> list;
+  int c;
+  fr (i, n) if (deg[i] == 0) list.insert(i);
+  
+  while (!list.empty()) {
+    c = *list.begin(); list.erase(list.begin());
+    for (auto it : adj[c]) {
+      deg[it]--;
+      if (deg[it] == 0) list.insert(it);
+    }
+    tsort.pb(c);
+  }
+
+  if (tsort.size() < n) return false;
+  
+  return true;
+}
+
 int main(int argc, char const *argv[]) { fastio;
+  cin >> n >> m;
+  fr (i, n) deg[i] = 0;
+  fr (i, m) {
+    cin >> u >> v;
+    adj[u].pb(v);
+    deg[v]++;
+  }
+  
+  if (topsort()) {
+    for (auto i : tsort) 
+      cout << i << endl;
+  }
+  else {
+    cout << "*" << endl;
+  }
+
 
   return 0;
 }

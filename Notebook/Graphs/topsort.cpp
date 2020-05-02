@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <deque>
 using namespace std;
 
 typedef long long int ll;
@@ -8,7 +9,6 @@ typedef pair<ll, ll> pll;
 typedef vector<ll> vl;
 typedef vector<int> vi;
 typedef pair<int, int> pii;
-typedef vector<pii> vii;
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 
@@ -40,7 +40,49 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+const int N = 112345;
+
+vector<int> adj[N];
+deque<int> tsort;
+
+int n, m;
+int u, v;
+
+bool emptyAdj;
+
+vector<int> marked;
+
+void bfsr(int s);
+
+void bfs() {
+  marked = vector<int>(m, 0);
+
+  for (int i = 0; i < n; i++) if (!marked[i]) bfsr(i);
+}
+
+void bfsr(int s) {
+  marked[s] = true;
+  for (auto vs : adj[s]) {
+    if (!marked[vs]) {
+      bfsr(vs);  
+    }
+  }
+  tsort.pb(s);
+}
+
 int main(int argc, char const *argv[]) { fastio;
+  cin >> n >> m;
+  fr (i, m) {
+    cin >> u >> v; // u depende de v
+    adj[u].pb(v);
+  }
+
+  bfs();
+
+  fr (i, tsort.size()) {
+    cout << tsort[i] << " ";
+  }
+  cout << endl;
 
   return 0;
 }
