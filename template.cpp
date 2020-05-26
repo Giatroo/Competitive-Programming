@@ -25,7 +25,7 @@ typedef vector<pll> vll;
 #define f first
 #define s second
 
-#define debug(x) cout << #x << " = " << x << endl
+#define debug(x) #x << " = " << x
 
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f;
