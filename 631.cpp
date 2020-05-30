@@ -32,7 +32,32 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
+const int N = 2123;
+int n, t;
+int dp[N];
+
+int f(int i) {
+  // base
+  if (i == n-1) return 1;
+
+  int &dmp = dp[i];
+  if (dmp != -1) return dmp;
+
+
+
+  return dmp;
+}
+
 int main(int argc, char const *argv[]) { fastio;
+   t = 1;
+   cin >> n;
+   while (n != 0) {
+      cout << "Teste " << t++ << endl;
+
+
+
+      cin >> n;
+   }
 
   return 0;
 }

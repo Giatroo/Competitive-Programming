@@ -5,14 +5,20 @@ typedef long long int ll;
 typedef unsigned long long int ull;
 typedef long double lld;
 typedef pair<ll, ll> pll;
+typedef pair<int, int> pii;
 typedef vector<ll> vl;
+typedef vector<int> vi;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
 
-#define fastio ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define fastio                        \
+	ios_base::sync_with_stdio(false); \
+	cin.tie(NULL);                    \
+	cout.tie(NULL)
 
 #define fr(i, n) for (ll i = 0; i < n; i++)
 #define frr(i, n) for (ll i = 1; i <= n; i++)
-#define frd(i, n) for (ll i = n; i >= 0; i--)
-#define forita(it, c) for(auto it = c.begin(); it != c.end(); it++)
+#define frit(it, c) for (auto it = c.begin(); it != c.end(); it++)
 
 #define sortvector(v) sort(v.begin(), v.end())
 #define sortvectorby(v, f) sort(v.begin(), v.end(), f)
@@ -22,40 +28,31 @@ typedef vector<ll> vl;
 #define f first
 #define s second
 
-#define cout1e(a) cout << (a) << endl
-#define cout2e(a, b) cout << (a) << " " << (b) << endl
-#define cout3e(a, b, c) cout << (a) << " " << (b) << " " << (c) << endl
-#define cout4e(a, b, c, d) cout << (a) << " " << (b) << " " << (c) << " " << (d) << endl
-#define debug(x) cout << #x << " = " << x << endl
-#define get1(a) cin >> (a)
-#define get2(a, b) cin >> (a) >> (b)
-#define get3(a, b, c) cin >> (a) >> (b) >> (c)
-#define get4(a, b, c, d) cin >> (a) >> (b) >> (c) >> (d)
+#define debug(x) #x << " = " << x << " "
 
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-const int N = 11234;
-ll dp[N];
 int n;
+ll dp[11234];
 
-int main(int argc, char const *argv[]) { fastio;
-  dp[0] = 1;
-  dp[1] = 1;
-  dp[2] = 5;
-  scanf("%d", &n);
+int main(int argc, char const *argv[]) {
+	fastio;
+	dp[0] = dp[1] = 1;
+	dp[2] = 5;
+  cin >> n;
 
-  for (int i = 3; i <= n; i++) {
-    dp[i] = dp[i-1];
-    dp[i] += (4*dp[i-2]) % M;
-    dp[i] %= M;
-    dp[i] += (2*dp[i-3]) % M;
-    dp[i] %= M;
-  }
+	for (int i = 3; i <= n; i++) {
+		dp[i] = 1 * dp[i - 1];
+		dp[i] %= M;
+		dp[i] += 4 * dp[i - 2];
+		dp[i] %= M;
+		dp[i] += 2 * dp[i - 3];
+		dp[i] %= M;
+	}
+  cout << dp[n] << endl;
 
-  printf("%lld\n", dp[n]);
-
-  return 0;
+	return 0;
 }
