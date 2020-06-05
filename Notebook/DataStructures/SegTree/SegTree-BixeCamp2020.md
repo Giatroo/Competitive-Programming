@@ -135,8 +135,8 @@ void build(int i, int l, int r) {
         int m = (l+r)/2;
 
         // Construímos recursivamente o filho da esquerda e direita
-        build(l, m, 2*i);
-        build(m+1,r, 2*i+1);
+        build(2*i,l, m);
+        build(2*i+1, m+1, r);
 
         // Como o da esquerda possui a soma da metade esquerda do nosso segmento
         // e o da direita possui a soma da metade direita
@@ -174,7 +174,7 @@ E vamos repetindo isso até encontrar a folha que representa o intervalo $[i,i]$
 ```cpp
 void update(int i, int l, int r, int pos, int k) {
     if (l == r) { // Se chegamos na folha, então pos = l = r
-        st[l] += k; // Ao chegarmos na raiz, somamos k diretamente
+        st[i] += k; // Ao chegarmos na raiz, somamos k diretamente
     } else {
         int m = (l+r)/2;
 
@@ -302,7 +302,7 @@ int lz[4*N]; // array representando as ataulizações pendentes
 int arr[N]; // array dado no problema 
 
 void build(int i, int l, int r) {
-    if (l == r) { 
+    if (l == r) {
         st[i] = arr[l];
     } else {
         int m = (l+r)/2;
@@ -318,13 +318,13 @@ void build(int i, int l, int r) {
     lz[i] = 0;
 }
 
-// Um método novo que verifica se há mudanças pendentes
+// um método novo que verifica se há mudanças pendentes
 // se sim, ele faz a mudança no nó atual e empurra o "lembrete" de atualizações
 // para os filhos
 void push(int i, int l, int r) {
-    // Se temos mudanças pendentes
+    // se temos mudanças pendentes
     if (lz[i] != 0) {
-        // Atualizamos (vamos discutir essa fórmula depois)
+        // atualizamos (vamos discutir essa fórmula depois)
         st[i] += lz[i]*(r-l+1);
 
         if (l != r) { // se não é uma folha
@@ -333,7 +333,7 @@ void push(int i, int l, int r) {
             lz[2*i+1] += lz[i];
         }
 
-        // Como fizemos a atualização, não há mais pendências
+        // como fizemos a atualização, não há mais pendências
         lz[i] = 0;
     }
 }
@@ -354,9 +354,10 @@ void update(int i, int l, int r, int ql, int qr, int k) {
     }
 
     int m = (l+r)/2;
+    update(2*i, l, m, ql, qr, k);
+    update(2*i+1, m+1, r, ql, qr, k);
     st[i] = st[2*i] + st[2*i+1];
 }
-
 
 int query(int i, int l, int r, int ql, int qr) {
     // A única diferença na query é que devemos, sempre que visitamos um nó,
