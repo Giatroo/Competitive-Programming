@@ -4,7 +4,7 @@
 
 _Caio é um menino muito cuidadoso com seus carrinhos Rodas Quentes, guardando-os em várias caixinhas que ficam alinhadas em sua estante, uma ao lado da outra. Por ser muito organizado, Caio deixa todas suas $n$ caixinhas numeradas da esquerda para a direita (a primeira é a 1, a segunda a 2, e assim por diante). Em cada caixinha, Caio guarda $a_i$ carrinhos, onde $i$ é o número da $i$-ésima caixinha._
 
-_Vira e meche, Caio compra mais carinhos Rodas Quentes. E sempre os coloca numa mesma caixinha. Ou seja, se ele fez uma compra de $k$ carrinhos, vai escolher uma caixinha $i$ para colocar esses carrinhos._
+_Vira e mexe, Caio compra mais carinhos Rodas Quentes. E sempre os coloca numa mesma caixinha. Ou seja, se ele fez uma compra de $k$ carrinhos, vai escolher uma caixinha $i$ para colocar esses carrinhos._
 
 _Além disso, Caio gosta de brincar com os carrinhos. Mas por ser uma criança muito diversificada, sempre que vai brincar, ele escolhe duas caixinhas, $i$ e $j$, e pega todos os carrinhos nas caixinhas de $i$ até $j$ para brincar. Depois de ter brincado o suficiente, ele retorna os carrinhos para as caixinhas em que estavam antes (não me pergunte como ele memoriza cada caixinha de cada carrinho)._
 
@@ -120,7 +120,7 @@ Mas então ainda restam as dúvidas: como fazer aquelas operações nesse novo t
 
 ### Construindo
 
-Vamos primeiro mostrar como construir esse árvore partindo do nosso array dado pelo Caio.
+Vamos primeiro mostrar como construir essa árvore partindo do nosso array dado pelo Caio.
 
 ```cpp
 const int N = 112345; 
