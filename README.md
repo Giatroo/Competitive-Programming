@@ -13,6 +13,4 @@ https://codeforces.com/profile/Giatro
 
 https://neps.academy/user/6015
 
-https://www.spoj.com/myaccount/
-
 https://www.urionlinejudge.com.br/judge/en/profile/144513
