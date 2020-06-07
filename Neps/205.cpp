@@ -32,41 +32,40 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int r, k;
-int dp[112][123][21];
+int n, f;
+int c[112345];
 
-int f(int ini, int cursum, int curk) {
-  int sum = 0;
+int tot(int k) {
+  int ret = 0;
+  fr (i, n) ret += (k/c[i]);
+  return ret;
+}
 
-  // cout << debug(ini) << debug(cursum) << debug(curk) << endl;
+int bb() {
+  int l, m, r;
+  int totm;
+  int mini;
+  l = 0; r = 1e8+5;
+  m = l + (r-l)/2;
+  mini = r;
 
-  if (curk == k-1) {
-    if (cursum == r) return 1;
-    else return 0;
+  while (l <= r) {
+    m = l + (r-l)/2;
+    totm = tot(m);
+    if (totm >= f) {
+      mini = m;
+      r = m-1;
+    } else {
+      l = m+1;
+    }
   }
-
-  int dpm = dp[ini][cursum][curk];
-  if (dpm != -1) return dpm;
-
-  for (int i = ini+1; i <= r-((k-1-curk)*ini); i++) {
-    sum += f(i, cursum+i, curk+1);
-  }
-
-  return dp[ini][cursum][curk] = sum;
+  return mini;
 }
 
 int main(int argc, char const *argv[]) { fastio;
-  cin >> r >> k;
-
-  fr (i, r+1) fr (j, r+1) fr (a, k+1) dp[i][j][a] = -1;
-
-  int sum = 0;
-  for (int i = 1; i <= r; i++) {
-    sum += f(i, i, 0);
-  }
-
-  cout << sum << endl;
-
+  cin >> n >> f;
+  fr (i, n) cin >> c[i];
+  cout << bb() << endl;
 
   return 0;
 }

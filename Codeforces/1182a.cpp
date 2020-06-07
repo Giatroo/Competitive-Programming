@@ -32,41 +32,19 @@ const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
 // ===================================================== //
 
-int r, k;
-int dp[112][123][21];
+ll n;
 
-int f(int ini, int cursum, int curk) {
-  int sum = 0;
-
-  // cout << debug(ini) << debug(cursum) << debug(curk) << endl;
-
-  if (curk == k-1) {
-    if (cursum == r) return 1;
-    else return 0;
-  }
-
-  int dpm = dp[ini][cursum][curk];
-  if (dpm != -1) return dpm;
-
-  for (int i = ini+1; i <= r-((k-1-curk)*ini); i++) {
-    sum += f(i, cursum+i, curk+1);
-  }
-
-  return dp[ini][cursum][curk] = sum;
+ll exp(int base, int e) {
+  if (e == 0) return 1;
+  if (e == 1) return base;
+  if (e % 2 == 1) return exp(base, e-1)*base;
+  else return exp(base,e/2) * exp(base,e/2);
 }
 
 int main(int argc, char const *argv[]) { fastio;
-  cin >> r >> k;
-
-  fr (i, r+1) fr (j, r+1) fr (a, k+1) dp[i][j][a] = -1;
-
-  int sum = 0;
-  for (int i = 1; i <= r; i++) {
-    sum += f(i, i, 0);
-  }
-
-  cout << sum << endl;
-
+  cin >> n;
+  if (n % 2 != 0) cout << 0 << endl;
+  else cout << exp(2, n/2) << endl;
 
   return 0;
 }
