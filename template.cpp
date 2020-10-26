@@ -1,3 +1,18 @@
+/*******************************************************************************
+  My template for competitive programming competitions and practices
+  -----------------------------------------------------
+
+Programmer:     Lucas Paiolla Forastiere
+Last change:    2020-10-26
+
+This file is a template created by me to help with competitive programming.
+Whenever I need to create a new file to a problem, I copy this template and
+just start coding (I even have a bash script that I can call the already puts
+me inside vim).
+Feel free to copy get some inspiration from my template. I'm always trying to
+improve it.
+*******************************************************************************/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -30,7 +45,7 @@ typedef vector<pll> vll;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f;
 const ll M = 1000000007;
-// ===================================================== //
+// ========================================================================== //
 
 int main(int argc, char const *argv[]) { fastio;
 
