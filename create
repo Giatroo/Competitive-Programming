@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [ $# -ne 1 ]
-then
-  echo "Missing file name!" 
-else
-  cp template.cpp $1 && vim $1
-fi
